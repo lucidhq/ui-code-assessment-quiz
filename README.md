@@ -1,28 +1,30 @@
-# Lucid UI code assessment
+# Lucid UI Code Assessment
 
-Welcome to the code assessment for the Lucid's UI Team.
+Welcome to the code assessment for Lucid's UI Team.
 
-Following we have some details about what we expect from you on this assessment. If you have any questions, feel free to reach us anytime.
+This README details what we expect from you on this assessment. If you have any questions, feel free to reach out anytime.
 
 ## Application
 
-The proposal of this exercise is to build a [React](https://reactjs.org) application based on a mockup design and the requirements below:
+The goal of this exercise is to build a [React](https://reactjs.org) application based on a mockup design and the requirements below:
 
 ### Quiz App
 
-The application proposed is a Quiz. Basically it's a user interface that shows a set of questions for a single user and allows it to enter/choose the answer for each question.
+The application is a Quiz interface - a user interface that shows a set of questions and lets the user select an answer for each one.
 
-The Quiz can have 3 different types of questions:
+The Quiz includes three different types of questions:
 
-- Multiple: a multiple-choice question (predefined answer options);
-- Boolean: a "true or false" only answer;
-- Text: an open text answer field;
+- Multiple: a multiple-choice question (predefined answer options)
+- Boolean: a "true or false" only answer
+- Text: an open-ended text answer
 
-The UI should fetch the questions data from an API (provided in this repository). More details in [API instructions](#api-instructions)
+### Requirements
 
-The application should display one question per time, randomly selected from the questions data set.  
+1. The UI should fetch the questions data from an API (provided in this repository). More details in [API instructions](#api-instructions)
 
-When the user finishes the Quiz, the UI should display a summary page with the results, including: number of correct answers, number of wrong answers, a total of the questions answered and the final score (%). The summary page should also have a button to restart the Quiz with different questions.
+2. The application should display one question per time, randomly selected from the questions data set.  
+
+3. When the user finishes the Quiz, the UI should display a summary page with the results, including: number of correct answers, number of wrong answers, a total of the questions answered and the final score (%). The summary page should also have a button to restart the Quiz with different questions.
 
 ### App Design
 
