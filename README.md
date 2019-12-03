@@ -26,10 +26,6 @@ The Quiz includes three different types of questions:
 
 3. When the user finishes the Quiz, the UI should display a summary page with the results, including: number of correct answers, number of wrong answers, a total of the questions answered and the final score (%). The summary page should also have a button to restart the Quiz with different questions.
 
-### App Design
-
-TODO: upload mockup image here
-
 ### Development instructions
 
 This repository provides a React application bootstrap, to start the development you should first:
