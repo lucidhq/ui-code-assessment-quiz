@@ -6,29 +6,51 @@ This README details what we expect from you on this assessment. If you have any 
 
 ## Application
 
-The goal of this exercise is to build a [React](https://reactjs.org) application based on a mockup design and the requirements below:
+The purpose of this exercise is to build a [React](https://reactjs.org) application based on the provided mockups and requirements below:
 
 ### Quiz App
 
-The application is a Quiz interface - a user interface that shows a set of questions and lets the user select an answer for each one.
+The application is a Quiz interface - a UI that shows a set of questions and lets the user select an answer for each one.
 
-The Quiz includes three different types of questions:
+The Quiz features three different types of questions. Use the included mockups as references for styling.
 
-- Multiple: a multiple-choice question (predefined answer options)
-- Boolean: a "true or false" only answer
-- Text: an open-ended text answer
+**Multiple**   
+A multiple-choice question (predefined answer options)
+
+![](./mockups/multiple.png)
+
+
+**Boolean**   
+A "true or false" only answer question
+
+![](./mockups/boolean.png)
+
+**Text**   
+An open-ended text question
+
+![](./mockups/text.png)
 
 ### Requirements
 
 1. The UI should fetch the questions data from an API (provided in this repository). More details in [API instructions](#api-instructions)
 
-2. The application should display one question per time, randomly selected from the questions data set.  
+2. The application should display one question per time, randomly selected from the set of questions.  
+   
+3. When the user finishes the Quiz, the UI should display a summary page with the results, including:
 
-3. When the user finishes the Quiz, the UI should display a summary page with the results, including: number of correct answers, number of wrong answers, a total of the questions answered and the final score (%). The summary page should also have a button to restart the Quiz with different questions.
+- Number of correct answers
+- Number of incorect answers
+- Total number of questions answered
+- The final score (%)
+- A button to restart the Quiz with a different questions
 
-### Development instructions
+A reference mockup for the summary page is depicted below:
 
-This repository provides a React application bootstrap, to start the development you should first:
+![](./mockups/summary.png)
+
+### Setup
+
+This repo provides a React application bootstrap. To get setup, run these commands:
  
 - Install dependencies:
 
@@ -44,8 +66,8 @@ npm start
 
 The command above will:
 
-- Starts an HTTP server for the API (localhost, port 4000);
-- Starts an HTTP server (powered by react-scripts) for the UI (client) (localhost, port 3000);
+- Start an HTTP server for the API (localhost:4000);
+- Start an HTTP server (powered by react-scripts) for the front-end (localhost:3000);
 
 ### API instructions
 
