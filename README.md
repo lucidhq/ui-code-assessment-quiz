@@ -39,7 +39,7 @@ An open-ended text question
 3. When the user finishes the Quiz, the UI should display a summary page with the results, including:
 
 - Number of correct answers
-- Number of incorect answers
+- Number of incorrect answers
 - Total number of questions answered
 - The final score (%)
 - A button to restart the Quiz with a different questions
