@@ -11,19 +11,10 @@ import {
 const initialState: QuizState = {
   questionList: [],
 	randomQuestion: null,
-	askedQuestions: [],
+  askedQuestions: [],
+  counter: 0,
   showResults: false,
 };
-
-const initState = {
-  state: initialState,
-  dispatch: () => null
-}
-
-export const QuizContext = createContext<{
-  state: QuizState,
-  dispatch: Dispatch<QuizActions>;
-}> (initState);
 
 const quizReducer = (state: QuizState, action: QuizActions): QuizState => {
   switch (action.type) {
@@ -47,13 +38,6 @@ const quizReducer = (state: QuizState, action: QuizActions): QuizState => {
       };
     case SUBMIT_QUIZ:
       const originalList = state.questionList.concat(state.askedQuestions);
-
-      return {
-        questionList: originalList,
-        randomQuestion: null,
-        askedQuestions: [],
-        showResults: true,
-      };
       return state;
     case RESTART_QUIZ:
       return {

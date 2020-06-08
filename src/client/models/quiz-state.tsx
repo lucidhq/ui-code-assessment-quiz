@@ -10,7 +10,8 @@ export type Question = {
 export type QuizState = {
   questionList: Question[];
   randomQuestion: Question | null;
-	askedQuestions: Question[];
+  askedQuestions: Question[];
+  counter: number;
   showResults: boolean;
 }
 
