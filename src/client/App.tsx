@@ -1,4 +1,4 @@
-import React, { useState, useEffect, FunctionComponent } from "react";
+import React from "react";
 
 export default class App extends React.Component<{}, any> { 
   constructor(props: any){
@@ -26,10 +26,21 @@ export default class App extends React.Component<{}, any> {
   async getQuestions(): Promise<void> {
     const response = await fetch(`http://localhost:4000/api/questions`);
     response.json()
-    .then((data) => {})
+    .then((data) => {
+      const { results } = data,
+       idx = Math.floor(Math.random() * results.length),
+       randomQues = results[idx];
+      results.splice(idx, 1);
+
+      this.setState({
+        questionList: results,
+        randomQuestion: randomQues,
+        askedQuestions: [randomQues],
+        counter: 1,
+      })
+    })
     .catch(err => console.error(err))
   }
-
 
   public render() {
     return (
