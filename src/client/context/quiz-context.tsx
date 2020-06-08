@@ -1,4 +1,4 @@
-import React, { useReducer, createContext, Dispatch, useContext } from "react";
+import React, { createContext, Dispatch, useContext } from "react";
 import {
   QuizState,
   QuizActions,
@@ -15,16 +15,17 @@ const initialState: QuizState = {
   showResults: false,
 };
 
+const initState = {
+  state: initialState,
+  dispatch: () => null
+}
+
 export const QuizContext = createContext<{
   state: QuizState,
   dispatch: Dispatch<QuizActions>;
-}> ({
-  state: initialState,
-  dispatch: () => null
-});
+}> (initState);
 
 const quizReducer = (state: QuizState, action: QuizActions): QuizState => {
-
   switch (action.type) {
     case INIT_QUIZ:
       return {
@@ -63,14 +64,3 @@ const quizReducer = (state: QuizState, action: QuizActions): QuizState => {
       return state;
   }
 };
-
-const QuizStateProvider: React.FC = ({ children }) => {
-  const { state, dispatch } = useContext(quizReducer, initialState);
-
-  return (
-    <QuizContext.Provider value={{ state, dispatch }}>
-      {children}
-    </QuizContext.Provider>
-  );
-}
-
