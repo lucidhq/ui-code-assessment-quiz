@@ -24,7 +24,7 @@ export const MultipleOption = ({ question, handleQuizResult, selectedAnswer }: {
   useEffect(() => {
     const shuffledArr = shuffle([...question.incorrect_answers, question.correct_answer])
     setShuffledArr(shuffledArr)
-  }, [question.question])
+  }, [question.incorrect_answers, question.correct_answer])
 
   return (
     <Form>
