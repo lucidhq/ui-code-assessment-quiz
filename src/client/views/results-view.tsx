@@ -17,7 +17,7 @@ export const ResultsView = ({ quizResults }: {
       <div style={row}> Correct: {correct} </div>
       <div style={row}> Wrong: {wrong} </div>
       <div style={row}> Questions answered: {answered} </div>
-      <div style={row}> Final Score: {score} </div>
+      <div style={row}> Final Score: {score}% </div>
     </div>
   );
 }

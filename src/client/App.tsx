@@ -65,18 +65,12 @@ export default class App extends React.Component<{}, any> {
       selectedAnswer: ''
     })
 
-  }
-
-  resetQuiz() {
-    const { questionList, askedQuestions } = this.state;
-    const originalList = questionList.concat(askedQuestions);
-
-    this.setState(initialState, () => {
-      this.selectRandomQuestion()
+    if(this.state.showResults){
       this.setState({
         showResults: false
-      })
-    });
+      });
+    }
+
   }
 
   trackResults() {
@@ -84,14 +78,16 @@ export default class App extends React.Component<{}, any> {
     const c = correct;
     const w = wrong;
 
-    if(selectedAnswer && randomQuestion.correct_answer === selectedAnswer) {
-      this.setState({
-        correct: c + 1
-      })
-    } else {
-      this.setState({
-        wrong: w + 1
-      })
+    if(selectedAnswer) {
+      if(randomQuestion.correct_answer === selectedAnswer) {
+        this.setState({
+          correct: c + 1
+        })
+      } else {
+        this.setState({
+          wrong: w + 1
+        })
+      }
     }
   }
 
@@ -109,7 +105,6 @@ export default class App extends React.Component<{}, any> {
       })
     } else if(counter === QUIZ_SIZE && showResults === true) {
       this.setState({
-        showResults: false,
         counter: 0,
         correct: 0,
         wrong: 0,
@@ -131,7 +126,7 @@ export default class App extends React.Component<{}, any> {
         { !showResults ? 
           <QuestionView
             selectedAnswer={selectedAnswer} 
-            randomQuestion={randomQuestion} 
+            randomQuestion={randomQuestion && randomQuestion} 
             handleSubmit={this.handleQuizResults}
           /> 
           : 

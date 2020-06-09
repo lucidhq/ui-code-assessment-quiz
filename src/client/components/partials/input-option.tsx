@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Form from 'react-bootstrap/Form'
 
 import {
@@ -11,13 +11,21 @@ export const InputOption = ({ question, handleQuizResult, selectedAnswer }: {
   handleQuizResult: HandleSubmit,
   selectedAnswer: string
 }) => {
+  const [ inputVal, setInputValue ] = useState('')
+
+  useEffect(() =>{
+    setInputValue('')
+  }, [question.question]);
 
   return (
     <Form.Group>
       <Form.Control 
-        type="text" 
+        type="text"
+        value={inputVal}
         onChange={(e) => {
-          handleQuizResult(e.currentTarget.value)
+          const val = e.currentTarget.value;
+          setInputValue(val);
+          handleQuizResult(val)
         }} 
       />
     </Form.Group>
