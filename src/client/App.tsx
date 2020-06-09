@@ -27,7 +27,7 @@ export default class App extends React.Component<{}, any> {
       showResults: false
 
     }
-    this.handleClick = this.handleClick.bind(this);
+    this.handleButtonClick = this.handleButtonClick.bind(this);
   }
 
   componentWillMount() {
@@ -79,7 +79,7 @@ export default class App extends React.Component<{}, any> {
     })
   }
 
-  handleClick() {
+  handleButtonClick() {
     const { counter, showResults } = this.state;
 
     if(counter === QUIZ_SIZE) {
@@ -104,28 +104,27 @@ export default class App extends React.Component<{}, any> {
   }
 
   public render() {
-    const { randomQuestion, showResults } = this.state;
     return (
-      <div style={{ display: 'flex', flexDirection: 'column', padding: '20%' }}>
-          { !showResults ? 
-            <QuestionView 
-              randomQuestion={randomQuestion} 
-              handleQuizResults={this.handleQuizResults}
-            /> 
-            : 
-            <ResultsView /> 
-          }
-          <button 
-            style={{ 
-              backgroundColor: 'dodgerblue', 
-              border: 'none', 
-              color: 'white',
-              margin: '20px 0px' 
-            }}
-            onClick={this.handleClick}
-          >
-            Next
-          </button>
+      <div style={{ display: 'flex', flexDirection: 'column', padding: '15%', overflow: 'hidden' }}>
+        { !this.state.showResults ? 
+          <QuestionView 
+            randomQuestion={this.state.randomQuestion} 
+            handleSubmit={this.handleQuizResults}
+          /> 
+          : 
+          <ResultsView /> 
+        }
+        <button 
+          style={{ 
+            backgroundColor: 'dodgerblue', 
+            border: 'none', 
+            color: 'white',
+            margin: '20px 0px'
+          }}
+          onClick={this.handleButtonClick}
+        >
+          Next
+        </button>
       </div>
     );
   }

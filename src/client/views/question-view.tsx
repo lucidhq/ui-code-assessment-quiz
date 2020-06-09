@@ -1,14 +1,24 @@
 import React from "react";
 import { QuestionText } from '../components/question-text';
 import { AnswerOption } from '../components/answer-option';
+import {
+  Question,
+  HandleSubmit
+} from '../models/quiz-state';
 
-export const QuestionView = (props: any) => {
+export const QuestionView = ({ randomQuestion, handleSubmit }: {
+  randomQuestion: Question,
+  handleSubmit: HandleSubmit
+}) => {
   return (
     <div>
       <QuestionText 
-        text={props.randomQuestion && props.randomQuestion.question} 
+        text={randomQuestion.question} 
       />
-      <AnswerOption />
+      <AnswerOption 
+        question={randomQuestion}
+        handleQuizResult={handleSubmit}
+      />
     </div>
   );
 }

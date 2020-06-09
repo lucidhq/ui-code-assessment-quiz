@@ -15,6 +15,8 @@ export type QuizState = {
   showResults: boolean;
 }
 
+export type HandleSubmit = ((answer: string, correctAnswer: string) => void)
+
 export type QuizActions =  
 | { type: 'INIT_QUIZ', results: Question[] }  
 | { type: 'SELECT_RANDOM_QUESTION' }  

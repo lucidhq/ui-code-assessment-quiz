@@ -8,7 +8,7 @@ export const QuizButton = () => {
         backgroundColor: 'dodgerblue', 
         border: 'none', 
         color: 'white',
-        margin: '20px 0px' 
+        margin: '10px 0px' 
       }}>
         Next
       </button>
