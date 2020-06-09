@@ -2,7 +2,7 @@ import React from "react";
 import { QuestionView } from './views/question-view';
 import { ResultsView } from './views/results-view';
 
-export const QUIZ_SIZE = 3;
+export const NUM_QUESTIONS = 5;
 export const GET_QUIZ_API = `http://localhost:4000/api/questions`;
 
 export const initialState = {
@@ -22,6 +22,30 @@ export const initialState = {
       selectedAnswer: '',
 }
 
+export const arr = [
+  {
+    "category":"Entertainment: Board Games",
+    "type":"text",
+    "difficulty":"medium",
+    "question":"How many points is the Z tile worth in Scrabble?",
+    "correct_answer":"10"
+  },
+  {
+    "category":"Vehicles",
+    "type":"text",
+    "difficulty":"easy",
+    "question":"Which car tire manufacturer is famous for its &quot;Eagle&quot; brand of tires, and is the official tire supplier of NASCAR?",
+    "correct_answer":"Goodyear"
+  },
+  {
+    "category":"Animals",
+    "type":"text",
+    "difficulty":"medium",
+    "question":"What color\/colour is a polar bear&#039;s skin?",
+    "correct_answer":"Black"
+  },
+]
+
 export default class App extends React.Component<{}, any> { 
   constructor(props: any){
     super(props);
@@ -40,7 +64,8 @@ export default class App extends React.Component<{}, any> {
     .then((data) => {
 
       this.setState({
-        questionList: data.results
+        questionList: arr
+        // questionList: data.results
       }, () => {
         this.selectRandomQuestion()
       })
@@ -75,17 +100,15 @@ export default class App extends React.Component<{}, any> {
 
   trackResults() {
     const { randomQuestion, selectedAnswer, correct, wrong } = this.state;
-    const c = correct;
-    const w = wrong;
 
     if(selectedAnswer) {
       if(randomQuestion.correct_answer === selectedAnswer) {
         this.setState({
-          correct: c + 1
+          correct: correct + 1
         })
       } else {
         this.setState({
-          wrong: w + 1
+          wrong: wrong + 1
         })
       }
     }
@@ -96,14 +119,14 @@ export default class App extends React.Component<{}, any> {
     const { counter, showResults } = this.state;
 
     this.trackResults()
-    if(counter !== QUIZ_SIZE) {
+    if(counter !== NUM_QUESTIONS) {
       this.selectRandomQuestion();
-    } else if(counter === QUIZ_SIZE && showResults === false) {
+    } else if(counter === NUM_QUESTIONS && showResults === false) {
       this.setState({
         showResults: true,
         selectedAnswer: ''
       })
-    } else if(counter === QUIZ_SIZE && showResults === true) {
+    } else if(counter === NUM_QUESTIONS && showResults === true) {
       this.setState({
         counter: 0,
         correct: 0,
