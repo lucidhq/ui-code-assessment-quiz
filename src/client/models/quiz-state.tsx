@@ -3,8 +3,8 @@ export type Question = {
   type: string;
   difficulty: string;
   question: string;
-  correctAnswer: string;
-  incorrectAnswer: string[];
+  correct_answer: string;
+  incorrect_answers: string[];
 }
 
 export type QuizState = {

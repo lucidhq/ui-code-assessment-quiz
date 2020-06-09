@@ -13,7 +13,6 @@ export const BooleanOption = ({ question, handleQuizResult }: {
   question: Question, 
   handleQuizResult: HandleSubmit
 }) => {
-  const [ options, setOptions ] = useState([])
 
   return (
     <Form>
