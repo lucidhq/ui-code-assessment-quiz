@@ -25,7 +25,7 @@ export const BooleanOption = ({ question, handleQuizResult, selectedAnswer }: {
             label={answer} 
             key={`id-${idx}`} 
             checked={answer === selectedAnswer}
-            onChange={() => handleQuizResult(answer)} 
+            onChange={() => {handleQuizResult(answer)}} 
           />);
       })}
     </Form>

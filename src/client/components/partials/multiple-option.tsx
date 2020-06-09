@@ -29,6 +29,7 @@ export const MultipleOption = ({ question, handleQuizResult, selectedAnswer }: {
   return (
     <Form>
       {shuffledAnswers.map((answer: string, idx: number) => {
+        answer = answer.replace(/&quot;/g, '"').replace(/&#039;/g, "'")
         return (
           <Form.Check 
             type='radio' 

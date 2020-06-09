@@ -4,7 +4,6 @@ import { IQuizResults } from '../models/quiz-state';
 export const ResultsView = ({ quizResults }: {
   quizResults: IQuizResults
 }) => {
-  const column = { width: '50%', float: 'left'  }
   const row = { display: 'flex' }
 
   const { correct, wrong } = quizResults;
@@ -12,8 +11,9 @@ export const ResultsView = ({ quizResults }: {
   const score: number = Math.round(correct / answered * 100) || 0;
 
   return (
-    <div>
+    <div style={{ float: 'left' }}>
       <div style={row}> SUMMARY </div>
+      <br />
       <div style={row}> Correct: {correct} </div>
       <div style={row}> Wrong: {wrong} </div>
       <div style={row}> Questions answered: {answered} </div>
