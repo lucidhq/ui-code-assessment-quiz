@@ -106,9 +106,10 @@ export default class App extends React.Component<{}, any> {
   }
 
   public render() {
+    const { showResults } = this.state;
     return (
       <div style={{ display: 'flex', flexDirection: 'column', padding: '15%', overflow: 'hidden' }}>
-        { !this.state.showResults ? 
+        { !showResults ? 
           <QuestionView 
             randomQuestion={this.state.randomQuestion} 
             handleSubmit={this.handleQuizResults}
@@ -125,7 +126,7 @@ export default class App extends React.Component<{}, any> {
           }}
           onClick={this.handleButtonClick}
         >
-          Next
+          { !showResults ? 'Next' : 'Restart Quiz'}
         </button>
       </div>
     );
