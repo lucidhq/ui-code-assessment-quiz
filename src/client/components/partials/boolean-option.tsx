@@ -9,15 +9,25 @@ import {
 export const TRUE ='True';
 export const FALSE ='False';
 
-export const BooleanOption = ({ question, handleQuizResult }: {
+export const BooleanOption = ({ question, handleQuizResult, selectedAnswer }: {
   question: Question, 
-  handleQuizResult: HandleSubmit
+  handleQuizResult: HandleSubmit,
+  selectedAnswer: string
 }) => {
+  const options = [TRUE, FALSE]
 
   return (
     <Form>
-      <Form.Check type='radio'id={TRUE} label={TRUE} />
-      <Form.Check type='radio'id={FALSE} label={FALSE} />
+      {options.map((answer: string, idx: number) => {
+        return (
+          <Form.Check 
+            type='radio' 
+            label={answer} 
+            key={`id-${idx}`} 
+            checked={answer === selectedAnswer}
+            onChange={() => handleQuizResult(answer, question.correct_answer)} 
+          />);
+      })}
     </Form>
   );
 }

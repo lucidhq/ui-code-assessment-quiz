@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Form from 'react-bootstrap/Form'
 
 import {
@@ -6,14 +6,18 @@ import {
   HandleSubmit
 } from '../../models/quiz-state';
 
-export const InputOption = ({ question, handleQuizResult }: {
+export const InputOption = ({ question, handleQuizResult, selectedAnswer }: {
   question: Question, 
-  handleQuizResult: HandleSubmit
+  handleQuizResult: HandleSubmit,
+  selectedAnswer: string
 }) => {
 
   return (
     <Form.Group>
-      <Form.Control type="text" />
+      <Form.Control 
+        type="text" 
+        onChange={(e) => console.log(e.target)} 
+      />
     </Form.Group>
   );
 }

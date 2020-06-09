@@ -6,11 +6,12 @@ import {
   HandleSubmit
 } from '../../models/quiz-state';
 
-export const MultipleOption = ({ question, handleQuizResult }: {
+export const MultipleOption = ({ question, handleQuizResult, selectedAnswer }: {
   question: Question, 
-  handleQuizResult: HandleSubmit
+  handleQuizResult: HandleSubmit,
+  selectedAnswer: string
 }) => {
-  const [ shuffledAnswers, setShuffledArr ] = useState([])
+  const [ shuffledAnswers, setShuffledArr ] = useState([]);
 
   const shuffle = (arr: any) => {
     for (let i = arr.length - 1; i > 0; i--) {
@@ -21,18 +22,23 @@ export const MultipleOption = ({ question, handleQuizResult }: {
   }
 
   useEffect(() => {
+    console.log(question);
     const shuffledArr = shuffle([...question.incorrect_answers, question.correct_answer])
     setShuffledArr(shuffledArr)
-  }, [])
+  }, [question.question])
 
   return (
     <Form>
-      {shuffledAnswers.map((answer: string) => (
-        <Form.Check 
-          type='radio'
-          label={answer}
-        />
-      ))}
+      {shuffledAnswers.map((answer: string, idx: number) => {
+        return (
+          <Form.Check 
+            type='radio' 
+            label={answer} 
+            key={`id-${idx}`} 
+            checked={answer === selectedAnswer}
+            onChange={() => handleQuizResult(answer, question.correct_answer)} 
+          />);
+      })}
     </Form>
   );
 }

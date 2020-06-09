@@ -6,16 +6,19 @@ import {
   HandleSubmit
 } from '../models/quiz-state';
 
-export const QuestionView = ({ randomQuestion, handleSubmit }: {
+export const QuestionView = ({ randomQuestion, handleSubmit, selectedAnswer }: {
   randomQuestion: Question,
-  handleSubmit: HandleSubmit
+  handleSubmit: HandleSubmit,
+  selectedAnswer: string
 }) => {
+
   return (
     <div>
       <QuestionText 
         text={randomQuestion.question} 
       />
       <AnswerOption 
+        selectedAnswer={selectedAnswer}
         question={randomQuestion}
         handleQuizResult={handleSubmit}
       />

@@ -24,10 +24,12 @@ export default class App extends React.Component<{}, any> {
         correct: 0,
         wrong: 0
       },
+      selectedAnswer: '',
       showResults: false
 
     }
     this.handleButtonClick = this.handleButtonClick.bind(this);
+    this.handleQuizResults = this.handleQuizResults.bind(this);
   }
 
   componentWillMount() {
@@ -61,6 +63,7 @@ export default class App extends React.Component<{}, any> {
       randomQuestion,
       askedQuestions,
       counter,
+      selectedAnswer: ''
     })
 
   }
@@ -94,23 +97,18 @@ export default class App extends React.Component<{}, any> {
   }
 
   handleQuizResults(answer: string, correctAnswer: string) {
-    if(answer === correctAnswer) {
-      this.setState({
-        correctAnswer: this.state.correctAnswer + 1
-      })
-    } else {
-      this.setState({
-        wrongAnswer: this.state.wrongAnswer + 1
-      })
-    }
+    this.setState({
+      selectedAnswer: answer
+    })
   }
 
   public render() {
-    const { showResults, randomQuestion, quizResults } = this.state;
+    const { showResults, randomQuestion, quizResults, selectedAnswer } = this.state;
     return (
       <div style={{ display: 'flex', flexDirection: 'column', padding: '15%', overflow: 'hidden' }}>
         { !showResults ? 
-          <QuestionView 
+          <QuestionView
+            selectedAnswer={selectedAnswer} 
             randomQuestion={randomQuestion} 
             handleSubmit={this.handleQuizResults}
           /> 

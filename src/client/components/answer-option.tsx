@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { 
   BooleanOption, 
   InputOption, 
@@ -10,21 +10,22 @@ import {
 } from '../models/quiz-state';
 
 export const AnswerOption = 
-({ question, handleQuizResult }: {
+({ question, handleQuizResult, selectedAnswer }: {
   question: Question, 
-  handleQuizResult: HandleSubmit
+  handleQuizResult: HandleSubmit,
+  selectedAnswer: string
 }) => {
 
   let answerOptions = null;
     switch(question.type) {
       case 'multiple':
-        answerOptions = (<MultipleOption question={question} handleQuizResult={handleQuizResult}/>);
+        answerOptions = (<MultipleOption question={question} handleQuizResult={handleQuizResult} selectedAnswer={selectedAnswer} />);
         break;
       case 'boolean':
-        answerOptions = (<BooleanOption question={question} handleQuizResult={handleQuizResult}/>);
+        answerOptions = (<BooleanOption question={question} handleQuizResult={handleQuizResult} selectedAnswer={selectedAnswer} />);
         break;
       case 'text':
-        answerOptions = (<InputOption question={question} handleQuizResult={handleQuizResult}/>);
+        answerOptions = (<InputOption question={question} handleQuizResult={handleQuizResult} selectedAnswer={selectedAnswer} />);
         break;
       default:
         break;

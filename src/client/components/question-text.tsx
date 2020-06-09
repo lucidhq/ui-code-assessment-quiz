@@ -6,7 +6,7 @@ export const QuestionText = (props: any) => {
   useEffect(() => {
     const text = props.text.replace(/&quot;/g, '"').replace(/&#039;/g, "'");
     setQuestionTxt(text);
-  })
+  }, [props.text])
 
   return (
     <div>
