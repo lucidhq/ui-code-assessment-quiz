@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { MultipleOption } from '../components/partials/multiple-option';
 import { InputOption } from '../components/partials/input-option';
 import {
@@ -10,11 +10,9 @@ export const AnswerOption = ({ question, handleQuizResult }: {
   question: Question, 
   handleQuizResult: HandleSubmit
 }) => {
-  let answerOptions = null;
 
-  useEffect(()  => {
-    const { type } = question;
-    switch(type) {
+  let answerOptions = null;
+    switch(question.type) {
       case 'multiple':
         answerOptions = (<MultipleOption question={question} handleNext={handleQuizResult}/>);
         break;
@@ -27,7 +25,6 @@ export const AnswerOption = ({ question, handleQuizResult }: {
       default:
         break;
     }
-  })
 
   return (
     <div style={{ margin: '10px 0px' }}>

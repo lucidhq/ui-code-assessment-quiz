@@ -49,25 +49,23 @@ export default class App extends React.Component<{}, any> {
   }
 
   selectRandomQuestion() {
-    const { questionList } = this.state;
-    const idx = Math.floor(Math.random() * questionList.length),
-      randomQues = questionList[idx];
-      this.state.askedQuestions.push(randomQues);
-      questionList.splice(idx, 1);
+    const list = this.state.questionList;
+    const idx = Math.floor(Math.random() * list.length),
+      randomQuestion = list[idx],
+      questionList = [...list.slice(0, idx), ...list.slice(idx + 1)],
+      askedQuestions = this.state.askedQuestions.concat(randomQuestion),
+      counter = this.state.counter + 1;
 
     this.setState({
-      randomQuestion: randomQues,
-      counter: this.state.counter + 1,
+      questionList, 
+      randomQuestion,
+      askedQuestions,
+      counter,
     })
+
   }
 
-  submitQuiz() {
-    this.setState({
-      showResults: true
-    })
-  }
-
-  restartQuiz(){
+  showResults() {
     const { questionList, askedQuestions } = this.state;
     const originalList = questionList.concat(askedQuestions);
 
@@ -75,7 +73,7 @@ export default class App extends React.Component<{}, any> {
       questionList: originalList,
       askedQuestions: [],
       counter: 0,
-      showResults: false
+      showResults: true
     })
   }
 
@@ -83,10 +81,14 @@ export default class App extends React.Component<{}, any> {
     const { counter, showResults } = this.state;
 
     if(counter === QUIZ_SIZE) {
-      this.submitQuiz();
-    } if(showResults){
-      this.restartQuiz();
-    } else {
+      this.showResults();
+    } else if(showResults && counter === 0) {
+      this.setState({
+        showResults: false
+      })
+      this.selectRandomQuestion();
+    }
+    else {
       this.selectRandomQuestion();
     }
   }
