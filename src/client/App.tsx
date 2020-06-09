@@ -1,6 +1,9 @@
 import React from "react";
+import { QuestionView } from './views/question-view';
+import { ResultsView } from './views/results-view';
 
 export const QUIZ_SIZE = 5;
+export const GET_QUIZ_API = `http://localhost:4000/api/questions`;
 
 export default class App extends React.Component<{}, any> { 
   constructor(props: any){
@@ -17,7 +20,12 @@ export default class App extends React.Component<{}, any> {
       },
       askedQuestions: [],
       counter: 0,
+      quizResults: {
+        correctAnswer: 0,
+        wrongAnswer: 0
+      },
       showResults: false
+
     }
     this.handleClick = this.handleClick.bind(this);
   }
@@ -27,7 +35,7 @@ export default class App extends React.Component<{}, any> {
   }
 
   async getQuestions(): Promise<void> {
-    const response = await fetch(`http://localhost:4000/api/questions`);
+    const response = await fetch(GET_QUIZ_API);
     response.json()
     .then((data) => {
 
@@ -76,18 +84,37 @@ export default class App extends React.Component<{}, any> {
 
     if(counter === QUIZ_SIZE) {
       this.submitQuiz();
-    } else if(showResults){
+    } if(showResults){
       this.restartQuiz();
     } else {
       this.selectRandomQuestion();
     }
   }
 
+  handleQuizResults(answer: string, correctAnswer: string) {
+    if(answer === correctAnswer) {
+      this.setState({
+        correctAnswer: this.state.correctAnswer + 1
+      })
+    } else {
+      this.setState({
+        wrongAnswer: this.state.wrongAnswer + 1
+      })
+    }
+  }
+
   public render() {
+    const { randomQuestion, showResults } = this.state;
     return (
       <div style={{ display: 'flex', flexDirection: 'column', padding: '20%' }}>
-          Lucid
-          Welcome to UI Team code assessment!
+          { !showResults ? 
+            <QuestionView 
+              randomQuestion={randomQuestion} 
+              handleQuizResults={this.handleQuizResults}
+            /> 
+            : 
+            <ResultsView /> 
+          }
           <button 
             style={{ 
               backgroundColor: 'dodgerblue', 

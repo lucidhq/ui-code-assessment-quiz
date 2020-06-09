@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 
-export const QuestionText = () => {
+export const QuestionText = (props: any) => {
+  const [ questionText, setQuestionTxt ] = useState('');
+
+  useEffect(() => {
+    const text = props.text.replace(/&quot;/g, '"').replace(/&#039;/g, "'");
+    setQuestionTxt(text);
+  })
+
   return (
     <div>
-      Question Text
+      {questionText}
     </div>
   );
 }
