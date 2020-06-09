@@ -15,6 +15,11 @@ export type QuizState = {
   showResults: boolean;
 }
 
+export interface IQuizResults {
+  correct: number;
+  wrong: number;
+}
+
 export type HandleSubmit = ((answer: string, correctAnswer: string) => void)
 
 export type QuizActions =  

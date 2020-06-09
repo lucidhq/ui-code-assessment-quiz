@@ -21,8 +21,8 @@ export default class App extends React.Component<{}, any> {
       askedQuestions: [],
       counter: 0,
       quizResults: {
-        correctAnswer: 0,
-        wrongAnswer: 0
+        correct: 0,
+        wrong: 0
       },
       showResults: false
 
@@ -106,16 +106,16 @@ export default class App extends React.Component<{}, any> {
   }
 
   public render() {
-    const { showResults } = this.state;
+    const { showResults, randomQuestion, quizResults } = this.state;
     return (
       <div style={{ display: 'flex', flexDirection: 'column', padding: '15%', overflow: 'hidden' }}>
         { !showResults ? 
           <QuestionView 
-            randomQuestion={this.state.randomQuestion} 
+            randomQuestion={randomQuestion} 
             handleSubmit={this.handleQuizResults}
           /> 
           : 
-          <ResultsView /> 
+          <ResultsView quizResults={quizResults} /> 
         }
         <button 
           style={{ 
