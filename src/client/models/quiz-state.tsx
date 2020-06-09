@@ -20,7 +20,7 @@ export interface IQuizResults {
   wrong: number;
 }
 
-export type HandleSubmit = ((answer: string, correctAnswer: string) => void)
+export type HandleSubmit = ((answer: string) => void)
 
 export type QuizActions =  
 | { type: 'INIT_QUIZ', results: Question[] }  

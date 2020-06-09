@@ -16,7 +16,7 @@ export const InputOption = ({ question, handleQuizResult, selectedAnswer }: {
     <Form.Group>
       <Form.Control 
         type="text" 
-        onChange={(e) => console.log(e.target)} 
+        onChange={(e) => handleQuizResult(e.currentTarget.value)} 
       />
     </Form.Group>
   );

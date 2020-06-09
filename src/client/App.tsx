@@ -15,8 +15,8 @@ export default class App extends React.Component<{}, any> {
         type: '',
         difficulty: '',
         question: '',
-        correctAnswer: '',
-        incorrectAnswer: []
+        correct_answer: '',
+        incorrect_answers: []
       },
       askedQuestions: [],
       counter: 0,
@@ -76,13 +76,24 @@ export default class App extends React.Component<{}, any> {
       questionList: originalList,
       askedQuestions: [],
       counter: 0,
+      quizResults: {
+        correct: 0,
+        wrong: 0
+      },
       showResults: true
     })
   }
 
-  handleButtonClick() {
-    const { counter, showResults } = this.state;
+  trackResults() {
+    const { randomQuestion, selectedAnswer, quizResults } = this.state;
 
+    randomQuestion.correct_answer === selectedAnswer ? quizResults.correct++ : quizResults.wrong++;
+  }
+
+  handleButtonClick(e: any) {
+    e.preventDefault();
+    const { counter, showResults, selectedAnswer } = this.state;
+    
     if(counter === QUIZ_SIZE) {
       this.showResults();
     } else if(showResults && counter === 0) {
@@ -90,13 +101,15 @@ export default class App extends React.Component<{}, any> {
         showResults: false
       })
       this.selectRandomQuestion();
-    }
-    else {
+    } else {
+      if(selectedAnswer) {
+        this.trackResults();
+      }
       this.selectRandomQuestion();
     }
   }
 
-  handleQuizResults(answer: string, correctAnswer: string) {
+  handleQuizResults(answer: string) {
     this.setState({
       selectedAnswer: answer
     })

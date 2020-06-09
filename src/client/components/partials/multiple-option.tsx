@@ -22,7 +22,6 @@ export const MultipleOption = ({ question, handleQuizResult, selectedAnswer }: {
   }
 
   useEffect(() => {
-    console.log(question);
     const shuffledArr = shuffle([...question.incorrect_answers, question.correct_answer])
     setShuffledArr(shuffledArr)
   }, [question.question])
@@ -36,7 +35,7 @@ export const MultipleOption = ({ question, handleQuizResult, selectedAnswer }: {
             label={answer} 
             key={`id-${idx}`} 
             checked={answer === selectedAnswer}
-            onChange={() => handleQuizResult(answer, question.correct_answer)} 
+            onChange={() => handleQuizResult(answer)} 
           />);
       })}
     </Form>
