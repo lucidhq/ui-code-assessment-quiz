@@ -22,30 +22,6 @@ export const initialState = {
       selectedAnswer: '',
 }
 
-export const arr = [
-  {
-    "category":"Entertainment: Board Games",
-    "type":"text",
-    "difficulty":"medium",
-    "question":"How many points is the Z tile worth in Scrabble?",
-    "correct_answer":"10"
-  },
-  {
-    "category":"Vehicles",
-    "type":"text",
-    "difficulty":"easy",
-    "question":"Which car tire manufacturer is famous for its &quot;Eagle&quot; brand of tires, and is the official tire supplier of NASCAR?",
-    "correct_answer":"Goodyear"
-  },
-  {
-    "category":"Animals",
-    "type":"text",
-    "difficulty":"medium",
-    "question":"What color\/colour is a polar bear&#039;s skin?",
-    "correct_answer":"Black"
-  },
-]
-
 export default class App extends React.Component<{}, any> { 
   constructor(props: any){
     super(props);
@@ -64,8 +40,7 @@ export default class App extends React.Component<{}, any> {
     .then((data) => {
 
       this.setState({
-        questionList: arr
-        // questionList: data.results
+        questionList: data.results
       }, () => {
         this.selectRandomQuestion()
       })
@@ -75,7 +50,7 @@ export default class App extends React.Component<{}, any> {
 
   selectRandomQuestion() {
     const list = this.state.questionList;
-    const idx = Math.floor(Math.random() * list.length),
+    const idx = Math.floor(Math.random() * NUM_QUESTIONS),
       count = this.state.counter,
       randomQuestion = list[idx],
       questionList = [...list.slice(0, idx), ...list.slice(idx + 1)],
@@ -114,6 +89,11 @@ export default class App extends React.Component<{}, any> {
     }
   }
 
+  shouldSubmit(counter: number, showResults: boolean) {
+    const { questionList } = this.state;
+     return (counter === NUM_QUESTIONS && showResults === false )|| questionList.length === 0 || questionList.length < NUM_QUESTIONS;
+  }
+
   handleButtonClick(e: any) {
     e.preventDefault();
     const { counter, showResults } = this.state;
@@ -121,7 +101,7 @@ export default class App extends React.Component<{}, any> {
     this.trackResults()
     if(counter !== NUM_QUESTIONS) {
       this.selectRandomQuestion();
-    } else if(counter === NUM_QUESTIONS && showResults === false) {
+    } else if(this.shouldSubmit(counter, showResults)) {
       this.setState({
         showResults: true,
         selectedAnswer: ''
@@ -144,9 +124,10 @@ export default class App extends React.Component<{}, any> {
 
   public render() {
     const { showResults, randomQuestion, selectedAnswer, correct, wrong } = this.state;
+    
     return (
       <div style={{ display: 'flex', flexDirection: 'column', padding: '15%', overflow: 'hidden' }}>
-        { !showResults ? 
+        { !showResults && randomQuestion ? 
           <QuestionView
             selectedAnswer={selectedAnswer} 
             randomQuestion={randomQuestion && randomQuestion} 

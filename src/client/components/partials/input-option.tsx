@@ -20,6 +20,7 @@ export const InputOption = ({ question, handleQuizResult, selectedAnswer }: {
   return (
     <Form.Group>
       <Form.Control 
+        id={'input'}
         type="text"
         value={inputVal}
         onChange={(e) => {
