@@ -9,4 +9,4 @@ const RESET_MUTATION = gql`
   }
 `
 
-export const useReset = () => useMutation(RESET_MUTATION)
+export const useReset = () => useMutation<{ response: boolean }>(RESET_MUTATION)

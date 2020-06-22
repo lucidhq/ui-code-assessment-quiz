@@ -12,5 +12,21 @@ const RANDOM_QUESTIONS_QUERY = gql`
   }
 `
 
+interface IResponse {
+  question: string
+  type: 'MULTIPLE' | 'TEXT' | 'BOOLEAN'
+  answers: string[]
+  correctAnswer: string
+}
+
+interface IVariable {
+  n: number
+}
+
 export const useRandomQuestions = (n: number) =>
-  useQuery(RANDOM_QUESTIONS_QUERY, { variables: { n } })
+  useQuery<{ getRandomQuestions: IResponse[] }, IVariable>(
+    RANDOM_QUESTIONS_QUERY,
+    {
+      variables: { n },
+    },
+  )

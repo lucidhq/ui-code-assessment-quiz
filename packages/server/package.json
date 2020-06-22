@@ -8,7 +8,9 @@
   "license": "UNLICENSED",
   "private": true,
   "scripts": {
-    "start": "ts-node src/index.ts"
+    "start": "ts-node src/index.ts",
+    "test": "jest --collectCoverage",
+    "build": "tsc -p ."
   },
   "dependencies": {
     "apollo-server-express": "2.15.0",
@@ -17,6 +19,7 @@
     "graphql": "15.1.0",
     "graphql-depth-limit": "1.1.0",
     "lodash": "4.17.15",
+    "morgan": "1.10.0",
     "uuid": "8.1.0"
   },
   "devDependencies": {
@@ -24,6 +27,7 @@
     "@types/graphql": "14.5.0",
     "@types/graphql-depth-limit": "1.1.2",
     "@types/lodash": "4.14.156",
+    "@types/morgan": "1.9.1",
     "@types/uuid": "8.0.0",
     "ts-jest": "26.1.1",
     "ts-node": "8.10.2",

@@ -1,4 +1,5 @@
 import express from 'express'
+import morgan from 'morgan'
 import { ApolloServer } from 'apollo-server-express'
 import { GraphQLError } from 'graphql'
 import depthLimit from 'graphql-depth-limit'
@@ -19,6 +20,8 @@ export const init = (): express.Express => {
     },
   })
   const app = express()
+
+  app.use(morgan('dev'))
 
   apolloServer.applyMiddleware({ app })
 

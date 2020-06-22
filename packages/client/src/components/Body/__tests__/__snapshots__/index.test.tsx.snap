@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Body should render correctly 1`] = `
+<Fragment>
+  <ForwardRef(render)
+    styles={
+      Object {
+        "map": undefined,
+        "name": "kh9euv",
+        "next": undefined,
+        "styles": "body{height: 100%;overflow:hidden;background-color:#fff;color:#000;}",
+        "toString": [Function],
+      }
+    }
+  />
+  <Container>
+    <div
+      className="foo"
+    >
+      Bar
+    </div>
+  </Container>
+</Fragment>
+`;

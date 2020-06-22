@@ -13,4 +13,11 @@ const ANSWER_QUESTION_MUTATION = gql`
   }
 `
 
-export const useAnswerQuestion = () => useMutation(ANSWER_QUESTION_MUTATION)
+interface IVariable {
+  type: 'MULTIPLE' | 'TEXT' | 'BOOLEAN' | undefined
+  correct: boolean | undefined
+  answer: string
+}
+
+export const useAnswerQuestion = () =>
+  useMutation<{ response: boolean }, IVariable>(ANSWER_QUESTION_MUTATION)

@@ -1,6 +1,6 @@
 {
   "extends": "../../tsconfig.common.json",
-  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "include": ["src/**/*.ts", "src/**/*.tsx", "setupEnzyme.ts"],
   "rootDir": "src",
   "compilerOptions": {
     "outDir": "dist",

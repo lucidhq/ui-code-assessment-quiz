@@ -12,4 +12,11 @@ const SUMMARY_QUERY = gql`
   }
 `
 
-export const useSummary = () => useQuery(SUMMARY_QUERY)
+interface IResponse {
+  finalScore: string
+  correctAnswers: number
+  incorrectAnswers: number
+  totalQuestionsAnswered: number
+}
+
+export const useSummary = () => useQuery<IResponse>(SUMMARY_QUERY)

@@ -3,14 +3,14 @@ import { useRandomQuestions } from '../../../hooks/useRandomQuestions'
 import { useAnswerQuestion } from '../../../hooks/useAnswerQuestion'
 
 interface IState {
-  type: string | null
-  correct: boolean | null
+  type: 'MULTIPLE' | 'TEXT' | 'BOOLEAN' | undefined
+  correct: boolean | undefined
   answer: string
 }
 
 const initialState: IState = {
-  type: null,
-  correct: null,
+  type: undefined,
+  correct: undefined,
   answer: '',
 }
 
@@ -21,10 +21,11 @@ export const useQuestionHook = (amount: number) => {
   const [answerQuestion] = useAnswerQuestion()
 
   const handleOnChange = (val: string) => {
+    const obj = data?.getRandomQuestions[count]
     setState({
-      type: data.getRandomQuestions[count].type,
+      type: obj?.type,
       answer: val,
-      correct: data.getRandomQuestions[count].correctAnswer === val,
+      correct: obj?.correctAnswer === val,
     })
   }
 
