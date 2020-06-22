@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { useRandomQuestions } from '../../hooks/useRandomQuestions'
-import { useAnswerQuestion } from '../../hooks/useAnswerQuestion'
+import { useRandomQuestions } from '../../../hooks/useRandomQuestions'
+import { useAnswerQuestion } from '../../../hooks/useAnswerQuestion'
 
 interface IState {
   type: string | null

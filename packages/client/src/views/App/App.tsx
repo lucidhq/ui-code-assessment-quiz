@@ -5,7 +5,7 @@ import { jsx } from '@emotion/core'
 import { Question, Flex, Button } from '../../components'
 import { flex, inner, btn } from './styles'
 import { Summary } from '../Summary'
-import { useQuestionHook } from './useQuestionHook'
+import { useQuestionHook } from './hooks/useQuestionHook'
 
 export const App: React.FC = () => {
   const {
@@ -17,7 +17,7 @@ export const App: React.FC = () => {
     handleOnChange,
     handleOnClickNext,
     handleRefetch,
-  } = useQuestionHook(2)
+  } = useQuestionHook(6)
 
   if (loading) return <div>loading</div>
   if (error) return <div>error</div>
