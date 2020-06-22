@@ -1,36 +1,32 @@
 {
-  "name": "ui-code-assessment",
-  "version": "1.0.0",
-  "author": "Lucid LLC",
-  "main": "src/index.js",
+  "private": true,
+  "name": "currency-converter",
+  "workspaces": [
+    "client",
+    "server"
+  ],
   "scripts": {
-    "start:server": "node ./src/server/server.js",
-    "start:client": "react-scripts start",
-    "start": "concurrently npm:start:client npm:start:server",
-    "build": "react-scripts build"
+    "client": "yarn workspace client run start",
+    "gateway": "yarn workspace server run start",
+    "test": "yarn workspace client run test",
+    "format": "prettier --write 'packages/**/*.{js,jsx,ts,tsx,json,css,scss,md}'",
+    "lint": "eslint .",
+    "start": "concurrently --kill-others-on-fail \"yarn client\" \"yarn gateway\""
   },
-  "dependencies": {
-    "cors": "^2.8.5",
-    "express": "^4.17.1",
-    "react": "^16.11.0",
-    "react-dom": "^16.11.0",
-    "typescript": "^3.7.2"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "@types/react": "^16.9.11",
-    "concurrently": "^5.0.0",
-    "react-scripts": "^3.2.0"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "concurrently": "5.2.0",
+    "eslint": "7.3.0",
+    "eslint-config-airbnb-base": "14.2.0",
+    "eslint-config-airbnb-typescript": "8.0.2",
+    "eslint-config-prettier": "6.11.0",
+    "eslint-plugin-import": "2.21.2",
+    "eslint-plugin-jsx-a11y": "6.3.1",
+    "eslint-plugin-prettier": "3.1.4",
+    "eslint-plugin-react": "7.20.0",
+    "eslint-plugin-react-hooks": "4.0.4",
+    "eslint-plugin-security": "1.4.0",
+    "prettier": "2.0.5",
+    "typescript": "3.9.5"
   }
 }

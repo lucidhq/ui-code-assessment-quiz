@@ -1,0 +1,54 @@
+{
+  "plugins": ["prettier", "security"],
+  "extends": [
+    "airbnb-typescript",
+    "prettier/@typescript-eslint",
+    "plugin:security/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.common.json"
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "mocha": true
+  },
+  "rules": {
+    "prettier/prettier": "error",
+    "semi": [2, "never"],
+    "comma-dangle": 0,
+    "arrow-parens": 0,
+    "function-paren-newline": 0,
+    "object-curly-newline": 0,
+    "import/no-unresolved": 0,
+    "react/require-extension": "off",
+    "react/prop-types": 0,
+    "react/require-default-props": 0,
+    "no-underscore-dangle": 0,
+    "@typescript-eslint/member-delimiter-style": 0,
+    "@typescript-eslint/no-require-imports": 0,
+    "lines-between-class-members": 0,
+    "implicit-arrow-linebreak": 0,
+    "operator-linebreak": 0,
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [".js", ".jsx", ".tsx"]
+      }
+    ],
+    "react/jsx-props-no-spreading": "off",
+    "no-console": "off",
+    "import/no-extraneous-dependencies": 0,
+    "import/extensions": 0,
+    "import/prefer-default-export": 0,
+    "jsx-a11y/anchor-is-valid": [
+      "error",
+      {
+        "components": ["Link"],
+        "specialLink": ["hrefLeft", "hrefRight", "to"],
+        "aspects": ["noHref", "invalidHref", "preferButton"]
+      }
+    ]
+  }
+}
