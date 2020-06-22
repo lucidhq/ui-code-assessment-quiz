@@ -2,8 +2,7 @@
   "private": true,
   "name": "currency-converter",
   "workspaces": [
-    "client",
-    "server"
+    "packages/*"
   ],
   "scripts": {
     "client": "yarn workspace client run start",

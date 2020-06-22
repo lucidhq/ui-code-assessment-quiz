@@ -6,7 +6,7 @@ import {
   GraphQLList,
   GraphQLInt,
 } from 'graphql'
-import shuffle  from 'lodash/fp/shuffle'
+import shuffle from 'lodash/fp/shuffle'
 
 const GraphQLCategoryEnum = new GraphQLEnumType({
   name: 'GraphQLCategoryEnum',
