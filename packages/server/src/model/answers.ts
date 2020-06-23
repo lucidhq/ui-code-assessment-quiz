@@ -14,11 +14,13 @@ STORE.read()
   })
   .catch((err) => console.error(err))
 
-export const getAnswers = () => {
-  return Array.from(ANSWERS.values())
-}
+export const getAnswers = (): IAnswer[] => Array.from(ANSWERS.values())
 
-export const addAnswer = async ({ type, correct, answer }: any) => {
+export const addAnswer = async ({
+  type,
+  correct,
+  answer,
+}: any): Promise<IAnswer> => {
   const id = uuidv4()
   const date = Date.now()
   const answerObject = {
@@ -35,7 +37,7 @@ export const addAnswer = async ({ type, correct, answer }: any) => {
   return { ...answerObject }
 }
 
-export const resetAnswers = () => {
+export const resetAnswers = (): void => {
   ANSWERS.clear()
   STORE.reset()
 }

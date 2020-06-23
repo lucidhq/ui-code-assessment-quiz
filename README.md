@@ -84,6 +84,8 @@ The API will be available after running the `npm start` command.
 
 # QUIZZ
 
+I reshaped a little bit the structure of the folder by using yarn workspaces, as I found it very powerful for maintaining multi packages repo. I took the liberty to use graphQL as my protocol for communicating between the client and the server.
+
 # Usage
 
 In order to launch the server and the client please make sure you are at the root of the project:
@@ -136,7 +138,3 @@ yarn test
 or
 npm test
 ```
-
-*Note*
-
-> I would have liked to spend more time on writting tests.

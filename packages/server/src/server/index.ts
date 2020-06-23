@@ -7,7 +7,7 @@ import { schema } from '../graphql/schema'
 import { getApolloConfig } from '../config'
 
 export const init = (): express.Express => {
-  const apolloServer = new ApolloServer({
+  const apolloServer: ApolloServer = new ApolloServer({
     schema,
     ...getApolloConfig(),
     validationRules: [depthLimit(5)],
