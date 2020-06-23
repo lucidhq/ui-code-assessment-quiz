@@ -1,7 +1,7 @@
 import gql from 'graphql-tag'
 import { useQuery } from '@apollo/react-hooks'
 
-const SUMMARY_QUERY = gql`
+export const SUMMARY_QUERY = gql`
   {
     getSummary {
       finalScore
@@ -19,4 +19,5 @@ interface IResponse {
   totalQuestionsAnswered: number
 }
 
-export const useSummary = () => useQuery<IResponse>(SUMMARY_QUERY)
+export const useSummary = () =>
+  useQuery<{ getSummary: IResponse }>(SUMMARY_QUERY)

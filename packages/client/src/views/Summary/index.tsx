@@ -17,24 +17,24 @@ export const Summary: React.FC<{
     refetch()
   }
 
-  if (loading) return <div>loading</div>
-  if (error) return <div>error</div>
+  if (loading) return <div>Loading</div>
+  if (error) return <div>Error</div>
 
   return (
     <Flex column="true">
       <Paragraph question={'Summary'} />
       <div>
-        Correct: <strong>{data.getSummary.correctAnswers}</strong>
+        Correct: <strong>{data?.getSummary.correctAnswers}</strong>
       </div>
       <div>
-        Wrong: <strong>{data.getSummary.incorrectAnswers}</strong>
+        Wrong: <strong>{data?.getSummary.incorrectAnswers}</strong>
       </div>
       <div>
         Questions answered:{' '}
-        <strong>{data.getSummary.totalQuestionsAnswered}</strong>
+        <strong>{data?.getSummary.totalQuestionsAnswered}</strong>
       </div>
       <div>
-        Final Score: <strong>{data.getSummary.finalScore}</strong>
+        Final Score: <strong>{data?.getSummary.finalScore}</strong>
       </div>
       <Button onClick={handleOnClick}>Restart quiz</Button>
     </Flex>

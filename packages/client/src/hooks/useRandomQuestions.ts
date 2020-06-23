@@ -1,7 +1,7 @@
 import gql from 'graphql-tag'
 import { useQuery } from '@apollo/react-hooks'
 
-const RANDOM_QUESTIONS_QUERY = gql`
+export const RANDOM_QUESTIONS_QUERY = gql`
   query GetRandom($n: Int) {
     getRandomQuestions(n: $n) {
       question

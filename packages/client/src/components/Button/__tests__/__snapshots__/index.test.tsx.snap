@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button should render correctly 1`] = `
+<EmotionCssPropInternal
+  __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Button"
+  __EMOTION_TYPE_PLEASE_DO_NOT_USE__="button"
+  css={
+    Object {
+      "map": undefined,
+      "name": "1f9n0ck",
+      "next": undefined,
+      "styles": "width:100%;padding:15px 0px;cursor:pointer;color:#fff;outline:none;border:none;background-color:#4f5df7;margin-top:20px;font-size:18px;&:hover{background:rgba(42, 70, 96, 0.8);}&:active{background:rgba(42, 70, 96, 0.9);}&:disabled{background:#cccccc;color: #666666;cursor:not-allowed;}",
+      "toString": [Function],
+    }
+  }
+  onClick={[Function]}
+  type="button"
+>
+  my button
+</EmotionCssPropInternal>
+`;
