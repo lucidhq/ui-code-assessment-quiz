@@ -1,7 +1,7 @@
 import gql from 'graphql-tag'
 import { useMutation } from '@apollo/react-hooks'
 
-const ANSWER_QUESTION_MUTATION = gql`
+export const ANSWER_QUESTION_MUTATION = gql`
   mutation AnswerQuestion(
     $type: GraphQLAnswerTypeEnum!
     $correct: Boolean!

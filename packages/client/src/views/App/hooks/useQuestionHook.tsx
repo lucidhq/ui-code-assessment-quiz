@@ -2,8 +2,10 @@ import * as React from 'react'
 import { useRandomQuestions } from '../../../hooks/useRandomQuestions'
 import { useAnswerQuestion } from '../../../hooks/useAnswerQuestion'
 
+type Type = 'MULTIPLE' | 'TEXT' | 'BOOLEAN' | undefined
+
 interface IState {
-  type: 'MULTIPLE' | 'TEXT' | 'BOOLEAN' | undefined
+  type: Type
   correct: boolean | undefined
   answer: string
 }
