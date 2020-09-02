@@ -1,3 +1,4 @@
+import {shuffleArray} from './Utils'
 export type Question = {
     category: string;
     correct_answer: string;
@@ -7,16 +8,7 @@ export type Question = {
     type: string;
   };
   
-  export enum Difficulty {
-    EASY = "easy",
-    MEDIUM = "medium",
-    HARD = "hard",
-  }
-  
-  export type QuestionsState = Question & { answers: string[] };
-  export const shuffleArray = (array: any[]) =>
-  [...array].sort(() => Math.random() - 0.5);
-  
+
 export const fetchQuizQuestions = async  (amount: number) => {
     const endpoint = `http://localhost:4000/api/questions`;
     const data = await (await fetch(endpoint)).json();
