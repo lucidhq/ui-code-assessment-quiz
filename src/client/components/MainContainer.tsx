@@ -1,92 +1,145 @@
-import React, { useState } from 'react';
-import QuestionDisplay from './QuestionDisplay';
-
+import React, { useState } from "react";
+import QuestionDisplay from "./QuestionDisplay";
+import { fetchQuizQuestions } from "../Api";
+import Summary from "./Summary";
 export type quizObj = {
-    question: string,
-    quizPos: number,
-    userChoice: string | null,
-    correctAnswer: string,
-    answerPool: string[],
-    gameOver: boolean,
-    loading: boolean,
-    quizSize: number,
-    score: number
-
-}
+    quizPos: number;
+    userChoice: string;
+    gameOver: boolean;
+    loading: boolean;
+    quizSize: number;
+    score: number;
+    quizStarted: boolean;
+    answered: boolean;
+};
 
 export type questionObj = {
     category: string;
     correct_answer: string;
+    answers: string[];
     difficulty: string;
     incorrect_answers: string[];
     question: string;
     type: string;
-
-
-
-}
+};
 
 export const Main: React.FC = () => {
-const initialQuizState = {
-        question: "Can you dig it?",
+    const initialQuizState = {
         quizPos: 0,
-        userChoice: null,
-        correctAnswer: 'Yes, yes I can',
-        answerPool: ['No', 'Ill try my best', 'Yes, yes I can', 'Dig what?'],
+        userChoice: "",
         gameOver: true,
         loading: false,
         quizSize: 10,
-        score: 0
-    
+        score: 0,
+        quizStarted: false,
+        answered: false,
+    };
+
+    const [questionState, setQuestionState] = useState<questionObj[]>([]);
+    const [quizState, setQuizState] = useState<quizObj>(initialQuizState);
+    const {
+        quizPos,
+        userChoice,
+        gameOver,
+        loading,
+        quizSize,
+        score,
+        quizStarted,
+        answered,
+    } = quizState;
+
+    const scoreUpdate = (e: any) => {
+        const selection = e.currentTarget.value;
+        const correctAnswer = questionState[quizPos].correct_answer;
+
+        selection === correctAnswer
+            ? setQuizState({
+                ...quizState,
+                userChoice: selection,
+                score: score + 1,
+                answered: true,
+            })
+            : setQuizState({
+                ...quizState,
+                userChoice: selection,
+                answered: true,
+            });
+    };
+
+    const startQuiz = async () => {
+        setQuizState({
+            ...quizState,
+            loading: true,
+        });
+
+        const quiz = await fetchQuizQuestions(quizSize);
+
+        setQuestionState(quiz);
+        setQuizState({
+            ...quizState,
+            loading: false,
+            gameOver: false,
+            quizStarted: true,
+            score: 0,
+        });
+    };
+
+    const nextQuestion = () => {
+        quizPos < quizSize - 1
+            ? setQuizState({
+                ...quizState,
+                quizPos: quizPos + 1,
+                answered: false,
+                userChoice: "",
+            })
+            : setQuizState({
+                ...quizState,
+                gameOver: true,
+                quizPos: 0,
+                answered: false,
+                userChoice: "",
+            });
+    };
+
+    const numberOfQuestions = (e: any) => {
+        const num  = e.currentTarget.value
+        setQuizState({...quizState, quizSize: num})
     }
-
-
-
-const [questionState, setQuestionState] = useState<questionObj[]>([]);
-const [quizState, setQuizState] = useState<quizObj>(initialQuizState);
-const {question, quizPos, userChoice, correctAnswer, answerPool, gameOver, loading, quizSize, score} = quizState;
-
-
-const scoreUpdate = (e: any) => {
-    const selection = e.currentTarget.value;
-    selection === correctAnswer ? setQuizState(
-        {...quizState, score: score + 1, quizPos: quizPos + 1}):
-        setQuizState({...quizState, quizPos: quizPos + 1});
-
-};
-
-const startQuiz = () => {
-    console.log('start')
-}
-
-const nextQuestion = () => {
-    console.log('next')
-}
-
-
-
-
-
-
 
     return (
         <div>
-             <button className='start' onClick={startQuiz}>
-            Start
-          </button>
-          <button className='next' onClick={nextQuestion}>
-            Start
-          </button>
-            <QuestionDisplay question={question}
-            quizPos={quizPos}
-            userChoice={userChoice}
-            correctAnswer={correctAnswer}
-            answerPool={answerPool}
-            quizSize={quizSize} 
-            callback={scoreUpdate}/>
+            {gameOver && quizStarted ? (
+                <Summary score={score} quizSize={quizSize} />
+            ) : null}
 
+            {!gameOver && !loading ? (
+                <div>
+                    <QuestionDisplay
+                        next={nextQuestion}
+                        question={questionState[quizPos].question}
+                        userChoice={userChoice}
+                        answerPool={questionState[quizPos].answers}
+                        questionType={questionState[quizPos].type}
+                        answered={answered}
+                        callback={scoreUpdate}
+                    />
+                    {answered ? (
+                        <button className="next" onClick={nextQuestion}>
+                            Next
+                        </button>
+                    ) : null}
+                </div>
+            ) : (
+                <div>
+                    <p>Number of Questions:  <input type={'number'} defaultValue={10} max={50} min={1} onChange={numberOfQuestions}></input> </p>
+                   
+                    <button className="start" onClick={startQuiz}>
+                        {!quizStarted ? "Start Quiz" : "Restart Quiz"}
+                    </button>
+                    </div>
+                )}
         </div>
-    )
-}
+    );
+};
 
-export default Main
+export default Main;
