@@ -6,7 +6,7 @@ type Props = {
     userChoice: string;
     answerPool: string[];
     callback: (
-        e: React.ChangeEvent<HTMLInputElement> | React.FormEvent<HTMLInputElement>
+        e: React.ChangeEvent<HTMLInputElement>
     ) => void;
     next: () => void;
     questionType: string;
@@ -22,12 +22,14 @@ export const QuestionDisplay: React.FC<Props> = ({
     answered,
     answerPool,
 }) => {
+
     const handleKeypress = (e: React.KeyboardEvent<HTMLInputElement>) => {
         //it triggers by pressing the enter key
         if (e.nativeEvent.keyCode === 13) {
             next();
         }
     };
+
     return (
         <div>
             <h2>{unescape(question)}</h2>
@@ -52,7 +54,7 @@ export const QuestionDisplay: React.FC<Props> = ({
                         </div>
                     );
                 })
-            ) : (
+            ) : 
                     <label>
                         <input
                             id="radioTrue"
@@ -63,7 +65,7 @@ export const QuestionDisplay: React.FC<Props> = ({
                             onKeyPress={handleKeypress}
                         />
                     </label>
-                )}
+                }
         </div>
     );
 };

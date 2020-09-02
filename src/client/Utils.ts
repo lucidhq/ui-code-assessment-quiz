@@ -18,4 +18,7 @@ export const unescape = (encodedStr: string) => {
 export const shuffleArray = (array: any[]) =>
   [...array].sort(() => Math.random() - 0.5);
 
-export const percentage = (num: number, per: number) => (num / per) * 100;
+export const percentage = (num: number, per: number) => {
+  const possibleDecimal = (num / per) * 100;
+  return Math.round( possibleDecimal* 100) /100
+};
