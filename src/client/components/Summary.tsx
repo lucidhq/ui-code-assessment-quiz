@@ -8,12 +8,12 @@ type Props = {
 
 export const Summary: React.FC<Props> = ({ score, quizSize }) => {
     return (
-        <div>
+        <div className='summary'>
             <h2>Summary</h2>
-            <p>Correct: {score}</p>
-            <p>Wrong: {quizSize - score}</p>
-            <p>Questions Answered: {quizSize}</p>
-            <p>Final Score: {percentage(score, quizSize) + "%"} </p>
+            <p>Correct: <strong>{score}</strong></p>
+            <p>Wrong: <strong>{quizSize - score}</strong></p>
+            <p>Questions Answered: <strong>{quizSize}</strong></p>
+            <p>Final Score: <strong>{percentage(score, quizSize) + "%"}</strong> </p>
         </div>
     );
 };

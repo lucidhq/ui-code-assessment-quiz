@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import QuestionDisplay from "./QuestionDisplay";
 import { fetchQuizQuestions } from "../Api";
 import Summary from "./Summary";
+import '../styles/MainContainer.css'
 export type quizObj = {
     quizPos: number;
     userChoice: string;
@@ -49,10 +50,10 @@ export const Main: React.FC = () => {
     } = quizState;
 
     const scoreUpdate = (e: any) => {
-        const selection = e.currentTarget.value;
+        const selection= e.currentTarget.value;
         const correctAnswer = questionState[quizPos].correct_answer;
 
-        selection === correctAnswer
+        selection.toLowerCase() === correctAnswer.toLowerCase()
             ? setQuizState({
                 ...quizState,
                 userChoice: selection,
@@ -101,19 +102,19 @@ export const Main: React.FC = () => {
             });
     };
 
-    const numberOfQuestions = (e: any) => {
+   /* const numberOfQuestions = (e: any) => {
         const num  = e.currentTarget.value
         setQuizState({...quizState, quizSize: num})
     }
-
+    */
     return (
-        <div>
+        <div className='main'>
             {gameOver && quizStarted ? (
                 <Summary score={score} quizSize={quizSize} />
             ) : null}
 
             {!gameOver && !loading ? (
-                <div>
+                <div className='questionGroup'>
                     <QuestionDisplay
                         next={nextQuestion}
                         question={questionState[quizPos].question}
@@ -122,18 +123,19 @@ export const Main: React.FC = () => {
                         questionType={questionState[quizPos].type}
                         answered={answered}
                         callback={scoreUpdate}
+                        correct={questionState[quizPos].correct_answer}
                     />
                     {answered ? (
-                        <button className="next" onClick={nextQuestion}>
+                        <button className="btn" onClick={nextQuestion}>
                             Next
                         </button>
                     ) : null}
                 </div>
             ) : (
-                <div>
-                    <p>Number of Questions:  <input type={'number'} defaultValue={10} max={50} min={1} onChange={numberOfQuestions}></input> </p>
+                <div className='startGroup'>
+                    {/*<p className='startNum'>Number of Questions:  <input type={'number'} defaultValue={10} max={50} min={1} onChange={numberOfQuestions}></input> </p>*/}
                    
-                    <button className="start" onClick={startQuiz}>
+                    <button className="btn" onClick={startQuiz}>
                         {!quizStarted ? "Start Quiz" : "Restart Quiz"}
                     </button>
                     </div>

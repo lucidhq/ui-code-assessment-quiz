@@ -1,0 +1,27 @@
+.quizWrapper {
+    
+ 
+}
+
+.question {
+    font-size: 125%;
+
+}
+
+.multiSelection {
+  padding: 5px 5px 5px 0px;
+
+  
+
+}
+
+.freeResponse {
+
+}
+.radio {
+    margin: 0px 10px 0px 0px;
+    background-color: green;
+    
+    
+
+}
