@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Questions } from './components/Questions';
+import { Questions } from '../Questions/Questions';
 
 export const Quiz = () => {
 
