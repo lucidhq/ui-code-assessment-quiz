@@ -1,13 +1,11 @@
 import React from 'react';
-import { Question } from './Question/Question';
 
-export const Questions: React.FC <{questions: object}> = ({questions}) => {
+export const Question: React.FC <{}> = () => {
     // console.log('QUESTIONS', questions);
     
     return (
         <div>
-            test
-            <Question />
+            Question component
         </div>
     );
 
