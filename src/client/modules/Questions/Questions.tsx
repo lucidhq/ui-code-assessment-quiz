@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Question } from '../../components/Question/Question';
+import { Question } from '../Question/Question';
 
 export const Questions: React.FC <{questions: object}> = ({questions}) => {
     // console.log('QUESTIONS', questions);
