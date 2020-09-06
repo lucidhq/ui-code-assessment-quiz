@@ -1,11 +1,26 @@
 import React from 'react';
+import { Multiple } from '../../components/Multiple/Multiple';
 
 export const Question: React.FC <{}> = () => {
     // console.log('QUESTIONS', questions);
+
+    const question: object = {
+        "category":"Entertainment: Video Games",
+        "type":"multiple",
+        "difficulty":"easy",
+        "question":"Which game did &quot;Sonic The Hedgehog&quot; make his first appearance in?",
+        "correct_answer":"Rad Mobile",
+        "incorrect_answers":[
+          "Sonic The Hedgehog",
+          "Super Mario 64",
+          "Mega Man"
+        ]
+    };
     
     return (
         <div>
-            Question component
+            Multiple
+            <Multiple/>
         </div>
     );
 
