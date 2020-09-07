@@ -29,31 +29,6 @@ const splitArray = (array, arrayLength) => {
 
 };
 
-const sortDataSets = (data) => {
-    let sets = [];
-
-    data.text.forEach(question => {
-        sets.push([question]);
-    });
-
-    const newBooleanSet = splitArray(data.boolean.slice(2), 2);
-
-    const newMultipleSet = splitArray(data.multiple, 9);
-
-    sets = sets.map((value, index) => {
-        return [value, newBooleanSet[index], newMultipleSet[index]];
-    });
-
-    const newSets = [];
-
-    sets.forEach(set => {
-        newSets.push(shuffle(set[0].concat(set[1]).concat(set[2])));
-    });
-
-    return newSets;
-
-};
-
 const modifyData = (data) => {
     // Sort questions by type
     let newData = data.reduce((seed, current) => {
