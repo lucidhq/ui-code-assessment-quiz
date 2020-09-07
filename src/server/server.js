@@ -26,13 +26,32 @@ const sortDataByType = (data) => {
 
 };
 
+const sortDataSets = (data) => {
+    const sets = [];
+
+    data.text.forEach(question => {
+        sets.push([question]);
+    });
+
+    const newBooleanSet = data.boolean.slice(2);
+
+    sets.forEach(set => {
+      data.multiple.forEach(question => {
+          
+      });
+    });
+
+};
+
 // GET question endpoint
 server.get("/api/questions", cors(), (req, res) => {
     // Randomize question order
     const randomizedData = shuffle(data.results);
     // Sort questions by type
     const sortedData = sortDataByType(randomizedData);
-    res.json(sortedData);
+    // Separate into 4 sets with 9 multiple choice questions, 2 boolean questions, 1 text question
+    const sortedDataBySet = sortDataSets(sortedData);
+    res.json(sortedDataBySet);
 });
 
 // starting server
