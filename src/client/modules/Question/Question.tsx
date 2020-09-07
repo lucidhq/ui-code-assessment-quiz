@@ -21,9 +21,10 @@ export const Question: React.FC <{}> = () => {
     
     return (
         <div>
-            <Multiple/>
-             {/* <br />
             <Boolean />
+            {/* <Multiple/> */}
+             {/* <br />
+
              <br />
             <TextQuestion /> */}
         </div>

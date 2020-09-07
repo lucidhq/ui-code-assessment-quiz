@@ -19,7 +19,7 @@ export const Multiple = (question: object) => {
     if (event.answer === correctAnswerIndex) {
       correct = true;
     }
-    // send correct = true up as event
+    // send correct = true/false up as event
   };
 
   return (
