@@ -10,7 +10,6 @@ export const Questions: React.FC <{questions: object}> = ({questions}) => {
     
     return (
         <div>
-            test
             <Question />
         </div>
     );
