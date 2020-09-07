@@ -21,10 +21,10 @@ export const Question: React.FC <{}> = () => {
     
     return (
         <div>
-            {/* Multiple
-            <Multiple/> */}
+            <Multiple/>
+             <br />
             <Boolean />
-
+             <br />
             <TextQuestion />
         </div>
     );

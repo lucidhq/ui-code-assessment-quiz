@@ -11,12 +11,22 @@ export const Multiple = (question: object) => {
   return (
     <div className="multiple">
       <div className="question">{q}</div>
-      {/*
-      {
-        answers.map((answer, index) => {
-        <span key={answers[index]}></span>
-        })
-      } */}
+      <form className="question-list">
+        <label className="option">
+        <input className="radio" type="radio" />
+        Rad Mobile
+        </label>
+        <label className="option">
+        <input className="radio"  type="radio" />
+        Sonic The Hedgehog</label>
+        <label className="option">
+        <input className="radio" type="radio" />
+        Super Mario 64
+        </label>
+        <label className="option">
+        <input className="radio"  type="radio" />
+        Mega Man</label>
+      </form>
     </div>
   );
 };
