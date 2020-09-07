@@ -12,10 +12,7 @@ export const Questions: React.FC <{questions: object}> = ({questions}) => {
     return (
         <div>
             <Question />
-            <Summary />
-            <div className="button">
-            <button><span className="button-text">Next</span></button>
-            </div>
+            {/* <Summary /> */}
         </div>
     );
 

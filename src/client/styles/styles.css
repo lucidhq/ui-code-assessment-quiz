@@ -12,14 +12,15 @@ body {
 
 .button {
   margin-top: 15px;
-}
-
-button {
   background-color: #1e70dd;
   color: #ffffff;
   font-size: 14px;
   padding: 10px;
   border: 0px;
+}
+
+.button:hover {
+  cursor: pointer;
 }
 
 .button-text {
@@ -46,6 +47,11 @@ button {
 
 .radio {
   margin-right: 10px;
+}
+
+.error {
+  color: #ff0000;
+  margin-top: 15px;
 }
 
 .summary-header {
