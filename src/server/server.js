@@ -30,7 +30,7 @@ const randomizeMultiple = (data) => {
     let multiple = data.multiple;
 
     const consolidateQuestions = (question) => {
-        question.answers = question.incorrect_answers.concat(question.correct_answer);
+        question.answers = shuffle(question.incorrect_answers.concat(question.correct_answer));
         return question;
     };
 
