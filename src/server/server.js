@@ -27,7 +27,7 @@ const sortDataByType = (data) => {
 };
 
 const sortDataSets = (data) => {
-    const sets = [];
+    let sets = [];
 
     data.text.forEach(question => {
         sets.push([question]);
@@ -35,12 +35,33 @@ const sortDataSets = (data) => {
 
     const newBooleanSet = data.boolean.slice(2);
 
-    sets.forEach(set => {
-      data.multiple.forEach(question => {
-          
-      });
-    });
+    let count = 0;
 
+    for (let i = 0, j = data.multiple.length; i < j; i+= 9) {
+      const newSet = data.multiple.slice(i, i + 9);
+      
+      sets[count].concat(newSet);
+
+      count++;
+      
+    }
+
+    count = 0;
+
+    for (let i = 0, j = newBooleanSet.length; i < j; i+= 2) {
+        const newSet = newBooleanSet.slice(i, i + 2);
+        
+        sets[count].concat(newSet);
+  
+        count++;
+
+      }
+
+    //   console.log('SETS', sets);
+
+    return {
+        results: sets
+    };
 };
 
 // GET question endpoint

@@ -18,8 +18,6 @@ export const Quiz = () => {
     // Create questions state
     const [questions, setQuestionsData] = useState([]);
 
-    // console.log(questions);
-
     return (
     <div>
         <Questions questions={questions}/>
