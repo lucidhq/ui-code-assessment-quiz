@@ -10,7 +10,8 @@ export const Multiple = (question: object) => {
 
   return (
     <div className="multiple">
-      {/* <span className="question">{q}</span>
+      <span className="question">{q}</span>
+      {/*
       {
         answers.map((answer, index) => {
         <span key={answers[index]}></span>
