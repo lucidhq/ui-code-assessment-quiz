@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Multiple= (question: object) => {
+export const Multiple = (question: object) => {
 
   const q = 'Which game did "Sonic The Hedgehog" make his first appearance in?';
 
@@ -10,12 +10,12 @@ export const Multiple= (question: object) => {
 
   return (
     <div className="multiple">
-      <span className="question">{q}</span>
+      {/* <span className="question">{q}</span>
       {
         answers.map((answer, index) => {
         <span key={answers[index]}></span>
         })
-      }
+      } */}
     </div>
   );
 };
