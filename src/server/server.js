@@ -70,9 +70,17 @@ const sortDataSets = (data) => {
 
     const newMultipleSet = splitArray(data.multiple, 9);
 
-    return sets.map((value, index) => {
+    sets = sets.map((value, index) => {
         return [value, newBooleanSet[index], newMultipleSet[index]];
     });
+
+    const newSets = [];
+
+    sets.forEach(set => {
+        newSets.push(shuffle(set[0].concat(set[1]).concat(set[2])));
+    });
+
+    return newSets;
 
 };
 
