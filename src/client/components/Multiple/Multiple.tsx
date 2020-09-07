@@ -37,7 +37,9 @@ export const Multiple = (question: object) => {
         <input className="radio"  type="radio" value="3" name="answer"
         ref={register({ required: true })}/>
         Mega Man</label>
-        {errors.answer && "REQUIRED ANSWER"}
+        <div className="error">
+          {errors.answer && "ERROR: Selection is required"}
+          </div>
         <button className="button" type="submit"><span className="button-text">Next</span></button>
       </form>
     </div>

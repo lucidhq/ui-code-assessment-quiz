@@ -49,6 +49,12 @@ body {
   margin-right: 10px;
 }
 
+.error {
+  color: #ff0000;
+  margin-top: 15px;
+  font-size: 14px;
+}
+
 .summary-header {
   font-weight: bold;
   font-size: 20px;
