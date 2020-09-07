@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Question } from '../Question/Question';
+import { Summary } from '../../components/Summary/Summary';
 
 export const Questions: React.FC <{questions: object}> = ({questions}) => {
     // console.log('QUESTIONS', questions);
@@ -11,6 +12,10 @@ export const Questions: React.FC <{questions: object}> = ({questions}) => {
     return (
         <div>
             <Question />
+            <Summary />
+            <div className="button">
+            <button><span className="button-text">Next</span></button>
+            </div>
         </div>
     );
 

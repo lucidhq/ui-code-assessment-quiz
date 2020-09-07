@@ -26,9 +26,6 @@ export const Question: React.FC <{}> = () => {
             <Boolean />
              <br />
             <TextQuestion /> */}
-            <div className="button">
-            <button><span className="button-text">Next</span></button>
-            </div>
         </div>
     );
 
