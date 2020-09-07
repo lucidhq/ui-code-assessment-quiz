@@ -35,30 +35,6 @@ const sortDataSets = (data) => {
 
     const newBooleanSet = data.boolean.slice(2);
 
-    let count = 0;
-
-    for (let i = 0, j = data.multiple.length; i < j; i+= 9) {
-      const newSet = data.multiple.slice(i, i + 9);
-      
-      sets[count].concat(newSet);
-
-      count++;
-      
-    }
-
-    count = 0;
-
-    for (let i = 0, j = newBooleanSet.length; i < j; i+= 2) {
-        const newSet = newBooleanSet.slice(i, i + 2);
-        
-        sets[count].concat(newSet);
-  
-        count++;
-
-      }
-
-    //   console.log('SETS', sets);
-
     return {
         results: sets
     };
@@ -72,7 +48,7 @@ server.get("/api/questions", cors(), (req, res) => {
     const sortedData = sortDataByType(randomizedData);
     // Separate into 4 sets with 9 multiple choice questions, 2 boolean questions, 1 text question
     const sortedDataBySet = sortDataSets(sortedData);
-    res.json(sortedDataBySet);
+    res.json(sortedData);
 });
 
 // starting server
