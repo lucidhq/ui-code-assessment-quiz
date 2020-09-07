@@ -5,6 +5,8 @@ export const Multiple = (question: object) => {
 
   const { register, handleSubmit, errors } = useForm();
 
+  let correct = false;
+
   const q = 'Which game did "Sonic The Hedgehog" make his first appearance in?';
 
   // modify the data on the API to randomize incorrect answers with correct answer
@@ -14,8 +16,10 @@ export const Multiple = (question: object) => {
   const answers = ["Rad Mobile", "Sonic The Hedgehog", "Super Mario 64", "Mega Man"];
 
   const onSubmit = (event: any) => {
-    console.log('EVENT', event);
-    console.log('ERRORS:', errors);
+    if (event.answer === correctAnswerIndex) {
+      correct = true;
+    }
+    // send correct = true up as event
   };
 
   return (

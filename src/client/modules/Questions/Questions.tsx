@@ -12,7 +12,7 @@ export const Questions: React.FC <{questions: object}> = ({questions}) => {
     return (
         <div>
             <Question />
-            <Summary />
+            {/* <Summary /> */}
         </div>
     );
 
