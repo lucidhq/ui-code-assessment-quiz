@@ -70,15 +70,10 @@ const sortDataSets = (data) => {
 
     const newMultipleSet = splitArray(data.multiple, 9);
 
-    // console.log('NEW TEXT SET', sets);
-    // console.log('NEW BOOLEAN SET', newBooleanSet);
-    // console.log('NEW MULTIPLE SET', newMultipleSet);
+    return sets.map((value, index) => {
+        return [value, newBooleanSet[index], newMultipleSet[index]];
+    });
 
-    return {
-            text: sets,
-            boolean: newBooleanSet,
-            multiple: newMultipleSet
-    };
 };
 
 // GET question endpoint
