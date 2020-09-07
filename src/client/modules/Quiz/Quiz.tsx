@@ -13,6 +13,8 @@ export const Quiz = () => {
         .catch( err => {
             console.error('ERROR', err);
         });
+
+        // console.log('QUESTIONS', questions);
     });
 
     const [questions, setQuestions] = useState([]);
@@ -21,7 +23,7 @@ export const Quiz = () => {
 
     return (
     <div>
-        <Questions questions={questions}/>
+        <Questions questions={questionSet}/>
     </div>
     );
 
