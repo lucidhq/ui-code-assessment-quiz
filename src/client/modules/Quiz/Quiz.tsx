@@ -7,7 +7,7 @@ export const Quiz = () => {
     useEffect(() => {
       axios.get('http://localhost:4000/api/questions')
         .then( res => {
-            setQuestionsData(res.data.results);
+            setQuestionsData(res.data);
            
         })
         .catch( err => {
@@ -17,6 +17,8 @@ export const Quiz = () => {
 
     // Create questions state
     const [questions, setQuestionsData] = useState([]);
+
+    // console.log(questions);
 
     return (
     <div>
