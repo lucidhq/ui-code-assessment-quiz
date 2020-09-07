@@ -15,8 +15,23 @@ const shuffle = (data) => {
   return data;
 };
 
-const sortDataByType = (data) => {
-    return data.reduce((seed, current) => {
+const splitArray = (array, arrayLength) => {
+    const newArray = [];
+
+    let i = 0;
+
+    while (i < array.length) {
+      newArray.push(array.slice(i, arrayLength + i));
+      i += arrayLength;
+    }
+
+    return newArray;
+
+};
+
+const modifyData = (data) => {
+    // Sort questions by type
+    let newData = data.reduce((seed, current) => {
         if (!seed[current.type]) {
             seed[current.type] = [];
         }
@@ -24,52 +39,47 @@ const sortDataByType = (data) => {
     return seed;
     }, {});
 
-};
-
-const randomizeMultiple = (data) => {
-    let multiple = data.multiple;
+    // Consolidate all multiple choice questions into one array and randomize placement of correct answer
 
     const consolidateQuestions = (question) => {
         question.answers = shuffle(question.incorrect_answers.concat(question.correct_answer));
         return question;
     };
 
-    multiple.forEach(question => {
-      question = consolidateQuestions(question);
+    newData.multiple.forEach(question => {
+        question = consolidateQuestions(question);
+      });
+
+    // Separate into 4 sets with 9 multiple choice questions, 2 boolean questions, 1 text question
+
+    let sets = [];
+
+    newData.text.forEach(question => {
+        sets.push([question]);
     });
 
-    let newDataSet = data;
+    // Remove two boolean questions from the entire list to evenly split sets
+    const newBooleanSet = splitArray(newData.boolean.slice(2), 2);
 
-    newDataSet.multiple = multiple;
+    const newMultipleSet = splitArray(newData.multiple, 9);
 
-    return newDataSet;
-};
+    sets = sets.map((value, index) => {
+        return [value, newBooleanSet[index], newMultipleSet[index]];
+    });
 
-// const sortDataSets = (data) => {
-//     let sets = [];
+    const newDataSets = [];
 
-//     data.text.forEach(question => {
-//         sets.push([question]);
-//     });
+    sets.forEach(set => {
+        newDataSets.push(shuffle(set[0].concat(set[1]).concat(set[2])));
+    });
 
-//     const newBooleanSet = data.boolean.slice(2);
-
-//     return {
-//         results: sets
-//     };
-// };
+    return newDataSets;
+}
 
 // GET question endpoint
 server.get("/api/questions", cors(), (req, res) => {
-    // Randomize question order
-    const randomizedData = shuffle(data.results);
-    // Sort questions by type
-    const sortedData = sortDataByType(randomizedData);
-    // Consolidate all multiple choice questions into one array and randomize placement of correct answer
-    const sortedDataModifiedMultiple = randomizeMultiple(sortedData);
-    // Separate into 4 sets with 9 multiple choice questions, 2 boolean questions, 1 text question
-    // const sortedDataBySet = sortDataSets(ssortedDataModifiedMultiple);
-    res.json(sortedDataModifiedMultiple);
+    // Randomize question order before using modifyData()
+    res.json(modifyData(shuffle(data.results)));
 });
 
 // starting server
