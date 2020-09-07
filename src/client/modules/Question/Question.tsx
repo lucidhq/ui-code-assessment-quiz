@@ -22,10 +22,13 @@ export const Question: React.FC <{}> = () => {
     return (
         <div>
             <Multiple/>
-             <br />
+             {/* <br />
             <Boolean />
              <br />
-            <TextQuestion />
+            <TextQuestion /> */}
+            <div className="button">
+            <button><span className="button-text">Next</span></button>
+            </div>
         </div>
     );
 

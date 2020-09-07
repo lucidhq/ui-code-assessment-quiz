@@ -8,6 +8,22 @@ body {
   align-items: center;
 }
 
+.button {
+  margin-top: 15px;
+}
+
+button {
+  /* color: #ffffff; */
+  padding: 10px;
+  border: 0px;
+}
+
+.button-text
+{
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
 .question {
   font-size: 20px;
   margin-bottom: 15px;
