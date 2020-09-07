@@ -13,9 +13,6 @@ export const Questions: React.FC <{questions: object}> = ({questions}) => {
         <div>
             <Question />
             <Summary />
-            <div className="button">
-            <button><span className="button-text">Next</span></button>
-            </div>
         </div>
     );
 

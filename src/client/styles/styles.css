@@ -12,14 +12,15 @@ body {
 
 .button {
   margin-top: 15px;
-}
-
-button {
   background-color: #1e70dd;
   color: #ffffff;
   font-size: 14px;
   padding: 10px;
   border: 0px;
+}
+
+.button:hover {
+  cursor: pointer;
 }
 
 .button-text {

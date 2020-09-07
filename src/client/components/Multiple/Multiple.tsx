@@ -6,6 +6,8 @@ export const Multiple = (question: object) => {
 
   // modify the data on the API to randomize incorrect answers with correct answer
 
+  const correctAnswer = "Rad Mobile";
+
   const answers = ["Rad Mobile", "Sonic The Hedgehog", "Super Mario 64", "Mega Man"];
 
   return (
@@ -27,6 +29,7 @@ export const Multiple = (question: object) => {
         <input className="radio"  type="radio" />
         Mega Man</label>
       </form>
+        <button className="button"><span className="button-text">Next</span></button>
     </div>
   );
 };
