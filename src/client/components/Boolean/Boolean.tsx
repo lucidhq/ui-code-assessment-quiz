@@ -10,14 +10,14 @@ export const Boolean = (question: object) => {
 
   return (
     <div className="boolean">
-      <span className="question">{q}</span>
+      <div className="question">{q}</div>
       <form className="question-list">
-        <label>
-        <input type="radio" />
+        <label className="option">
+        <input className="radio" type="radio" />
         True
         </label>
-        <label>
-        <input type="radio" />
+        <label className="option">
+        <input className="radio"  type="radio" />
         False</label>
       </form>
     </div>

@@ -8,7 +8,7 @@ export const TextQuestion = (question: object) => {
 
   return (
     <div className="text">
-      <span className="question">{q}</span>
+      <div className="question">{q}</div>
     </div>
   );
 };

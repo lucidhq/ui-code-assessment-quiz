@@ -10,7 +10,7 @@ export const Multiple = (question: object) => {
 
   return (
     <div className="multiple">
-      <span className="question">{q}</span>
+      <div className="question">{q}</div>
       {/*
       {
         answers.map((answer, index) => {

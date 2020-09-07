@@ -10,10 +10,21 @@ body {
 
 .question {
   font-size: 20px;
+  margin-bottom: 15px;
 }
 
 .question-list {
   font-size: 16px;
   display: flex;
   flex-direction: column;
+}
+
+.option {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 10px;
+}
+
+.radio {
+  margin-right: 10px;
 }
