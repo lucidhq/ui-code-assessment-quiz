@@ -26,19 +26,38 @@ const sortDataByType = (data) => {
 
 };
 
-const sortDataSets = (data) => {
-    let sets = [];
+const randomizeMultiple = (data) => {
+    let multiple = data.multiple;
 
-    data.text.forEach(question => {
-        sets.push([question]);
+    const consolidateQuestions = (question) => {
+        question.answers = question.incorrect_answers.concat(question.correct_answer);
+        return question;
+    };
+
+    multiple.forEach(question => {
+      question = consolidateQuestions(question);
     });
 
-    const newBooleanSet = data.boolean.slice(2);
+    let newDataSet = data;
 
-    return {
-        results: sets
-    };
+    newDataSet.multiple = multiple;
+
+    return newDataSet;
 };
+
+// const sortDataSets = (data) => {
+//     let sets = [];
+
+//     data.text.forEach(question => {
+//         sets.push([question]);
+//     });
+
+//     const newBooleanSet = data.boolean.slice(2);
+
+//     return {
+//         results: sets
+//     };
+// };
 
 // GET question endpoint
 server.get("/api/questions", cors(), (req, res) => {
@@ -46,9 +65,11 @@ server.get("/api/questions", cors(), (req, res) => {
     const randomizedData = shuffle(data.results);
     // Sort questions by type
     const sortedData = sortDataByType(randomizedData);
+    // Consolidate all multiple choice questions into one array and randomize placement of correct answer
+    const sortedDataModifiedMultiple = randomizeMultiple(sortedData);
     // Separate into 4 sets with 9 multiple choice questions, 2 boolean questions, 1 text question
-    const sortedDataBySet = sortDataSets(sortedData);
-    res.json(sortedData);
+    // const sortedDataBySet = sortDataSets(ssortedDataModifiedMultiple);
+    res.json(sortedDataModifiedMultiple);
 });
 
 // starting server
