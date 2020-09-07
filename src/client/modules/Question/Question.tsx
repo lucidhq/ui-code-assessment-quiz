@@ -24,8 +24,8 @@ export const Question: React.FC <{}> = () => {
             {/* Multiple
             <Multiple/> */}
             <Boolean />
-            {/* Text
-            <TextQuestion /> */}
+
+            <TextQuestion />
         </div>
     );
 

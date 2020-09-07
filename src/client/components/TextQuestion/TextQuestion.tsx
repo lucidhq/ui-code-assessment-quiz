@@ -9,6 +9,11 @@ export const TextQuestion = (question: object) => {
   return (
     <div className="text">
       <div className="question">{q}</div>
+      <form>
+        <label>
+          <input type="text" />
+        </label>
+      </form>
     </div>
   );
 };
