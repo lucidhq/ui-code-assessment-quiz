@@ -10,8 +10,9 @@ export const Multiple = (question: object) => {
 
   const answers = ["Rad Mobile", "Sonic The Hedgehog", "Super Mario 64", "Mega Man"];
 
-  const onSubmit = (data: any) => {
-    console.log('DATA', data);
+  const onSubmit = (event: any) => {
+    event.preventDefault();
+    console.log('EVENT', event);
   };
 
   return (
