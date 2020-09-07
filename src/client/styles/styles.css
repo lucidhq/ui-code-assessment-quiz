@@ -47,3 +47,19 @@ button {
 .radio {
   margin-right: 10px;
 }
+
+.summary-header {
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.summary-list {
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+.summary-list li {
+  padding: 2px;
+}
