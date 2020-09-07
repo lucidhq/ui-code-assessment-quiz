@@ -1,5 +1,7 @@
 import React from 'react';
 import { Multiple } from '../../components/Multiple/Multiple';
+import { Boolean } from '../../components/Boolean/Boolean';
+import { TextQuestion } from '../../components/TextQuestion/TextQuestion';
 
 export const Question: React.FC <{}> = () => {
     // console.log('QUESTIONS', questions);
@@ -21,6 +23,10 @@ export const Question: React.FC <{}> = () => {
         <div>
             Multiple
             <Multiple/>
+            Boolean
+            <Boolean />
+            Text
+            <TextQuestion />
         </div>
     );
 
