@@ -17,8 +17,6 @@ export const Quiz: React.FC<Props> = (props) => {
     const [textCount, setTextCount] = useState(0);
 
     const [currentQuestionObject, setCurrentQuestionObject] = useState({question: '', correctAnswer: ''});
-    const [currentQuestion, setCurrentQuestion] = useState('');
-    const [currentCorrectAnswer, setCurrentCorrectAnswer] = useState('');
 
     useEffect(() => {
         // Check to see if limit for each type of question is met
@@ -38,15 +36,9 @@ export const Quiz: React.FC<Props> = (props) => {
         // Set current question
         if (currentQuestionType === 'boolean') {
 
-            let q = props.bool[booleanCount] ? props.bool[booleanCount].question : null;
-            let a = props.bool[booleanCount] ? props.bool[booleanCount].correct_answer : null;
-
-            setCurrentQuestion(q);
-            setCurrentCorrectAnswer(a);
-
           const questionObject = {
-              question: q,
-              correctAnswer: a
+              question: props.bool[booleanCount] ? props.bool[booleanCount].question : null,
+              correctAnswer: props.bool[booleanCount] ? props.bool[booleanCount].correct_answer : null
           };
 
           setCurrentQuestionObject(questionObject);
@@ -77,7 +69,7 @@ export const Quiz: React.FC<Props> = (props) => {
     return (
     <div>
         {currentQuestionType === 'boolean' && 
-        <Boolean question={currentQuestion} correctAnswer={currentCorrectAnswer} />}
+        <Boolean question={currentQuestionObject.question} correctAnswer={currentQuestionObject.correctAnswer} />}
         {currentQuestionType === 'text' && 
         <TextQuestion question={currentQuestionObject.question} correctAnswer={currentQuestionObject.correctAnswer} />}
         {/* <Multiple question={props.multiple[0] && props.multiple[0].question} answers={props.multiple[0] && props.multiple[0].answers} correctAnswer={props.multiple[0] &&  props.multiple[0].correctAnswer}/> */}
