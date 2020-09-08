@@ -30,7 +30,6 @@ export const App = () => {
 
     return ( 
     <div className="container">
-      {/* {JSON.stringify(typeof questions.multiple)} */}
       <div className="header">Quiz App</div>
       <div className="quiz">
         <Quiz multiple={multiples} bool={booleans} text={textQuestions}/>
