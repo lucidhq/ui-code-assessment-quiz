@@ -1,17 +1,14 @@
 html {
-  background-color: #000000;
+  background-color: #222428;
   height: 100%;
-background: #1e70dd; /* Old browsers */
-background: -moz-linear-gradient(top,  #1e70dd 0%, #000000 100%); /* FF3.6-15 */
-background: -webkit-linear-gradient(top,  #1e70dd 0%,#000000 100%); /* Chrome10-25,Safari5.1-6 */
-background: linear-gradient(to bottom,  #1e70dd 0%,#000000 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e70dd', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+background: -moz-linear-gradient(top,  #1e70dd 0%, #222428 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  #1e70dd 0%,#222428 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  #1e70dd 0%,#222428 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e70dd', endColorstr='#222428',GradientType=0 ); /* IE6-9 */
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  /* background: rgb(2,0,36);
-  background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(30,112,221,1) 0%, rgba(0,0,0,1) 100%); */
   color: #FFFFFF;
   font-family: arial;
 }
@@ -28,6 +25,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e70dd', end
   padding: 20px;
   margin-left: -45px;
   font-weight: bold;
+  text-shadow: 3px 3px #222428;
 }
 
 .quiz {
@@ -50,6 +48,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e70dd', end
 
 .button:hover {
   cursor: pointer;
+  background-color: #222428;
 }
 
 .button-text {
