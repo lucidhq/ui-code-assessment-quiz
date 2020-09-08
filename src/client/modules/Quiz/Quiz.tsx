@@ -8,6 +8,7 @@ export const Quiz = () => {
       axios.get('http://localhost:4000/api/questions')
         .then( res => {
             setQuestions(res.data);
+            setQuestionSet(questions[0]);
            
         })
         .catch( err => {
@@ -15,6 +16,8 @@ export const Quiz = () => {
         });
 
         // console.log('QUESTIONS', questions);
+        // console.log('QUESTION SET', questionSet);
+    
     });
 
     const [questions, setQuestions] = useState([]);
