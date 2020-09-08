@@ -31,7 +31,7 @@ export const TextQuestion: React.FC<TextQuestion> = (props) => {
         <div className="error">
           {errors.answer && "ERROR: Blank answers are not valid"}
           </div>
-        <button className="button" type="submit"><span className="button-text">Next</span></button>
+          <button className="button" type="submit"><span className="button-text">Next</span></button>
       </form>
     </div>
   );
