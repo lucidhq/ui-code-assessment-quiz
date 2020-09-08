@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 
 interface Bool {
   question: string;
-  correctAnswer: string;
+  correctAnswer: any;
 }
 
 export const Boolean: React.FC<Bool> = (props) => {
@@ -29,7 +29,7 @@ export const Boolean: React.FC<Bool> = (props) => {
 
   return (
     <div className="boolean">
-      <div className="question">{question}</div>
+      <div className="question">{question} {correctAnswer}</div>
       <form className="question-list" onSubmit={handleSubmit(onSubmit)}>
         <label className="option">
         <input className="radio" type="radio" value="true" name="answer" ref={register({ required: true })} />

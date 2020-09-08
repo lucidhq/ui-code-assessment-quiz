@@ -16,9 +16,9 @@ export const Quiz: React.FC<Props> = (props) => {
     const [booleanCount, setBooleanCount] = useState(0);
     const [textCount, setTextCount] = useState(0);
 
-    const [currentQuestionObject, setCurrentQuestionObject] = useState({question: '', correctAnswer: ''});
+    const [currentQuestionObject, setCurrentQuestionObject] = useState({question: '', correctAnswer: []});
     const [currentQuestion, setCurrentQuestion] = useState('');
-    const [currentCorrectAnswer, setCorrectAnswer] = useState('');
+    const [currentCorrectAnswer, setCurrentCorrectAnswer] = useState('');
 
     useEffect(() => {
         // Check to see if limit for each type of question is met
@@ -36,14 +36,19 @@ export const Quiz: React.FC<Props> = (props) => {
         // Set current question
         if (currentQuestionType === 'boolean') {
             console.log('BOOLEAN COUNT', booleanCount);
-        const q = props.bool[booleanCount];
 
-          const questionObject = {
-              question: props.bool[booleanCount].question,
-              correctAnswer: props.bool
-          };
+            let q = props.bool[booleanCount] ? props.bool[booleanCount].question : null;
+            let a = props.bool[booleanCount] ? props.bool[booleanCount].correct_answer : null;
 
-          console.log(questionObject);
+            setCurrentQuestion(q);
+            setCurrentCorrectAnswer(a);
+
+        //   const questionObject = {
+        //       question: q,
+        //       correctAnswer: props.bool
+        //   };
+
+        //   console.log(questionObject);
 
         //   setCurrentQuestionObject(questionObject);
 
@@ -66,10 +71,9 @@ export const Quiz: React.FC<Props> = (props) => {
     
     return (
     <div>
+        {JSON.stringify(currentCorrectAnswer)}
         {currentQuestionType === 'boolean' && 
-        <Boolean question={currentQuestionObject && currentQuestionObject.question} correctAnswer={props.bool[0] && props.bool[0].correctAnswer} />}
-        {JSON.stringify(props.bool[booleanCount])}
-        {JSON.stringify(currentQuestionObject)}
+        <Boolean question={currentQuestion} correctAnswer={currentCorrectAnswer} />}
         {/* <Multiple question={props.multiple[0] && props.multiple[0].question} answers={props.multiple[0] && props.multiple[0].answers} correctAnswer={props.multiple[0] &&  props.multiple[0].correctAnswer}/> */}
         {/* <Boolean question={props.bool[0] && props.bool[0].question} correctAnswer={props.bool[0] && props.bool[0].correctAnswer} /> */}
         {/* <TextQuestion question={props.text[0] && props.text[0].question} correctAnswer={props.text[0] && props.text[0].correctAnswer} /> */}
