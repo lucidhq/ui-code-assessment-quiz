@@ -4,10 +4,10 @@ import { useForm } from 'react-hook-form';
 interface Multiple {
   question: string,
   correctAnswer: string,
-  answers: Array<string>
+  answers: string[]
 }
 
-export const Multiple: React.FC<Multiple> = () => {
+export const Multiple: React.FC<Multiple> = (props) => {
 
   const [question, setQuestion] = useState('');
   const [correctAnswer, setCorrectAnswer] = useState('');
@@ -16,9 +16,10 @@ export const Multiple: React.FC<Multiple> = () => {
   const { register, handleSubmit, errors } = useForm();
 
   useEffect(() => {
-    setQuestion(question);
-    setCorrectAnswer(correctAnswer);
-    setAnswers(answers);
+    setQuestion(props.question);
+    setCorrectAnswer(props.correctAnswer);
+    // setAnswers(props.answers);
+
   }, [question, correctAnswer, answers]);
 
   let correct = false;
@@ -32,8 +33,7 @@ export const Multiple: React.FC<Multiple> = () => {
 
   return (
     <div className="multiple">
-      {JSON.stringify(question)}
-      <div className="question">q</div>
+      <div className="question">{JSON.stringify(props)}</div>
       <form className="question-list" onSubmit={handleSubmit(onSubmit)}>
         <label className="option">
         <input className="radio" type="radio" value="0" name="answer" ref={register({ required: true })}/>

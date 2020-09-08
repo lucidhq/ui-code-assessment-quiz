@@ -1,15 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
-export const Boolean = (question: object) => {
+interface Bool {
+  question: string;
+  correctAnswer: string;
+}
+
+export const Boolean: React.FC<Bool> = (props) => {
 
   const { register, handleSubmit, errors } = useForm();
+
+  const [question, setQuestion] = useState('');
+  const [correctAnswer, setCorrectAnswer] = useState('');
 
   let correct = false;
 
   const q = 'Igneous rocks are formed by excessive heat and pressure.';
 
-  const correctAnswer = 'false';
+  useEffect(() => {
+    setQuestion(props.question);
+    setCorrectAnswer(props.correctAnswer);
+    // setAnswers(props.answers);
+
+  }, [props]);
 
   const onSubmit = (event: any) => {
     if (event.answer === correctAnswer) {
@@ -20,7 +33,7 @@ export const Boolean = (question: object) => {
 
   return (
     <div className="boolean">
-      <div className="question">{q}</div>
+      <div className="question">{question}</div>
       <form className="question-list" onSubmit={handleSubmit(onSubmit)}>
         <label className="option">
         <input className="radio" type="radio" value="true" name="answer" ref={register({ required: true })} />
