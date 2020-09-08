@@ -3,7 +3,8 @@ import { useForm } from 'react-hook-form';
 
 interface Bool {
   question: string;
-  correctAnswer: any;
+  correctAnswer: string;
+  selectedAnswer: string;
 }
 
 export const Boolean: React.FC<Bool> = (props) => {
@@ -12,8 +13,7 @@ export const Boolean: React.FC<Bool> = (props) => {
 
   const [question, setQuestion] = useState('');
   const [correctAnswer, setCorrectAnswer] = useState('');
-
-  let correct = false;
+  const [selectedAnswer, setSelectedAnswer] = useState('');
 
   useEffect(() => {
     setQuestion(props.question);
@@ -21,10 +21,7 @@ export const Boolean: React.FC<Bool> = (props) => {
   }, [props]);
 
   const onSubmit = (event: any) => {
-    if (event.answer === correctAnswer) {
-      correct = true;
-    }
-    // send correct = true/false up as event
+    setSelectedAnswer(event.answer);
   };
 
   return (
@@ -38,10 +35,10 @@ export const Boolean: React.FC<Bool> = (props) => {
         <label className="option">
         <input className="radio"  type="radio" value="false" name="answer" ref={register({ required: true })}/>
         False</label>
-        {/* <div className="error">
+        <div className="error">
           {errors.answer && "ERROR: Selection is required"}
           </div>
-        <button className="button" type="submit"><span className="button-text">Next</span></button> */}
+        <button className="button" type="submit"><span className="button-text">Next</span></button>
       </form>
     </div>
   );

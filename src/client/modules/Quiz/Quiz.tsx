@@ -17,6 +17,8 @@ export const Quiz: React.FC<Props> = (props) => {
     const [textCount, setTextCount] = useState(0);
 
     const [currentQuestionObject, setCurrentQuestionObject] = useState({question: '', correctAnswer: ''});
+    const [selectedAnswer, setSelectedAnswer] = useState('');
+    const [answerIsCorrect, setAnswerIsCorrect] = useState(false);
 
     useEffect(() => {
         // Check to see if limit for each type of question is met
@@ -31,6 +33,8 @@ export const Quiz: React.FC<Props> = (props) => {
 
         // Randomly determine which type of question to select
         setCurrentQuestionType(types[Math.floor(Math.random() * types.length)]);
+
+        // setCurrentQuestionType('text');
 
         // Set current question
         if (currentQuestionType === 'boolean') {
@@ -67,14 +71,15 @@ export const Quiz: React.FC<Props> = (props) => {
 
     const questionSubmit = (event: any) => {
       console.log('CLICK', event);
+      console.log('IS CORRECT', answerIsCorrect);
     };
     
     return (
     <div>
         {currentQuestionType === 'boolean' && 
-        <Boolean question={currentQuestionObject.question} correctAnswer={currentQuestionObject.correctAnswer} />}
+        <Boolean question={currentQuestionObject.question} correctAnswer={currentQuestionObject.correctAnswer} selectedAnswer={selectedAnswer} />}
         {currentQuestionType === 'text' && 
-        <TextQuestion question={currentQuestionObject.question} correctAnswer={currentQuestionObject.correctAnswer} />}
+        <TextQuestion question={currentQuestionObject.question} correctAnswer={currentQuestionObject.correctAnswer} answerIsCorrect={answerIsCorrect} />}
         {/* <Multiple question={props.multiple[0] && props.multiple[0].question} answers={props.multiple[0] && props.multiple[0].answers} correctAnswer={props.multiple[0] &&  props.multiple[0].correctAnswer}/> */}
         <button className="button" onClick={questionSubmit}><span className="button-text">Next</span></button>
     </div>
