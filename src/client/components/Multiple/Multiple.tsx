@@ -1,22 +1,31 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
-export const Multiple = (question: object) => {
+interface Multiple {
+  question: string,
+  correctAnswer: string,
+  answers: string[]
+}
+
+export const Multiple: React.FC<Multiple> = (props) => {
+
+  const [question, setQuestion] = useState('');
+  const [correctAnswer, setCorrectAnswer] = useState('');
+  const [answers, setAnswers] = useState([]);
 
   const { register, handleSubmit, errors } = useForm();
 
+  useEffect(() => {
+    setQuestion(props.question);
+    setCorrectAnswer(props.correctAnswer);
+    // setAnswers(props.answers);
+
+  }, [question, correctAnswer, answers]);
+
   let correct = false;
 
-  const q = 'Which game did "Sonic The Hedgehog" make his first appearance in?';
-
-  // modify the data on the API to randomize incorrect answers with correct answer
-
-  const correctAnswerIndex = 0;
-
-  const answers = ["Rad Mobile", "Sonic The Hedgehog", "Super Mario 64", "Mega Man"];
-
   const onSubmit = (event: any) => {
-    if (event.answer === correctAnswerIndex) {
+    if (event.answer === correctAnswer) {
       correct = true;
     }
     // send correct = true/false up as event
@@ -24,7 +33,7 @@ export const Multiple = (question: object) => {
 
   return (
     <div className="multiple">
-      <div className="question">{q}</div>
+      <div className="question">{JSON.stringify(props)}</div>
       <form className="question-list" onSubmit={handleSubmit(onSubmit)}>
         <label className="option">
         <input className="radio" type="radio" value="0" name="answer" ref={register({ required: true })}/>

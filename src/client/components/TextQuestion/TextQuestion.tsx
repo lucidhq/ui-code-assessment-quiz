@@ -1,15 +1,24 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
-export const TextQuestion = (question: object) => {
+interface TextQuestion {
+  question: string;
+  correctAnswer: string;
+}
+
+export const TextQuestion: React.FC<TextQuestion> = (props) => {
 
   const { register, handleSubmit, errors } = useForm();
 
+  const [question, setQuestion] = useState('');
+  const [correctAnswer, setCorrectAnswer] = useState('');
+
   let correct = false;
 
-  const q = 'What color\/colour is a polar bear&#039;s skin?';
-
-  const correctAnswer = 'Black';
+  useEffect(() => {
+    setQuestion(props.question);
+    setCorrectAnswer(props.correctAnswer);
+  }, [props]);
 
   const onSubmit = (event: any) => {
     if (event.answer.toUpperCase() === correctAnswer.toUpperCase()) {
@@ -20,7 +29,7 @@ export const TextQuestion = (question: object) => {
 
   return (
     <div className="text">
-      <div className="question">{q}</div>
+      <div className="question">{question}</div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <label>
           <input type="text" name="answer" ref={register({required: true})}/>

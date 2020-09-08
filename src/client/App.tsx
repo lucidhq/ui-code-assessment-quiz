@@ -5,13 +5,22 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 export const App = () => {
-    const [questions, setQuestions] = useState([]);
+    const [multiples, setMultiples] = useState([]);
+    const [booleans, setBooleans] = useState([]);
+    const [textQuestions, setTextQuestions] = useState([]);
 
     useEffect(() => { 
 
       axios.get('http://localhost:4000/api/questions')
-      .then( res => {
-        setQuestions(res.data);
+      .then(res => {
+        let multiple = res.data.multiple;
+        let bool = res.data.boolean;
+        let textQuestions = res.data.text;
+
+        setMultiples(multiple);
+        setBooleans(bool);
+        setTextQuestions(textQuestions);
+
       })
       .catch( err => {
         console.log(err);
@@ -21,7 +30,8 @@ export const App = () => {
 
     return ( 
     <div className="container">
-        <Quiz props={questions}/>
+      {/* {JSON.stringify(typeof questions.multiple)} */}
+        <Quiz multiple={multiples} bool={booleans} text={textQuestions}/>
     </div>
 
     );
