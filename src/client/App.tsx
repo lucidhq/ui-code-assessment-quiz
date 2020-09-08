@@ -16,7 +16,7 @@ export const App = () => {
 
     return ( 
     <div className="container">
-        <Quiz questions={questions}/>
+        <Quiz props={questions}/>
     </div>
     )
 };
