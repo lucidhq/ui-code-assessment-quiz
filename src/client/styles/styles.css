@@ -45,6 +45,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e70dd', end
   font-size: 14px;
   padding: 10px;
   border: 0px;
+  width: 25%;
 }
 
 .button:hover {
