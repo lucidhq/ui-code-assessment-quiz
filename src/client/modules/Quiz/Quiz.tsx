@@ -9,7 +9,6 @@ export const Quiz = () => {
       axios.get('http://localhost:4000/api/questions')
         .then( res => {
             setQuestions(res.data);
-            setQuestionSet(questions[0]);
            
         })
         .catch( err => {
@@ -17,17 +16,23 @@ export const Quiz = () => {
         });
 
         // console.log('QUESTIONS', questions);
+
+        setQuestionSet(questions[currentSet]);
         // console.log('QUESTION SET', questionSet);
-    
+
+        // console.log('CURRENT QUESTION', questionSet[currentQuestion]);
+
     });
 
     const [questions, setQuestions] = useState([]);
     const [questionSet, setQuestionSet] = useState([]);
+    const [currentSet, setCurrentSet] = useState(0);
+    const [currentQuestion, setCurrentQuestion] = useState(0);
     const [summaryData, setSummaryData] = useState({correct: 0, incorrect: 0});
 
     return (
     <div>
-        <Question />
+        {/* <Question question={questionSet[currentQuestion]} /> */}
     </div>
     );
 
