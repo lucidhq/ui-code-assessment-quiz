@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Questions } from '../Questions/Questions';
+import { Question } from '../Question/Question';
+
 
 export const Quiz = () => {
 
@@ -26,7 +27,7 @@ export const Quiz = () => {
 
     return (
     <div>
-        <Questions questions={questionSet}/>
+        <Question />
     </div>
     );
 
