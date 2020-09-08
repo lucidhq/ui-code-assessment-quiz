@@ -22,20 +22,21 @@ export const Quiz: React.FC<Props> = (props) => {
 
     useEffect(() => {
         // Check to see if limit for each type of question is met
-        const types = [];
-        if (booleanCount < 2) {
-            types.push('boolean')
-        }
-        if (textCount > 1) {
-            types.push('text');
-        }
+        // const types = [];
+        // if (booleanCount < 2) {
+        //     types.push('boolean')
+        // }
+        // if (textCount > 1) {
+        //     types.push('text');
+        // }
 
         // Randomly determine which type of question to select
-        setCurrentQuestionType(types[Math.floor(Math.random() * types.length)]);
+        // setCurrentQuestionType(types[Math.floor(Math.random() * types.length)]);
 
+        setCurrentQuestionType('text');
+        
         // Set current question
         if (currentQuestionType === 'boolean') {
-            console.log('BOOLEAN COUNT', booleanCount);
 
             let q = props.bool[booleanCount] ? props.bool[booleanCount].question : null;
             let a = props.bool[booleanCount] ? props.bool[booleanCount].correct_answer : null;
@@ -48,12 +49,16 @@ export const Quiz: React.FC<Props> = (props) => {
               correctAnswer: a
           };
 
-        //   console.log(questionObject);
-
           setCurrentQuestionObject(questionObject);
 
         } if (currentQuestionType === 'text') {
-            setCurrentQuestionObject(props.text[textCount]);          
+
+          const questionObject = {
+              question: props.text[textCount] ? props.text[textCount].question : null,
+              correctAnswer: props.text[textCount] ? props.text[textCount].correct_answer : null
+          };
+
+          setCurrentQuestionObject(questionObject);
         }
 
         // Update question type counter - AFTER question is answered
@@ -67,16 +72,15 @@ export const Quiz: React.FC<Props> = (props) => {
         // }
 
 
-    }, [props, booleanCount]);
+    }, [props, booleanCount, textCount]);
     
     return (
     <div>
-        {JSON.stringify(currentCorrectAnswer)}
         {currentQuestionType === 'boolean' && 
         <Boolean question={currentQuestion} correctAnswer={currentCorrectAnswer} />}
+        {currentQuestionType === 'text' && 
+        <TextQuestion question={props.text[0] && props.text[0].question} correctAnswer={props.text[0] && props.text[0].correctAnswer} />}
         {/* <Multiple question={props.multiple[0] && props.multiple[0].question} answers={props.multiple[0] && props.multiple[0].answers} correctAnswer={props.multiple[0] &&  props.multiple[0].correctAnswer}/> */}
-        {/* <Boolean question={props.bool[0] && props.bool[0].question} correctAnswer={props.bool[0] && props.bool[0].correctAnswer} /> */}
-        {/* <TextQuestion question={props.text[0] && props.text[0].question} correctAnswer={props.text[0] && props.text[0].correctAnswer} /> */}
     </div>
     );
 
