@@ -6,13 +6,6 @@ import axios from 'axios';
 
 export const App = () => {
     const [questions, setQuestions] = useState([]);
-    
-    // useEffect(() => {
-    //     fetch('http://localhost:4000/api/questions')
-    //     .then(res => res.json())
-    //     .then(setQuestions)
-    //     .catch(console.log);
-    // }, [questions]);
 
     useEffect(() => { 
 
