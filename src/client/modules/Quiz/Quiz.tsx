@@ -21,6 +21,7 @@ export const Quiz: React.FC<Props> = (props) => {
     useEffect(() => {
         // Check to see if limit for each type of question is met
         const types = [];
+
         if (booleanCount < 2) {
             types.push('boolean')
         }
@@ -63,6 +64,10 @@ export const Quiz: React.FC<Props> = (props) => {
 
 
     }, [props, booleanCount, textCount]);
+
+    const questionSubmit = (event: any) => {
+      console.log('CLICK', event);
+    };
     
     return (
     <div>
@@ -71,7 +76,7 @@ export const Quiz: React.FC<Props> = (props) => {
         {currentQuestionType === 'text' && 
         <TextQuestion question={currentQuestionObject.question} correctAnswer={currentQuestionObject.correctAnswer} />}
         {/* <Multiple question={props.multiple[0] && props.multiple[0].question} answers={props.multiple[0] && props.multiple[0].answers} correctAnswer={props.multiple[0] &&  props.multiple[0].correctAnswer}/> */}
-        <button className="button"><span className="button-text">Next</span></button>
+        <button className="button" onClick={questionSubmit}><span className="button-text">Next</span></button>
     </div>
     );
 
