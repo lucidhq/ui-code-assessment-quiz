@@ -29,7 +29,7 @@ export const Boolean: React.FC<Bool> = (props) => {
 
   return (
     <div className="boolean">
-      <div className="question">{question} {correctAnswer}</div>
+      <div className="question">{question}</div>
       <form className="question-list" onSubmit={handleSubmit(onSubmit)}>
         <label className="option">
         <input className="radio" type="radio" value="true" name="answer" ref={register({ required: true })} />

@@ -16,7 +16,7 @@ export const Quiz: React.FC<Props> = (props) => {
     const [booleanCount, setBooleanCount] = useState(0);
     const [textCount, setTextCount] = useState(0);
 
-    const [currentQuestionObject, setCurrentQuestionObject] = useState({question: '', correctAnswer: []});
+    const [currentQuestionObject, setCurrentQuestionObject] = useState({question: '', correctAnswer: ''});
     const [currentQuestion, setCurrentQuestion] = useState('');
     const [currentCorrectAnswer, setCurrentCorrectAnswer] = useState('');
 
@@ -43,14 +43,14 @@ export const Quiz: React.FC<Props> = (props) => {
             setCurrentQuestion(q);
             setCurrentCorrectAnswer(a);
 
-        //   const questionObject = {
-        //       question: q,
-        //       correctAnswer: props.bool
-        //   };
+          const questionObject = {
+              question: q,
+              correctAnswer: a
+          };
 
         //   console.log(questionObject);
 
-        //   setCurrentQuestionObject(questionObject);
+          setCurrentQuestionObject(questionObject);
 
         } if (currentQuestionType === 'text') {
             setCurrentQuestionObject(props.text[textCount]);          
@@ -67,7 +67,7 @@ export const Quiz: React.FC<Props> = (props) => {
         // }
 
 
-    }, [props, booleanCount, currentQuestionObject]);
+    }, [props, booleanCount]);
     
     return (
     <div>
