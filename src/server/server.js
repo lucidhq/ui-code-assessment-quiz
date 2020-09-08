@@ -20,7 +20,7 @@ const splitArray = (array, arrayLength) => {
 
     let i = 0;
 
-    while (i <= array.length) {
+    while (i < array.length) {
       newArray.push(array.slice(i, arrayLength + i));
       i += arrayLength;
     }
