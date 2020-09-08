@@ -5,7 +5,7 @@ import { Boolean } from '../../components/Boolean/Boolean';
 import { TextQuestion } from '../../components/TextQuestion/TextQuestion';
 
 
-export const Quiz = (props : any) => {
+export const Quiz = ({ props } : any) => {
 
     const [questions, setQuestions] = useState(props);
     const [questionSet, setQuestionSet] = useState([]);
@@ -18,6 +18,11 @@ export const Quiz = (props : any) => {
         setQuestions(props);
     }, [props]);
 
+    // Set question set
+    useEffect(() => {
+      setQuestionSet(questions[currentSetIndex]);
+    }, [questions]);
+
     // useEffect(() => {
     //     console.log('QUESTIONS ZERO', questions);
     //     setQuestionSet(questions[currentSetIndex]);
@@ -26,7 +31,7 @@ export const Quiz = (props : any) => {
 
     return (
     <div>
-        {JSON.stringify(questions)}
+        {JSON.stringify(questionSet)}
         {/* {questionSet[currentQuestionIndex]['type'] === 'multiple' ? <Multiple /> : null }
         {questionSet[currentQuestionIndex]['type'] === 'boolean' ? <Boolean /> : null }
         {questionSet[currentQuestionIndex]['type'] === 'text' ? <TextQuestion /> : null } */}
