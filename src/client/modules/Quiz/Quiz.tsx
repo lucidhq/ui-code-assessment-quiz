@@ -9,25 +9,11 @@ interface Props {
 
 export const Quiz: React.FC<Props> = (props) => {
 
-    const [booleans, setBooleans] = useState([]);
-    // const [multiples, setMultiples] = useState([]);
-    const [textQuestions, setTextQuestions] = useState([]);
-
-    useEffect(() => {
-        // setBooleans(props.bool);
-    }, [booleans]);
-
-    // useEffect(() => {
-    //     setMultiples(multiples);
-    // }, [multiples]);
-
-    useEffect(() => {
-        setTextQuestions(textQuestions);
-    }, [textQuestions]);
-
     return (
     <div>
         {JSON.stringify(props.multiple[0])}
+        {JSON.stringify(props.bool[0])}
+        {JSON.stringify(props.text[0])}
     </div>
     );
 
