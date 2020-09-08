@@ -33,7 +33,7 @@ export const Quiz = ({ props } : any) => {
 
     return (
     <div>
-        {/* {JSON.stringify(questionSet[0])} */}
+        {JSON.stringify(questionSet[0])}
       <Questions props={questionSet} />
     </div>
     );
