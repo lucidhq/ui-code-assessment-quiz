@@ -12,12 +12,9 @@ export const Boolean: React.FC<Bool> = (props) => {
   const { register, handleSubmit, errors } = useForm();
 
   const [question, setQuestion] = useState('');
-  const [correctAnswer, setCorrectAnswer] = useState('');
-  const [selectedAnswer, setSelectedAnswer] = useState('');
 
   useEffect(() => {
     setQuestion(props.question);
-    setCorrectAnswer(props.correctAnswer);
   }, [props]);
 
   const onSubmit = (event: any) => {
