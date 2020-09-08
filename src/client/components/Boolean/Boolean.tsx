@@ -3,7 +3,8 @@ import { useForm } from 'react-hook-form';
 
 interface Bool {
   question: string;
-  correctAnswer: any;
+  correctAnswer: string;
+  handleSelectedAnswer: (event: any) => string;
 }
 
 export const Boolean: React.FC<Bool> = (props) => {
@@ -11,20 +12,13 @@ export const Boolean: React.FC<Bool> = (props) => {
   const { register, handleSubmit, errors } = useForm();
 
   const [question, setQuestion] = useState('');
-  const [correctAnswer, setCorrectAnswer] = useState('');
-
-  let correct = false;
 
   useEffect(() => {
     setQuestion(props.question);
-    setCorrectAnswer(props.correctAnswer);
   }, [props]);
 
   const onSubmit = (event: any) => {
-    if (event.answer === correctAnswer) {
-      correct = true;
-    }
-    // send correct = true/false up as event
+    props.handleSelectedAnswer(event.answer);
   };
 
   return (

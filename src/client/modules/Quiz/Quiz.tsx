@@ -17,10 +17,13 @@ export const Quiz: React.FC<Props> = (props) => {
     const [textCount, setTextCount] = useState(0);
 
     const [currentQuestionObject, setCurrentQuestionObject] = useState({question: '', correctAnswer: ''});
+    const [selectedAnswer, setSelectedAnswer] = useState('');
+    const [answerIsCorrect, setAnswerIsCorrect] = useState(false);
 
     useEffect(() => {
         // Check to see if limit for each type of question is met
         // const types = [];
+
         // if (booleanCount < 2) {
         //     types.push('boolean')
         // }
@@ -28,7 +31,7 @@ export const Quiz: React.FC<Props> = (props) => {
         //     types.push('text');
         // }
 
-        // Randomly determine which type of question to select
+        // // Randomly determine which type of question to select
         // setCurrentQuestionType(types[Math.floor(Math.random() * types.length)]);
 
         setCurrentQuestionType('text');
@@ -65,13 +68,19 @@ export const Quiz: React.FC<Props> = (props) => {
 
 
     }, [props, booleanCount, textCount]);
+
+    const handleSelectedAnswer = (event: any) => {
+        console.log('HANDLE SELECTED ANSWER EVENT', event);
+    //   setSelectedAnswer(event.target.value);
+      return '';
+    }
     
     return (
     <div>
         {currentQuestionType === 'boolean' && 
-        <Boolean question={currentQuestionObject.question} correctAnswer={currentQuestionObject.correctAnswer} />}
+        <Boolean question={currentQuestionObject.question} correctAnswer={currentQuestionObject.correctAnswer} handleSelectedAnswer={handleSelectedAnswer} />}
         {currentQuestionType === 'text' && 
-        <TextQuestion question={currentQuestionObject.question} correctAnswer={currentQuestionObject.correctAnswer} />}
+        <TextQuestion question={currentQuestionObject.question} correctAnswer={currentQuestionObject.correctAnswer}  handleSelectedAnswer={handleSelectedAnswer} />}
         {/* <Multiple question={props.multiple[0] && props.multiple[0].question} answers={props.multiple[0] && props.multiple[0].answers} correctAnswer={props.multiple[0] &&  props.multiple[0].correctAnswer}/> */}
     </div>
     );

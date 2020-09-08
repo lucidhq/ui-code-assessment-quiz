@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 interface TextQuestion {
   question: string;
   correctAnswer: string;
+  handleSelectedAnswer: (event: any) => string;
 }
 
 export const TextQuestion: React.FC<TextQuestion> = (props) => {
@@ -11,20 +12,13 @@ export const TextQuestion: React.FC<TextQuestion> = (props) => {
   const { register, handleSubmit, errors } = useForm();
 
   const [question, setQuestion] = useState('');
-  const [correctAnswer, setCorrectAnswer] = useState('');
-
-  let correct = false;
 
   useEffect(() => {
     setQuestion(props.question);
-    setCorrectAnswer(props.correctAnswer);
   }, [props]);
 
   const onSubmit = (event: any) => {
-    if (event.answer.toUpperCase() === correctAnswer.toUpperCase()) {
-      correct = true;
-    }
-    // send correct = true/false up as event
+    props.handleSelectedAnswer(event.answer);
   };
 
   return (
@@ -35,7 +29,7 @@ export const TextQuestion: React.FC<TextQuestion> = (props) => {
           <input type="text" name="answer" ref={register({required: true})}/>
         </label>
         <div className="error">
-          {errors.answer && "ERROR: Selection is required"}
+          {errors.answer && "ERROR: Blank answers are not valid"}
           </div>
         <button className="button" type="submit"><span className="button-text">Next</span></button>
       </form>
