@@ -34,7 +34,7 @@ export const Quiz: React.FC<Props> = (props) => {
         // setCurrentQuestionType(types[Math.floor(Math.random() * types.length)]);
 
         setCurrentQuestionType('text');
-        
+
         // Set current question
         if (currentQuestionType === 'boolean') {
 
@@ -79,7 +79,7 @@ export const Quiz: React.FC<Props> = (props) => {
         {currentQuestionType === 'boolean' && 
         <Boolean question={currentQuestion} correctAnswer={currentCorrectAnswer} />}
         {currentQuestionType === 'text' && 
-        <TextQuestion question={props.text[0] && props.text[0].question} correctAnswer={props.text[0] && props.text[0].correctAnswer} />}
+        <TextQuestion question={currentQuestionObject.question} correctAnswer={currentQuestionObject.correctAnswer} />}
         {/* <Multiple question={props.multiple[0] && props.multiple[0].question} answers={props.multiple[0] && props.multiple[0].answers} correctAnswer={props.multiple[0] &&  props.multiple[0].correctAnswer}/> */}
     </div>
     );
