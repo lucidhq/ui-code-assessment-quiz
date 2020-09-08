@@ -8,7 +8,7 @@ export const Question: React.FC <{question: any}> = (question) => {
     
     return (
         <div>
-            <TextQuestion />
+            {/* <TextQuestion /> */}
             {/* <Multiple/> */}
              {/* <br />
              <Boolean />
