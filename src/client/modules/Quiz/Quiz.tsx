@@ -1,29 +1,63 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { Questions } from '../Questions/Questions';
+import { Multiple } from '../../components/Multiple/Multiple';
+import { Boolean } from '../../components/Boolean/Boolean';
+import { TextQuestion } from '../../components/TextQuestion/TextQuestion';
 
-export const Quiz = () => {
+
+export const Quiz = ({ props } : any) => {
+
+    const [questions, setQuestions] = useState(props);
+    const [booleans, setBooleans] = useState({});
+    const [multiples, setMultiples] = useState({});
+    const [textQuestions, setTextQuestions] = useState({});
+
+    const [currentQuestion, setCurrentQuestion] = useState({});
+    const [boolCounter, setBoolCounter] = useState({});
+    const [multiCounter, setMultiCounter] = useState({});
+    const [textQuestionCounter, setTextQuestionCounter] = useState({});
 
     useEffect(() => {
-      axios.get('http://localhost:4000/api/questions')
-        .then( res => {
-            setQuestions(res.data);
-           
-        })
-        .catch( err => {
-            console.error('ERROR', err);
-        });
+        setQuestions(props);
+    }, [props]);
 
-        // console.log('QUESTIONS', questions);
-    });
+    useEffect(() => {
+        setBooleans(props.boolean);
+    }, [props]);
 
-    const [questions, setQuestions] = useState([]);
-    const [questionSet, setQuestionSet] = useState([]);
-    const [summaryData, setSummaryData] = useState({correct: 0, incorrect: 0});
+    useEffect(() => {
+        setMultiples(props.multiple);
+    }, [props]);
+
+    useEffect(() => {
+        setTextQuestions(props.text);
+    }, [props]);
+
+    const getCurrentQuestion = () => {
+
+        const questionsFromType = [];
+        let questionType;
+
+        if (boolCounter < 2) {
+            questionsFromType.push('boolean');
+        } if (multiCounter < 9) {
+            questionsFromType.push('multiple');
+        } if (textQuestionCounter < 1) {
+            questionsFromType.push('text');
+        }
+
+        // if (!questionsFromType.length) {
+        // // if there are no items in the array, there are no questions left
+        // } if (questionsFromType.length === 1) {
+        //     questionType = questionsFromType[0];
+        // } else {
+        //     questionType = questionsFromType[Math.floor(Math.random() * questionsFromType.length)];
+        // }
+    };
 
     return (
     <div>
-        <Questions questions={questionSet}/>
+        {JSON.stringify(booleans)}
     </div>
     );
 

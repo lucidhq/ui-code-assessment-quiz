@@ -1,27 +1,22 @@
-import React, { useState } from 'react';
-import { Question } from '../Question/Question';
-import { Summary } from '../../components/Summary/Summary';
+import React, { useState, useEffect } from 'react';
+import { Multiple } from '../../components/Multiple/Multiple';
+import { Boolean } from '../../components/Boolean/Boolean';
+import { TextQuestion } from '../../components/TextQuestion/TextQuestion';
 
-export const Questions: React.FC <{questions: object}> = ({questions}) => {
-    // console.log('QUESTIONS', questions);
+export const Questions = ({props} : any) => {
 
-    // create question state
+    const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+    const [currentQuestion, setCurrentQuestion] = useState({});
+    const [summaryData, setSummaryData] = useState({correct: 0, incorrect: 0});
 
-    // const [question, setQuestionData] = useState(questions[Math.floor(Math.random() * questions.length)]);
+    useEffect(() => {
+        console.log('PROPS', props);
+
+    }, [props])
     
     return (
         <div>
-            <Question />
-            {/* <Summary /> */}
         </div>
     );
-
-    // questions && questions.map ( (question: any) => {
-    //     return (
-    //         <div>
-    //             {question}
-    //         </div>
-    //         );
-    // } );
 
 };
