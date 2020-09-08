@@ -20,18 +20,16 @@ export const Quiz: React.FC<Props> = (props) => {
 
     useEffect(() => {
         // Check to see if limit for each type of question is met
-        // const types = [];
-        // if (booleanCount < 2) {
-        //     types.push('boolean')
-        // }
-        // if (textCount > 1) {
-        //     types.push('text');
-        // }
+        const types = [];
+        if (booleanCount < 2) {
+            types.push('boolean')
+        }
+        if (textCount > 1) {
+            types.push('text');
+        }
 
         // Randomly determine which type of question to select
-        // setCurrentQuestionType(types[Math.floor(Math.random() * types.length)]);
-
-        setCurrentQuestionType('text');
+        setCurrentQuestionType(types[Math.floor(Math.random() * types.length)]);
 
         // Set current question
         if (currentQuestionType === 'boolean') {
@@ -73,6 +71,7 @@ export const Quiz: React.FC<Props> = (props) => {
         {currentQuestionType === 'text' && 
         <TextQuestion question={currentQuestionObject.question} correctAnswer={currentQuestionObject.correctAnswer} />}
         {/* <Multiple question={props.multiple[0] && props.multiple[0].question} answers={props.multiple[0] && props.multiple[0].answers} correctAnswer={props.multiple[0] &&  props.multiple[0].correctAnswer}/> */}
+        <button className="button"><span className="button-text">Next</span></button>
     </div>
     );
 

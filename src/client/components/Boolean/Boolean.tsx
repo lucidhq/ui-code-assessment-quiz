@@ -38,10 +38,10 @@ export const Boolean: React.FC<Bool> = (props) => {
         <label className="option">
         <input className="radio"  type="radio" value="false" name="answer" ref={register({ required: true })}/>
         False</label>
-        <div className="error">
+        {/* <div className="error">
           {errors.answer && "ERROR: Selection is required"}
           </div>
-        <button className="button" type="submit"><span className="button-text">Next</span></button>
+        <button className="button" type="submit"><span className="button-text">Next</span></button> */}
       </form>
     </div>
   );
