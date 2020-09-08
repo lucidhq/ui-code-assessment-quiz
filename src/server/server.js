@@ -27,13 +27,8 @@ const modifyData = (data) => {
 
     // Consolidate all multiple choice questions into one array and randomize placement of correct answer
 
-    const consolidateQuestions = (question) => {
-        question.answers = shuffle(question.incorrect_answers.concat(question.correct_answer));
-        return question;
-    };
-
     newData.multiple.forEach(question => {
-        question = consolidateQuestions(question);
+        question.answers = shuffle(question.incorrect_answers.concat(question.correct_answer));
       });
 
       // TODO: boolean cutoff

@@ -18,7 +18,6 @@ export const App = () => {
 
       axios.get('http://localhost:4000/api/questions')
       .then( res => {
-        console.log(res);
         setQuestions(res.data);
       })
       .catch( err => {

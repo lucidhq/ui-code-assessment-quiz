@@ -8,33 +8,29 @@ import { TextQuestion } from '../../components/TextQuestion/TextQuestion';
 export const Quiz = ({ props } : any) => {
 
     const [questions, setQuestions] = useState(props);
-    const [questionSet, setQuestionSet] = useState([]);
-    const [currentSetIndex, setCurrentSetIndex] = useState(0);
+    const [booleans, setBooleans] = useState({});
+    const [multiples, setMultiples] = useState({});
+    const [textQuestions, setTextQuestions] = useState({});
 
     useEffect(() => {
         setQuestions(props);
     }, [props]);
 
-    // Set question set
     useEffect(() => {
-      setQuestionSet(questions[currentSetIndex]);
-    }, [questions]);
+        setBooleans(props.boolean);
+    }, [props]);
 
-    // // Set current question
-    // useEffect(() => {
-    //     setCurrentQuestion(questionSet[currentQuestionIndex]);
-    // }, [questionSet]);
+    useEffect(() => {
+        setMultiples(props.multiple);
+    }, [props]);
 
-    // useEffect(() => {
-    //     console.log('QUESTIONS ZERO', questions);
-    //     setQuestionSet(questions[currentSetIndex]);
-    //     console.log('QUESTION SET', questionSet);
-    // }, []);
+    useEffect(() => {
+        setTextQuestions(props.text);
+    }, [props]);
 
     return (
     <div>
-        {JSON.stringify(questionSet[0])}
-      <Questions props={questionSet} />
+        {JSON.stringify(textQuestions)}
     </div>
     );
 
