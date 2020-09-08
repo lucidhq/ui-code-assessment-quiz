@@ -69,19 +69,19 @@ export const Quiz: React.FC<Props> = (props) => {
 
     }, [props, booleanCount, textCount]);
 
-    const questionSubmit = (event: any) => {
-      console.log('CLICK', event);
-      console.log('IS CORRECT', answerIsCorrect);
-    };
+    const handleSelectedAnswer = (event: any) => {
+        console.log('HANDLE SELECTED ANSWER EVENT', handleSelectedAnswer);
+    //   setSelectedAnswer(event.target.value);
+      return '';
+    }
     
     return (
     <div>
         {currentQuestionType === 'boolean' && 
-        <Boolean question={currentQuestionObject.question} correctAnswer={currentQuestionObject.correctAnswer} selectedAnswer={selectedAnswer} />}
+        <Boolean question={currentQuestionObject.question} correctAnswer={currentQuestionObject.correctAnswer} handleSelectedAnswer={handleSelectedAnswer} />}
         {currentQuestionType === 'text' && 
         <TextQuestion question={currentQuestionObject.question} correctAnswer={currentQuestionObject.correctAnswer} answerIsCorrect={answerIsCorrect} />}
         {/* <Multiple question={props.multiple[0] && props.multiple[0].question} answers={props.multiple[0] && props.multiple[0].answers} correctAnswer={props.multiple[0] &&  props.multiple[0].correctAnswer}/> */}
-        <button className="button" onClick={questionSubmit}><span className="button-text">Next</span></button>
     </div>
     );
 

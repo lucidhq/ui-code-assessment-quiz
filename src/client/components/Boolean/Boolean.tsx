@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 interface Bool {
   question: string;
   correctAnswer: string;
-  selectedAnswer: string;
+  handleSelectedAnswer: (event: any) => string;
 }
 
 export const Boolean: React.FC<Bool> = (props) => {
@@ -21,7 +21,7 @@ export const Boolean: React.FC<Bool> = (props) => {
   }, [props]);
 
   const onSubmit = (event: any) => {
-    setSelectedAnswer(event.answer);
+    props.handleSelectedAnswer(event.answer);
   };
 
   return (
