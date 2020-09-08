@@ -1,29 +1,33 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { Questions } from '../Questions/Questions';
 
-export const Quiz = ({props} : any) => {
+interface Props {
+    bool: Array<any>,
+    multiple: Array<any>,
+    text: Array<any>
+}
+
+export const Quiz: React.FC<Props> = (props) => {
 
     const [booleans, setBooleans] = useState([]);
-    const [multiples, setMultiples] = useState([]);
+    // const [multiples, setMultiples] = useState([]);
     const [textQuestions, setTextQuestions] = useState([]);
 
     useEffect(() => {
-        setBooleans(props.booleans);
-        console.log('BOOLEANS', booleans);
-    }, [props]);
+        // setBooleans(props.bool);
+    }, [booleans]);
+
+    // useEffect(() => {
+    //     setMultiples(multiples);
+    // }, [multiples]);
 
     useEffect(() => {
-        setMultiples(props.multiples);
-    }, [props]);
-
-    useEffect(() => {
-        setTextQuestions(props.textQuestions);
-    }, [props]);
+        setTextQuestions(textQuestions);
+    }, [textQuestions]);
 
     return (
     <div>
-      {JSON.stringify(props)}
+        {JSON.stringify(props.multiple[0])}
     </div>
     );
 
