@@ -15,13 +15,9 @@ export const Boolean: React.FC<Bool> = (props) => {
 
   let correct = false;
 
-  const q = 'Igneous rocks are formed by excessive heat and pressure.';
-
   useEffect(() => {
     setQuestion(props.question);
     setCorrectAnswer(props.correctAnswer);
-    // setAnswers(props.answers);
-
   }, [props]);
 
   const onSubmit = (event: any) => {
