@@ -19,6 +19,8 @@ export const Quiz: React.FC<Props> = (props) => {
     const [selectedAnswer, setSelectedAnswer] = useState('');
     const [answerIsCorrect, setAnswerIsCorrect] = useState(false);
 
+    const [scoreData, setScoreData] = useState({correct: 0, wrong: 0});
+
     useEffect(() => {
         // Check to see if limit for each type of question is met
         const types = [];
@@ -69,8 +71,17 @@ export const Quiz: React.FC<Props> = (props) => {
     }, [props, booleanCount, textCount]);
 
     const handleSelectedAnswer = (event: any) => {
-        setAnswerIsCorrect((event === currentQuestionObject.correctAnswer.toLowerCase()) ? true : false);
-        console.log('ANSWER IS CORRECT', answerIsCorrect);
+        let newScoreData = scoreData;
+
+        (event === currentQuestionObject.correctAnswer.toLowerCase()) ? newScoreData.correct++ : newScoreData.wrong++;
+
+        setScoreData(newScoreData);
+        
+
+        const correct = (event === currentQuestionObject.correctAnswer.toLowerCase()) ? true : false;
+        console.log('ANSWER IS CORRECT', correct);
+
+        console.log('SCORE DATA', scoreData);
       return '';
     }
     
