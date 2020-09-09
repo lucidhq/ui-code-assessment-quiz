@@ -82,7 +82,7 @@ export const Quiz: React.FC<Props> = (props) => {
         console.log('ANSWER IS CORRECT', correct);
 
         console.log('SCORE DATA', scoreData);
-      return '';
+
     }
     
     return (
