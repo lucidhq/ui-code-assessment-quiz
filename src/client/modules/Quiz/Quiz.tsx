@@ -15,8 +15,9 @@ export const Quiz: React.FC<Props> = (props) => {
     const [currentQuestionType, setCurrentQuestionType] = useState('');
     const [booleanCount, setBooleanCount] = useState(0);
     const [textCount, setTextCount] = useState(0);
+    const [multipleCount, setMultipleCount] = useState(0);
 
-    const [currentQuestionObject, setCurrentQuestionObject] = useState({question: '', correctAnswer: ''});
+    const [currentQuestionObject, setCurrentQuestionObject] = useState({question: '', correctAnswer: '', answers: null});
 
     const [scoreData, setScoreData] = useState({correct: 0, wrong: 0});
 
@@ -24,24 +25,27 @@ export const Quiz: React.FC<Props> = (props) => {
         // Check to see if limit for each type of question is met
         const types = [];
 
-        if (booleanCount < 2) {
-            types.push('boolean')
-        }
-        if (textCount > 1) {
-            types.push('text');
-        }
+        // if (booleanCount < 2) {
+        //     types.push('boolean')
+        // }
+        // if (textCount > 1) {
+        //     types.push('text');
+        // } if (textCount > 9) {
+        //     types.push('multiple');
+        // }
 
-        // Randomly determine which type of question to select
-        setCurrentQuestionType(types[Math.floor(Math.random() * types.length)]);
+        // // Randomly determine which type of question to select
+        // setCurrentQuestionType(types[Math.floor(Math.random() * types.length)]);
 
-        // setCurrentQuestionType('text');
+        setCurrentQuestionType('multiple');
 
         // Set current question
         if (currentQuestionType === 'boolean') {
 
           const questionObject = {
               question: props.bool[booleanCount] ? props.bool[booleanCount].question : null,
-              correctAnswer: props.bool[booleanCount] ? props.bool[booleanCount].correct_answer : null
+              correctAnswer: props.bool[booleanCount] ? props.bool[booleanCount].correct_answer : null,
+              answers: null
           };
 
           setCurrentQuestionObject(questionObject);
@@ -52,10 +56,21 @@ export const Quiz: React.FC<Props> = (props) => {
 
           const questionObject = {
               question: props.text[textCount] ? props.text[textCount].question : null,
-              correctAnswer: props.text[textCount] ? props.text[textCount].correct_answer : null
+              correctAnswer: props.text[textCount] ? props.text[textCount].correct_answer : null,
+              answers: null
           };
 
           setCurrentQuestionObject(questionObject);
+        } if (currentQuestionType === 'multiple') {
+
+            const questionObject = {
+                question: props.multiple[multipleCount] ? props.multiple[multipleCount].question : null,
+                correctAnswer: props.multiple[multipleCount] ? props.multiple[multipleCount].correct_answer : null,
+                answers: props.multiple[multipleCount] ? props.multiple[multipleCount].answers : null
+            };
+
+            setCurrentQuestionObject(questionObject);
+
         }
 
         // Update question type counter
@@ -90,11 +105,11 @@ export const Quiz: React.FC<Props> = (props) => {
     
     return (
     <div>
-        {currentQuestionType === 'boolean' && 
+        {/* {currentQuestionType === 'boolean' && 
         <Boolean question={currentQuestionObject.question} correctAnswer={currentQuestionObject.correctAnswer} handleSelectedAnswer={handleSelectedAnswer} />}
         {currentQuestionType === 'text' && 
-        <TextQuestion question={currentQuestionObject.question} correctAnswer={currentQuestionObject.correctAnswer}  handleSelectedAnswer={handleSelectedAnswer} />}
-        {/* <Multiple question={props.multiple[0] && props.multiple[0].question} answers={props.multiple[0] && props.multiple[0].answers} correctAnswer={props.multiple[0] &&  props.multiple[0].correctAnswer}/> */}
+        <TextQuestion question={currentQuestionObject.question} correctAnswer={currentQuestionObject.correctAnswer}  handleSelectedAnswer={handleSelectedAnswer} />} */}
+        <Multiple question={props.multiple[0] && props.multiple[0].question} answers={props.multiple[0] && props.multiple[0].answers} correctAnswer={props.multiple[0] &&  props.multiple[0].correctAnswer}/>
         <Summary scoreData={scoreData} />
     </div>
     );

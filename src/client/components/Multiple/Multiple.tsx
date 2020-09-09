@@ -33,7 +33,7 @@ export const Multiple: React.FC<Multiple> = (props) => {
 
   return (
     <div className="multiple">
-      <div className="question">{JSON.stringify(props)}</div>
+      <div className="question">{question}</div>
       <form className="question-list" onSubmit={handleSubmit(onSubmit)}>
         <label className="option">
         <input className="radio" type="radio" value="0" name="answer" ref={register({ required: true })}/>
