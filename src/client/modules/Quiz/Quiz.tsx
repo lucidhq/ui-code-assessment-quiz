@@ -16,8 +16,6 @@ export const Quiz: React.FC<Props> = (props) => {
     const [textCount, setTextCount] = useState(0);
 
     const [currentQuestionObject, setCurrentQuestionObject] = useState({question: '', correctAnswer: ''});
-    const [selectedAnswer, setSelectedAnswer] = useState('');
-    const [answerIsCorrect, setAnswerIsCorrect] = useState(false);
 
     const [scoreData, setScoreData] = useState({correct: 0, wrong: 0});
 
