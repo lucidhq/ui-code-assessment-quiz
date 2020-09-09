@@ -17,7 +17,7 @@ export const Quiz: React.FC<Props> = (props) => {
     const [textCount, setTextCount] = useState(0);
     const [multipleCount, setMultipleCount] = useState(0);
 
-    const [currentQuestionObject, setCurrentQuestionObject] = useState({question: '', correctAnswer: '', answers: null});
+    const [currentQuestionObject, setCurrentQuestionObject] = useState({question: '', correctAnswer: '', answers: []});
 
     const [scoreData, setScoreData] = useState({correct: 0, wrong: 0});
 
@@ -45,7 +45,7 @@ export const Quiz: React.FC<Props> = (props) => {
           const questionObject = {
               question: props.bool[booleanCount] ? props.bool[booleanCount].question : null,
               correctAnswer: props.bool[booleanCount] ? props.bool[booleanCount].correct_answer : null,
-              answers: null
+              answers: []
           };
 
           setCurrentQuestionObject(questionObject);
@@ -57,7 +57,7 @@ export const Quiz: React.FC<Props> = (props) => {
           const questionObject = {
               question: props.text[textCount] ? props.text[textCount].question : null,
               correctAnswer: props.text[textCount] ? props.text[textCount].correct_answer : null,
-              answers: null
+              answers: []
           };
 
           setCurrentQuestionObject(questionObject);
@@ -69,7 +69,10 @@ export const Quiz: React.FC<Props> = (props) => {
                 answers: props.multiple[multipleCount] ? props.multiple[multipleCount].answers : null
             };
 
+            console.log('QUESTION OBJECT', questionObject);
+
             setCurrentQuestionObject(questionObject);
+
 
         }
 
@@ -84,7 +87,7 @@ export const Quiz: React.FC<Props> = (props) => {
         // }t6   
 
 
-    }, [props, booleanCount, textCount]);
+    }, [props, booleanCount, textCount, multipleCount]);
 
     const handleSelectedAnswer = (event: any) => {
         let newScoreData = scoreData;
@@ -105,11 +108,12 @@ export const Quiz: React.FC<Props> = (props) => {
     
     return (
     <div>
-        {/* {currentQuestionType === 'boolean' && 
+        {currentQuestionType === 'boolean' && 
         <Boolean question={currentQuestionObject.question} correctAnswer={currentQuestionObject.correctAnswer} handleSelectedAnswer={handleSelectedAnswer} />}
         {currentQuestionType === 'text' && 
-        <TextQuestion question={currentQuestionObject.question} correctAnswer={currentQuestionObject.correctAnswer}  handleSelectedAnswer={handleSelectedAnswer} />} */}
-        <Multiple question={props.multiple[0] && props.multiple[0].question} answers={props.multiple[0] && props.multiple[0].answers} correctAnswer={props.multiple[0] &&  props.multiple[0].correctAnswer}/>
+        <TextQuestion question={currentQuestionObject.question} correctAnswer={currentQuestionObject.correctAnswer}  handleSelectedAnswer={handleSelectedAnswer} />}
+        {currentQuestionType === 'multiple' &&
+        <Multiple question={currentQuestionObject.question} answers={currentQuestionObject.answers} correctAnswer={currentQuestionObject.correctAnswer}/>}
         <Summary scoreData={scoreData} />
     </div>
     );

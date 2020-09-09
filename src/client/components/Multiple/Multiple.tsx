@@ -16,6 +16,7 @@ export const Multiple: React.FC<Multiple> = (props) => {
   const { register, handleSubmit, errors } = useForm();
 
   useEffect(() => {
+    console.log('PROPS', props);
     setQuestion(props.question);
     setCorrectAnswer(props.correctAnswer);
     // setAnswers(props.answers);
