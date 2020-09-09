@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Multiple } from '../../components/Multiple/Multiple';
 import { Boolean } from '../../components/Boolean/Boolean';
 import { TextQuestion } from '../../components/TextQuestion/TextQuestion';
+import { Summary } from '../../components/Summary/Summary';
 
 interface Props {
     bool: Array<any>,
@@ -94,6 +95,7 @@ export const Quiz: React.FC<Props> = (props) => {
         {currentQuestionType === 'text' && 
         <TextQuestion question={currentQuestionObject.question} correctAnswer={currentQuestionObject.correctAnswer}  handleSelectedAnswer={handleSelectedAnswer} />}
         {/* <Multiple question={props.multiple[0] && props.multiple[0].question} answers={props.multiple[0] && props.multiple[0].answers} correctAnswer={props.multiple[0] &&  props.multiple[0].correctAnswer}/> */}
+        <Summary scoreData={scoreData} />
     </div>
     );
 
