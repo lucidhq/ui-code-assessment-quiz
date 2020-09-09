@@ -35,7 +35,7 @@ export const Multiple: React.FC<Multiple> = (props) => {
   }, []);
 
   const onSubmit = (event: any) => {
-    console.log('SUBMIT EVENT', event);
+    props.handleSelectedAnswer(event.answer);
   };
 
   return (
@@ -43,10 +43,9 @@ export const Multiple: React.FC<Multiple> = (props) => {
       <div className="question">{question}</div>
       <form className="question-list" onSubmit={handleSubmit(onSubmit)}>
         {
-          answers.map(answer => {
+          answers.map((answer, index) => {
           return (
-            <label className="option">
-            <input className="radio" type="radio" value={answer} name="answer" ref={register({ required: true })}/>{answer}</label>
+            <label className="option" key={index}><input className="radio" type="radio" value={answer} name="answer" ref={register({ required: true })}/>{answer}</label>
           );
           })
         }
