@@ -72,7 +72,15 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e70dd', end
 .option {
   display: flex;
   flex-direction: row;
-  margin-bottom: 10px;
+}
+
+label {
+  padding: 9px;
+  padding-left: 0px;
+}
+
+label:hover {
+  background-color: #E5EEFF;
 }
 
 .radio {
@@ -81,7 +89,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e70dd', end
 
 .error {
   color: #ff0000;
-  margin-top: 15px;
+  font-size: 14px;
+  padding: 9px;
+  padding-left: 0px;
 }
 
 .summary-header {
