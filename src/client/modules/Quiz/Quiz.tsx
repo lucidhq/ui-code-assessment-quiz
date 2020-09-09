@@ -45,6 +45,12 @@ export const Quiz: React.FC<Props> = (props) => {
 
           setCurrentQuestionObject(questionObject);
 
+          // remove that question from object
+
+          console.log('PROPS BOOL BEFORE', props.bool);
+
+          console.log('PROPS BOOL AFTER', props.bool);
+
         } if (currentQuestionType === 'text') {
 
           const questionObject = {
@@ -63,7 +69,7 @@ export const Quiz: React.FC<Props> = (props) => {
         // } if (currentQuestionType === 'text') {
         //     setTextCount(textCount + 1);
         //     console.log('TEXT COUNT', textCount);
-        // }
+        // }t6   
 
 
     }, [props, booleanCount, textCount]);
@@ -80,6 +86,8 @@ export const Quiz: React.FC<Props> = (props) => {
         console.log('ANSWER IS CORRECT', correct);
 
         console.log('SCORE DATA', scoreData);
+
+        // Change to next question
 
     }
     
