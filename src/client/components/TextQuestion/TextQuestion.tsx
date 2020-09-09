@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 interface TextQuestion {
   question: string;
   correctAnswer: string;
-  handleSelectedAnswer: (event: any) => string;
+  handleSelectedAnswer: (event: any) => void;
 }
 
 export const TextQuestion: React.FC<TextQuestion> = (props) => {

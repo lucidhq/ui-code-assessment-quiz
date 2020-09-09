@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Questions } from '../Questions/Questions';
 import { Multiple } from '../../components/Multiple/Multiple';
 import { Boolean } from '../../components/Boolean/Boolean';
 import { TextQuestion } from '../../components/TextQuestion/TextQuestion';
@@ -17,8 +16,8 @@ export const Quiz: React.FC<Props> = (props) => {
     const [textCount, setTextCount] = useState(0);
 
     const [currentQuestionObject, setCurrentQuestionObject] = useState({question: '', correctAnswer: ''});
-    const [selectedAnswer, setSelectedAnswer] = useState('');
-    const [answerIsCorrect, setAnswerIsCorrect] = useState(false);
+
+    const [scoreData, setScoreData] = useState({correct: 0, wrong: 0});
 
     useEffect(() => {
         // Check to see if limit for each type of question is met
@@ -46,6 +45,8 @@ export const Quiz: React.FC<Props> = (props) => {
 
           setCurrentQuestionObject(questionObject);
 
+          // remove that question from object
+
         } if (currentQuestionType === 'text') {
 
           const questionObject = {
@@ -64,14 +65,26 @@ export const Quiz: React.FC<Props> = (props) => {
         // } if (currentQuestionType === 'text') {
         //     setTextCount(textCount + 1);
         //     console.log('TEXT COUNT', textCount);
-        // }
+        // }t6   
 
 
     }, [props, booleanCount, textCount]);
 
     const handleSelectedAnswer = (event: any) => {
-        console.log('HANDLE SELECTED ANSWER EVENT', event);
-      return '';
+        let newScoreData = scoreData;
+
+        (event === currentQuestionObject.correctAnswer.toLowerCase()) ? newScoreData.correct++ : newScoreData.wrong++;
+
+        setScoreData(newScoreData);
+        
+
+        const correct = (event === currentQuestionObject.correctAnswer.toLowerCase()) ? true : false;
+        console.log('ANSWER IS CORRECT', correct);
+
+        console.log('SCORE DATA', scoreData);
+
+        // Change to next question
+
     }
     
     return (
