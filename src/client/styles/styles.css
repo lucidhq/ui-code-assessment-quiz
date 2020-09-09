@@ -11,7 +11,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e70dd', end
   background-size: cover;
   color: #FFFFFF;
   font-family: arial;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+
 
 .container {
   display: flex;
@@ -23,7 +28,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e70dd', end
   font-size: 45px;
   width: 75%;
   padding: 20px;
-  margin-left: -45px;
+  padding-top: 0px;
+  margin-top: -17%;
+  margin-left: -25%;
   font-weight: bold;
   text-shadow: 3px 3px #222428;
 }
@@ -31,7 +38,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e70dd', end
 .quiz {
   background-color: #FFFFFF;
   color: #000000;
-  width: 75%;
+  /* width: 75%; */
   padding: 25px;
   border-radius: 20px;
   box-shadow: 6px 6px #222428;
