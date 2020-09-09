@@ -3,7 +3,6 @@ import { useForm } from 'react-hook-form';
 
 interface Bool {
   question: string;
-  correctAnswer: string;
   handleSelectedAnswer: (event: any) => void;
 }
 

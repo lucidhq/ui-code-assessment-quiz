@@ -3,8 +3,8 @@ import { useForm } from 'react-hook-form';
 
 interface Multiple {
   question: string,
-  correctAnswer: string,
-  answers: string[]
+  answers: string[],
+  handleSelectedAnswer: (event: any) => void;
 }
 
 export const Multiple: React.FC<Multiple> = (props) => {
@@ -15,21 +15,27 @@ export const Multiple: React.FC<Multiple> = (props) => {
 
   const { register, handleSubmit, errors } = useForm();
 
+  const tempQuestion = 'Which company did Valve cooperate with in the creation of the Vive?';
+
+  const tempAnswers = ["HTC",  "Oculus", "Google", "Razer"];
+
+  const tempCorrectAnswer = "HTC";
+
+
   useEffect(() => {
     console.log('PROPS', props);
-    setQuestion(props.question);
-    setCorrectAnswer(props.correctAnswer);
-    setAnswers(props.answers);
+    // setQuestion(props.question);
+    // setCorrectAnswer(props.correctAnswer);
+    // setAnswers(props.answers);
+
+    setQuestion(tempQuestion);
+    setCorrectAnswer(tempCorrectAnswer);
+    setAnswers(tempAnswers);
 
   }, [question, correctAnswer, answers]);
 
-  let correct = false;
-
   const onSubmit = (event: any) => {
-    if (event.answer === correctAnswer) {
-      correct = true;
-    }
-    // send correct = true/false up as event
+
   };
 
   return (

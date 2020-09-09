@@ -108,12 +108,13 @@ export const Quiz: React.FC<Props> = (props) => {
     
     return (
     <div>
+        {/* {JSON.stringify(currentQuestionObject.question)} */}
         {currentQuestionType === 'boolean' && 
-        <Boolean question={currentQuestionObject.question} correctAnswer={currentQuestionObject.correctAnswer} handleSelectedAnswer={handleSelectedAnswer} />}
+        <Boolean question={currentQuestionObject.question}handleSelectedAnswer={handleSelectedAnswer} />}
         {currentQuestionType === 'text' && 
-        <TextQuestion question={currentQuestionObject.question} correctAnswer={currentQuestionObject.correctAnswer}  handleSelectedAnswer={handleSelectedAnswer} />}
+        <TextQuestion question={currentQuestionObject.question} handleSelectedAnswer={handleSelectedAnswer} />}
         {currentQuestionType === 'multiple' &&
-        <Multiple question={currentQuestionObject.question} answers={currentQuestionObject.answers} correctAnswer={currentQuestionObject.correctAnswer}/>}
+        <Multiple question={currentQuestionObject && currentQuestionObject.question} answers={currentQuestionObject.answers} handleSelectedAnswer={handleSelectedAnswer}/>}
         <Summary scoreData={scoreData} />
     </div>
     );
