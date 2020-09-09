@@ -1,6 +1,13 @@
 import React from 'react';
 
-export const Summary = (question: object) => {
+interface Summary {
+  scoreData: {
+    correct: number,
+    wrong: number
+  }
+}
+
+export const Summary = (props: any) => {
 
   return (
     <div className="summary">
