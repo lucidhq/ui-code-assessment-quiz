@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Questions } from '../Questions/Questions';
 import { Multiple } from '../../components/Multiple/Multiple';
 import { Boolean } from '../../components/Boolean/Boolean';
 import { TextQuestion } from '../../components/TextQuestion/TextQuestion';
@@ -70,7 +69,8 @@ export const Quiz: React.FC<Props> = (props) => {
     }, [props, booleanCount, textCount]);
 
     const handleSelectedAnswer = (event: any) => {
-        console.log('HANDLE SELECTED ANSWER EVENT', event);
+        setAnswerIsCorrect((event === currentQuestionObject.correctAnswer.toLowerCase()) ? true : false);
+        console.log('ANSWER IS CORRECT', answerIsCorrect);
       return '';
     }
     
