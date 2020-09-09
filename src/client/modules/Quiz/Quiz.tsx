@@ -69,8 +69,6 @@ export const Quiz: React.FC<Props> = (props) => {
                 answers: props.multiple[multipleCount] ? props.multiple[multipleCount].answers : null
             };
 
-            console.log('QUESTION OBJECT', questionObject);
-
             setCurrentQuestionObject(questionObject);
 
 

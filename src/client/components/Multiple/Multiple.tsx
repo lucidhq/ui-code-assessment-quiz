@@ -32,7 +32,7 @@ export const Multiple: React.FC<Multiple> = (props) => {
     setCorrectAnswer(tempCorrectAnswer);
     setAnswers(tempAnswers);
 
-  }, [question, correctAnswer, answers]);
+  }, []);
 
   const onSubmit = (event: any) => {
 
@@ -42,6 +42,11 @@ export const Multiple: React.FC<Multiple> = (props) => {
     <div className="multiple">
       <div className="question">{question}</div>
       <form className="question-list" onSubmit={handleSubmit(onSubmit)}>
+        {
+          answers.map(answer => {
+          return (<span key={answer}>{answer}</span>);
+          })
+        }
         <label className="option">
         <input className="radio" type="radio" value="0" name="answer" ref={register({ required: true })}/>
         Rad Mobile
