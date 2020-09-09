@@ -11,7 +11,7 @@ export const Multiple: React.FC<Multiple> = (props) => {
 
   const [question, setQuestion] = useState('');
   const [correctAnswer, setCorrectAnswer] = useState('');
-  const [answers, setAnswers] = useState([]);
+  const [answers, setAnswers] = useState(['']);
 
   const { register, handleSubmit, errors } = useForm();
 
@@ -19,7 +19,7 @@ export const Multiple: React.FC<Multiple> = (props) => {
     console.log('PROPS', props);
     setQuestion(props.question);
     setCorrectAnswer(props.correctAnswer);
-    // setAnswers(props.answers);
+    setAnswers(props.answers);
 
   }, [question, correctAnswer, answers]);
 
