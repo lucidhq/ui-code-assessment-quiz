@@ -43,25 +43,13 @@ export const Multiple: React.FC<Multiple> = (props) => {
       <div className="question">{question}</div>
       <form className="question-list" onSubmit={handleSubmit(onSubmit)}>
         {
-          answers.map(answer => {
-          return (<span key={answer}>{answer}</span>);
+          answers.map((answer, index) => {
+          return (
+            <label className="option">
+            <input className="radio" type="radio" value={index} name="answer" ref={register({ required: true })}/>{answer}</label>
+          );
           })
         }
-        <label className="option">
-        <input className="radio" type="radio" value="0" name="answer" ref={register({ required: true })}/>
-        Rad Mobile
-        </label>
-        <label className="option">
-        <input className="radio"  type="radio" value="1" name="answer" ref={register({ required: true })}/>
-        Sonic The Hedgehog</label>
-        <label className="option">
-        <input className="radio" type="radio" value="2" name="answer" ref={register({ required: true })}/>
-        Super Mario 64
-        </label>
-        <label className="option">
-        <input className="radio"  type="radio" value="3" name="answer"
-        ref={register({ required: true })}/>
-        Mega Man</label>
         <div className="error">
           {errors.answer && "ERROR: Selection is required"}
           </div>
