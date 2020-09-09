@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 interface Summary {
   scoreData: {
@@ -7,14 +7,22 @@ interface Summary {
   }
 }
 
-export const Summary = (props: any) => {
+export const Summary: React.FC<Summary> = (props: any) => {
+
+  const [correct, setCorrect] = useState(0);
+  const [wrong, setWrong] = useState(0);
+
+  useEffect(() => {
+    setCorrect(props.scoreData.correct);
+    setWrong(props.scoreData.wrong);
+  }, [props]);
 
   return (
     <div className="summary">
       <div className="summary-header">SUMMARY</div>
         <ul className="summary-list">
-          <li>Correct: <b>2</b></li>
-          <li>Wrong: <b>1</b></li>
+          <li>Correct: <b>{correct}</b></li>
+          <li>Wrong: <b>{wrong}</b></li>
           <li>Questions Answered: <b>3</b></li>
           <li>Final Score: <b>70%</b></li>
         </ul>
