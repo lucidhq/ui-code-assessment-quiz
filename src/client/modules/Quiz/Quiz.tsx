@@ -47,10 +47,6 @@ export const Quiz: React.FC<Props> = (props) => {
 
           // remove that question from object
 
-          console.log('PROPS BOOL BEFORE', props.bool);
-
-          console.log('PROPS BOOL AFTER', props.bool);
-
         } if (currentQuestionType === 'text') {
 
           const questionObject = {
