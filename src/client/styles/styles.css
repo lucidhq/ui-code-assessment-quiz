@@ -1,17 +1,25 @@
 html {
   background-color: #222428;
   height: 100%;
-background: -moz-linear-gradient(top,  #1e70dd 0%, #222428 100%); /* FF3.6-15 */
-background: -webkit-linear-gradient(top,  #1e70dd 0%,#222428 100%); /* Chrome10-25,Safari5.1-6 */
-background: linear-gradient(to bottom,  #1e70dd 0%,#222428 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e70dd', endColorstr='#222428',GradientType=0 ); /* IE6-9 */
+
+background: -moz-radial-gradient(center, ellipse cover, #E5EEFF 0%, #1e70dd 42%, #222428 100%); /* FF3.6-15 */
+background: -webkit-radial-gradient(center, ellipse cover, #E5EEFF 0%,#1e70dd 42%,#222428 100%); /* Chrome10-25,Safari5.1-6 */
+background: radial-gradient(ellipse at center, #E5EEFF 0%,#1e70dd 42%,#222428 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e70dd', endColorstr='#222428',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
   color: #FFFFFF;
   font-family: arial;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+
 
 .container {
   display: flex;
@@ -19,11 +27,14 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e70dd', end
   align-items: center;
 }
 
+
 .header {
   font-size: 45px;
   width: 75%;
   padding: 20px;
-  margin-left: -45px;
+  padding-top: 0px;
+  margin-top: -17%;
+  margin-left: -23%;
   font-weight: bold;
   text-shadow: 3px 3px #222428;
 }
@@ -31,19 +42,19 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e70dd', end
 .quiz {
   background-color: #FFFFFF;
   color: #000000;
-  width: 75%;
   padding: 25px;
   border-radius: 20px;
+  box-shadow: 6px 6px #222428;
 }
 
 .button {
-  margin-top: 15px;
   background-color: #1e70dd;
   color: #ffffff;
   font-size: 14px;
   padding: 10px;
   border: 0px;
   width: 25%;
+  transition: background-color 0.5s ease;
 }
 
 .button:hover {
@@ -58,7 +69,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e70dd', end
 
 .question {
   font-size: 20px;
-  margin-bottom: 15px;
+  margin-bottom: 18px;
 }
 
 .question-list {
@@ -70,7 +81,15 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e70dd', end
 .option {
   display: flex;
   flex-direction: row;
-  margin-bottom: 10px;
+}
+
+label {
+  padding: 9px;
+  padding-left: 0px;
+}
+
+label:hover {
+  background-color: #E5EEFF;
 }
 
 .radio {
@@ -79,7 +98,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e70dd', end
 
 .error {
   color: #ff0000;
-  margin-top: 15px;
+  font-size: 14px;
+  padding: 9px;
+  padding-left: 0px;
 }
 
 .summary-header {
