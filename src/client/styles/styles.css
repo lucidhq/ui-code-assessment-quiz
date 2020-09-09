@@ -34,6 +34,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e70dd', end
   width: 75%;
   padding: 25px;
   border-radius: 20px;
+  box-shadow: 6px 6px #222428;
 }
 
 .button {
