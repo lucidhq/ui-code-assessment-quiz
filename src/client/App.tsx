@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
+//TODO: clean up imports
+import { Button } from 'semantic-ui-react'
 import { unescapeStr } from '../utils/questionUtils'
 import TrueFalse from './components/TrueFalse'
 
@@ -64,9 +66,9 @@ export const App = () => {
       {(questions && currentQuestion) && questions.length < 1
         ? <div>Loading...</div>
         : <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          <h3>{unescapeStr(currentQuestion.question)}</h3>
-          <TrueFalse selectedOption={selectedOption} handleChange={handleChange} />
-            <button>Next</button>
+            <h3>{unescapeStr(currentQuestion.question)}</h3>
+            <TrueFalse selectedOption={selectedOption} handleChange={handleChange} />
+              <button>Next</button>
           </div>
       }
     </>

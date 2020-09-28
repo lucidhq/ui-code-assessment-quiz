@@ -1,40 +1,56 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes, { InferProps } from 'prop-types'
+import { Form, Radio } from 'semantic-ui-react'
 
 type selected = string | null;
 
-interface TFProps {
-  selectedOption: string,
-  handleChange: any,
-}
+// interface TFProps {
+//   selectedOption: string,
+//   handleChange: any,
+// }
 
-const TrueFalse = ({ selectedOption, handleChange }: InferProps<TFProps>) => {
-  const options: string[] = ['trueOption', 'falseOption'];
+const TrueFalse = () => {
+  const [value, setValue] = useState<selected>('');
+  const handleChange = (e: any, { value }: any): void => {
+    e.preventDefault();
+    return setValue(value);
+  }
 
 
   return (
     <>
-      {options.map(option => (
-        <label key={option}>
-          <input
-            type="radio"
-            name={option}
-            value={option}
-            checked={selectedOption === option}
+      <Form>
+        {/* TODO: remove the Selected Value once app is complete */}
+        <Form.Field>
+          Selected value: <b>{value}</b>
+        </Form.Field>
+        <Form.Field>
+          <Radio
+            label="true"
+            name="radioGroup"
+            value="trueOption"
+            checked={value === "trueOption"}
             onChange={handleChange}
           />
-          {option.includes('true') ? 'true' : 'false'}
-        </label>
-      ))}
+        </Form.Field>
+        <Form.Field>
+          <Radio
+            label="false"
+            name="radioGroup"
+            value="falseOption"
+            checked={value === "falseOption"}
+            onChange={handleChange}
+          />
+        </Form.Field>
+      </Form>
     </>
-  )
+  );
 }
 
 TrueFalse.propTypes = {
   selectedOption: PropTypes.string,
   handleChange: PropTypes.func,
 }
-
 
 
 export default TrueFalse
