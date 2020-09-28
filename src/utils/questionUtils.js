@@ -1,11 +1,13 @@
 // TODO: add typings for utility methods
 
+// reformats chars that are HTML entities so questions and answers are rendered appropriately
 export const unescapeStr = (str) => {
   let parser = new DOMParser();
   let doc = parser.parseFromString(str, 'text/html');
   return doc.body.textContent;
 }
 
+// randomize order of both questions from the server, and answers for multiple choice.
 export const shuffle = (arr) => {
   const copy = arr.slice();
 
@@ -22,7 +24,6 @@ export const configureAnswers = (question) => {
   const { correct_answer, incorrect_answers } = question;
   const answers = [correct_answer, ...incorrect_answers];
   const unescapedAnswers = answers.map((a) => unescapeStr(a));
-  
+
   return shuffle(unescapedAnswers);
 }
-

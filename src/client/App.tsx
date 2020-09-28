@@ -7,6 +7,7 @@ import { unescapeStr, configureAnswers } from '../utils/questionUtils'
 import ShortAnswer from './components/ShortAnswer'
 import MultipleChoice from './components/MultipleChoice'
 import Summary from './components/Summary'
+import QuestionForm from './components/QuestionForm'
 
 interface Question {
   category: string,
@@ -52,10 +53,12 @@ export const App = () => {
       .then(res => res.json())
       .then(q => {
         const data: any = q.results;
-        const firstQuestion: any = data[0];
+        const firstQuestion: any = data[4];
         console.log(unescapeStr(firstQuestion.question));
         // TODO make this into a reducer to fix multiple setState re-renders
-        setAnswers(configureAnswers(firstQuestion));
+        if (firstQuestion.incorrect_answers) {
+          setAnswers(configureAnswers(firstQuestion));
+        }
         setCurrentQuestion(firstQuestion);
         setQuestions(data);
       })
@@ -79,14 +82,15 @@ export const App = () => {
             flexDirection: "column",
             alignItems: "center",
           }}
-        >
-          <h3>{unescapeStr(currentQuestion.question)}</h3>
+          >
+            <QuestionForm currentQuestion={currentQuestion} answers={answers} />
+          {/* <h3>{unescapeStr(currentQuestion.question)}</h3> */}
           {/* <TrueFalse selectedOption={selectedOption} handleChange={handleChange} /> */}
           {/* <ShortAnswer /> */}
-          <MultipleChoice answers={answers} />
+          {/* <MultipleChoice answers={answers} />
             <Button type="submit" primary>
               Next
-            </Button>
+            </Button> */}
         </div>
       )}
       <br />

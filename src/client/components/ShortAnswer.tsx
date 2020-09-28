@@ -3,7 +3,7 @@ import { Input } from 'semantic-ui-react'
 
 const ShortAnswer = () => {
   // TODO refactor this functionality into one hook or one method to pass into the form
-  const [value, setValue] = useState('')
+  const [value, setValue] = useState('');
   const handleChange = (e: any, { value }: any): void => {
     setValue(value);
   }
