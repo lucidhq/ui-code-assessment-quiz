@@ -20,7 +20,7 @@ const TrueFalse = () => {
   return (
     <>
       <Form>
-        {/* TODO: remove the Selected Value once app is complete */}
+        {/* TODO: remove the Selected Value line once all components are completed */}
         <Form.Field>
           Selected value: <b>{value}</b>
         </Form.Field>

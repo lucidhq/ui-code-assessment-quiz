@@ -2,8 +2,10 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 //TODO: clean up imports
 import { Button } from 'semantic-ui-react'
-import { unescapeStr } from '../utils/questionUtils'
-import TrueFalse from './components/TrueFalse'
+import { unescapeStr, configureAnswers } from '../utils/questionUtils'
+// import TrueFalse from './components/TrueFalse'
+import ShortAnswer from './components/ShortAnswer'
+import MultipleChoice from './components/MultipleChoice'
 
 interface Question {
   category: string,
@@ -24,6 +26,7 @@ interface IState {
 }
 
 type selected = string | null;
+
 /*
 initialState = {
   questions: [],
@@ -40,6 +43,7 @@ export const App = () => {
   const [questions, setQuestions] = useState<Question[] | []>([]);
   const [currentQuestion, setCurrentQuestion] = useState<Question | any>({});
   const [selectedOption, setOption] = useState<selected>('');
+  const [answers, setAnswers] = useState([]);
 
   useEffect(() => {
   // TODO: move this to utils file and make a
@@ -49,8 +53,10 @@ export const App = () => {
         const data: any = q.results;
         const firstQuestion: any = data[0];
         console.log(unescapeStr(firstQuestion.question));
-        setQuestions(data);
+        // TODO make this into a reducer to fix multiple setState re-renders
+        setAnswers(configureAnswers(firstQuestion));
         setCurrentQuestion(firstQuestion);
+        setQuestions(data);
       })
       .catch(error => console.error('unable to retrieve data at this time please try again', error))
   }, [])
@@ -67,8 +73,10 @@ export const App = () => {
         ? <div>Loading...</div>
         : <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <h3>{unescapeStr(currentQuestion.question)}</h3>
-            <TrueFalse selectedOption={selectedOption} handleChange={handleChange} />
-              <button>Next</button>
+          {/* <TrueFalse selectedOption={selectedOption} handleChange={handleChange} /> */}
+          {/* <ShortAnswer /> */}
+          <MultipleChoice answers={answers} />
+            <button>Next</button>
           </div>
       }
     </>
