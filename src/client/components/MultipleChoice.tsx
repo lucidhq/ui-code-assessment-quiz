@@ -1,6 +1,5 @@
 import React, { useState, Fragment } from 'react'
 import { Form, Radio } from 'semantic-ui-react'
-import { configureAnswers } from '../../utils/questionUtils'
 
 const MultipleChoice = ({ answers }: any) => {
   const [value, setValue] = useState("");
@@ -13,10 +12,8 @@ const MultipleChoice = ({ answers }: any) => {
   return (
     <>
       <Form>
-        {/* TODO: remove the Selected Value line once all components are completed */}
-        {(answers.length > 0) ?
-          answers.map((a: any) => {
-            return (
+        {(answers.length > 0)
+          ? answers.map((a: any) => (
               <Fragment key={a}>
                 <Form.Field>
                   <Radio
@@ -28,8 +25,7 @@ const MultipleChoice = ({ answers }: any) => {
                     />
                 </Form.Field>
               </Fragment>
-            );
-          })
+            ))
           : null}
       </Form>
     </>
