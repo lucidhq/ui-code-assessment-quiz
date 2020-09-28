@@ -6,6 +6,7 @@ import { unescapeStr, configureAnswers } from '../utils/questionUtils'
 // import TrueFalse from './components/TrueFalse'
 import ShortAnswer from './components/ShortAnswer'
 import MultipleChoice from './components/MultipleChoice'
+import Summary from './components/Summary'
 
 interface Question {
   category: string,
@@ -69,16 +70,28 @@ export const App = () => {
 
   return (
     <>
-      {(questions && currentQuestion) && questions.length < 1
-        ? <div>Loading...</div>
-        : <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <h3>{unescapeStr(currentQuestion.question)}</h3>
+      {questions && currentQuestion && questions.length < 1 ? (
+        <div>Loading...</div>
+      ) : (
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <h3>{unescapeStr(currentQuestion.question)}</h3>
           {/* <TrueFalse selectedOption={selectedOption} handleChange={handleChange} /> */}
           {/* <ShortAnswer /> */}
           <MultipleChoice answers={answers} />
-            <button>Next</button>
-          </div>
-      }
+            <Button type="submit" primary>
+              Next
+            </Button>
+        </div>
+      )}
+      <br />
+      <br />
+      <Summary />
     </>
   );
 }
