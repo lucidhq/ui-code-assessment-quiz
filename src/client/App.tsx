@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { unescapeStr } from '../utils/questionUtils'
+import TrueFalse from './components/TrueFalse'
 
 interface Question {
   category: string,
@@ -20,7 +21,7 @@ interface IState {
   finalScorePercentage: number,
 }
 
-
+type selected = string | null;
 /*
 initialState = {
   questions: [],
@@ -36,8 +37,10 @@ initialState = {
 export const App = () => {
   const [questions, setQuestions] = useState<Question[] | []>([]);
   const [currentQuestion, setCurrentQuestion] = useState<Question | any>({});
+  const [selectedOption, setOption] = useState<selected>('');
 
   useEffect(() => {
+  // TODO: move this to utils file and make a
     fetch('http://localhost:4000/api/questions')
       .then(res => res.json())
       .then(q => {
@@ -50,6 +53,10 @@ export const App = () => {
       .catch(error => console.error('unable to retrieve data at this time please try again', error))
   }, [])
 
+  const handleChange = (e: any): void => {
+    e.preventDefault();
+    return setOption(e.target.name);
+  }
 
 
   return (
@@ -57,7 +64,8 @@ export const App = () => {
       {(questions && currentQuestion) && questions.length < 1
         ? <div>Loading...</div>
         : <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          <h1>{unescapeStr(currentQuestion.question)}</h1>
+          <h3>{unescapeStr(currentQuestion.question)}</h3>
+          <TrueFalse selectedOption={selectedOption} handleChange={handleChange} />
             <button>Next</button>
           </div>
       }
