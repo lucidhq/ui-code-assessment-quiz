@@ -1,12 +1,6 @@
 import * as React from 'react';
-import { useState, useEffect } from 'react';
-//TODO: clean up imports
-import { Button } from 'semantic-ui-react'
+import { useState, useEffect, useReducer } from 'react'
 import { unescapeStr, configureAnswers } from '../utils/questionUtils'
-// import TrueFalse from './components/TrueFalse'
-import ShortAnswer from './components/ShortAnswer'
-import MultipleChoice from './components/MultipleChoice'
-import Summary from './components/Summary'
 import QuestionForm from './components/QuestionForm'
 
 interface Question {
@@ -21,58 +15,103 @@ interface Question {
 interface IState {
   questions: Question[],
   currentQuestion: Question | any,
+  idx: number,
+  answers: [] | any,
+  currentAnswer: string | any,
   correctAnswers: number,
   incorrectAnswers: number,
   questionsAnswered: number,
   finalScorePercentage: number,
+  isSummaryVisible: boolean,
 }
 
 type selected = string | null;
 
-/*
-const initialState = {
+
+const initialState: IState = {
   questions: [],
   currentQuestion: {},
+  idx: 0,
+  answers: [],
+  currentAnswer: '',
   correctAnswers: 0,
   incorrectAnswers: 0,
   questionsAnswered: 0,
   finalScorePercentage: 0,
+  isSummaryVisible: false,
 }
-*/
+
+const reducer = (state: any, action: any) => {
+  // TODO: add type,payload destructuring here
+
+  switch (action.type) {
+    case 'SET_DATA': {
+      return {
+        ...state,
+        ...action.payload
+      }
+    }
+    case 'ONCHANGE': {
+      return {
+        ...state,
+        ...action.payload,
+      }
+    }
+    case 'NEXT_QUESTION': {
+      return {
+        ...state,
+        ...action.payload,
+        currentAnswer: ''
+      }
+    }
+    case 'RESET_QUIZ': {
+      return initialState;
+    }
+    default:
+      return state;
+  }
+}
+
 
 
 export const App = () => {
-  const [questions, setQuestions] = useState<Question[] | []>([]);
-  const [currentQuestion, setCurrentQuestion] = useState<Question | any>({});
-  const [answers, setAnswers] = useState([]);
-  const [selectedOption, setOption] = useState<selected>('');
-  const [idx, setIdx] = useState(0);
-  const [totalAnswered, setTotal] = useState(0);
+  const [state, dispatch] = useReducer(reducer, initialState);
 
-  const handleChange = (e: any): void => {
+  const handleChange = (e: any, { value }: any)  => {
+    console.log('here is the value', value);
+    console.log('here is the target', e.target);
+
     e.preventDefault();
-    return setOption(e.target.name);
+    const payload = {
+      currentAnswer: value
+    }
+    return dispatch({ type:'ONCHANGE', payload })
   }
 
   const updateQuestion = (e: any) => {
     e.preventDefault();
-    const nextIdx = idx + 1;
-    const nextQuestion: any = questions[nextIdx];
-    let updateAnswersList: any;
+    // TODO: Add error handling here
+    // if currentValue.length < 1 then alert the user or show error component
+    const nextIdx = state.idx + 1;
+    const nextQuestion: any = state.questions[nextIdx];
+    const questionsAnswered = state.questionsAnswered + 1;
+    const payload: any = {
+      idx: nextIdx,
+      currentQuestion: nextQuestion,
+      questionsAnswered,
+    }
     // Try and remove this conditional
     if (nextQuestion.incorrect_answers) {
-      updateAnswersList = configureAnswers(nextQuestion);
-      setAnswers(updateAnswersList);
-    } else {
-      setAnswers(nextQuestion);
+      payload.answers = configureAnswers(nextQuestion)
     }
-    // if totalAnswered questions equals 5 show the summary page
-    if (totalAnswered === 5) {
-      // set summary page to be visible
+    // if totalAnswered questions equals 5, or 50 if going through the entire list, show the summary page
+    if (questionsAnswered === 5 || questionsAnswered === 50) {
+      payload.isSummaryVisibile = true;
     }
-    setIdx(nextIdx);
-    setCurrentQuestion(questions[nextIdx]);
+
+    return dispatch({ type: "NEXT_QUESTION", payload });
   }
+
   // function for resetting the state of the quiz
   // const resetQuiz = () => {
   //   // reset the state
@@ -83,16 +122,19 @@ export const App = () => {
     // TODO: move this to utils file and make a
     fetch('http://localhost:4000/api/questions')
       .then(res => res.json())
-      .then(q => {
-        const data: any = q.results;
-        const firstQuestion: any = data[0];
-        console.log(unescapeStr(firstQuestion.question));
-        // TODO make this into a reducer to fix multiple re-renders
-        if (firstQuestion.incorrect_answers) {
-          setAnswers(configureAnswers(firstQuestion));
+      .then(({ results }: any) => {
+        const questions = results;
+        const currentQuestion = questions[0];
+        const payload: any = {
+          questions,
+          currentQuestion,
         }
-        setCurrentQuestion(firstQuestion);
-        setQuestions(data);
+        // If question is not a text question then shuffle answers
+        if (currentQuestion.incorrect_answers) {
+          payload.answers = configureAnswers(currentQuestion);
+        }
+
+        return dispatch({type: 'SET_DATA', payload})
       })
       .catch(error => console.error('unable to retrieve data at this time please try again', error))
   }, []);
@@ -101,8 +143,12 @@ export const App = () => {
 
   return (
     <>
-      {questions && currentQuestion && questions.length < 1 ? (
-        <div>Loading...</div>
+      {state.questions && state.currentQuestion && state.questions.length < 1 ? (
+        <div style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}>Loading...</div>
       ) : (
         <div
           style={{
@@ -112,22 +158,14 @@ export const App = () => {
           }}
           >
             <QuestionForm
-              currentQuestion={currentQuestion}
-              answers={answers}
+              answers={state.answers}
+              currentQuestion={state.currentQuestion}
+              currentAnswer={state.currentAnswer}
+              handleChange={handleChange}
               updateQuestion={updateQuestion}
             />
-          {/* <h3>{unescapeStr(currentQuestion.question)}</h3> */}
-          {/* <TrueFalse selectedOption={selectedOption} handleChange={handleChange} /> */}
-          {/* <ShortAnswer /> */}
-          {/* <MultipleChoice answers={answers} />
-            <Button type="submit" primary>
-              Next
-            </Button> */}
         </div>
       )}
-      <br />
-      <br />
-      <Summary />
     </>
   );
 }

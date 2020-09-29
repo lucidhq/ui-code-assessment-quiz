@@ -9,25 +9,25 @@ type selected = string | null;
 //   handleChange: any,
 // }
 
-const TrueFalse = () => {
-  const [value, setValue] = useState<selected>('');
-  const handleChange = (e: any, { value }: any): void => {
-    e.preventDefault();
-    return setValue(value);
-  }
+const TrueFalse = ({ currentAnswer, handleChange } : any) => {
+  // const [value, setValue] = useState<selected>('');
+  // const handleChange = (e: any, { value }: any): void => {
+  //   e.preventDefault();
+  //   return setValue(value);
+  // }
 
 
   return (
     <>
       <FormField>
-        Selected value: <b>{value}</b>
+        Selected value: <b>{currentAnswer}</b>
       </FormField>
       <FormField>
         <Radio
           label="True"
           name="radioGroup"
           value="trueOption"
-          checked={value === "trueOption"}
+          checked={currentAnswer === "trueOption"}
           onChange={handleChange}
         />
       </FormField>
@@ -36,7 +36,7 @@ const TrueFalse = () => {
           label="False"
           name="radioGroup"
           value="falseOption"
-          checked={value === "falseOption"}
+          checked={currentAnswer === "falseOption"}
           onChange={handleChange}
         />
       </FormField>
@@ -45,7 +45,7 @@ const TrueFalse = () => {
 }
 
 TrueFalse.propTypes = {
-  selectedOption: PropTypes.string,
+  currentAnswer: PropTypes.string,
   handleChange: PropTypes.func,
 }
 

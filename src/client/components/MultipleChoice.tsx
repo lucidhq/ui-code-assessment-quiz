@@ -1,26 +1,26 @@
 import React, { useState, Fragment } from 'react'
+import PropTypes from 'prop-types';
 import { FormField, Radio } from 'semantic-ui-react'
 
-const MultipleChoice = ({ answers }: any) => {
-  const [value, setValue] = useState("");
-  const handleChange = (e: any, { value }: any): void => {
-    e.preventDefault();
-    return setValue(value);
-  };
-
+const MultipleChoice = ({ currentAnswer, handleChange, answers }: any) => {
+  // const [value, setValue] = useState("");
+  // const handleChange = (e: any, { value }: any): void => {
+  //   e.preventDefault();
+  //   return setValue(value);
+  // };
 
   return (
     <>
-      {(answers.length > 0)
-        ? answers.map((a: any) => (
-            <Fragment key={a}>
+      {answers.length > 0
+        ? answers.map((answer: any) => (
+            <Fragment key={answer}>
               <FormField>
                 <Radio
-                  label={a}
+                  label={answer}
                   name="radioGroup"
-                  value={a}
-                  checked={value === a}
-                  onChange={handleChange}
+                  value={answer}
+                  checked={currentAnswer === answer}
+                  onClick={handleChange}
                 />
               </FormField>
             </Fragment>
@@ -28,6 +28,12 @@ const MultipleChoice = ({ answers }: any) => {
         : null}
     </>
   );
+};
+
+MultipleChoice.propTypes = {
+  answers: PropTypes.array,
+  handleChange: PropTypes.func,
+  currentAnswer: PropTypes.string,
 }
 
 export default MultipleChoice

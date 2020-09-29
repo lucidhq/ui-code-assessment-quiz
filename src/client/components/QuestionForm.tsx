@@ -13,14 +13,24 @@ import { unescapeStr } from '../../utils/questionUtils'
 
 // TODO: move answers array to a context for global consumption
 // TODO: move QUESTION_TYPES enum out of component scope after context is created
-const QuestionForm = ({ currentQuestion, answers, updateQuestion }: any) => {
+const QuestionForm = ({ currentQuestion, currentAnswer, handleChange, answers, updateQuestion }: any) => {
   const { type } = currentQuestion;
   const question = unescapeStr(currentQuestion.question);
 
   const QUESTION_TYPES: any = {
-    boolean: <TrueFalse />,
-    multiple: <MultipleChoice answers={answers} />,
-    text: <ShortAnswer />,
+    boolean: (
+      <TrueFalse currentAnswer={currentAnswer} handleChange={handleChange} />
+    ),
+    multiple: (
+      <MultipleChoice
+        currentAnswer={currentAnswer}
+        handleChange={handleChange}
+        answers={answers}
+      />
+    ),
+    text: (
+      <ShortAnswer currentAnswer={currentAnswer} handleChange={handleChange} />
+    ),
   };
 
 
