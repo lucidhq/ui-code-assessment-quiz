@@ -13,7 +13,7 @@ import { unescapeStr } from '../../utils/questionUtils'
 
 // TODO: move answers array to a context for global consumption
 // TODO: move QUESTION_TYPES enum out of component scope after context is created
-const QuestionForm = ({ currentQuestion, answers }: any) => {
+const QuestionForm = ({ currentQuestion, answers, updateQuestion }: any) => {
   const { type } = currentQuestion;
   const question = unescapeStr(currentQuestion.question);
 
@@ -27,12 +27,11 @@ const QuestionForm = ({ currentQuestion, answers }: any) => {
   return (
     <>
       <Container textAlign="left">
-        <Form>
+        <Form onSubmit={updateQuestion}>
           <h3>{question}</h3>
           <div style={{ marginBottom: '10px' }}>
           {QUESTION_TYPES[type]}
           </div>
-
           <Button type="submit" primary>Next</Button>
         </Form>
       </Container>

@@ -30,7 +30,7 @@ interface IState {
 type selected = string | null;
 
 /*
-initialState = {
+const initialState = {
   questions: [],
   currentQuestion: {},
   correctAnswers: 0,
@@ -44,18 +44,50 @@ initialState = {
 export const App = () => {
   const [questions, setQuestions] = useState<Question[] | []>([]);
   const [currentQuestion, setCurrentQuestion] = useState<Question | any>({});
-  const [selectedOption, setOption] = useState<selected>('');
   const [answers, setAnswers] = useState([]);
+  const [selectedOption, setOption] = useState<selected>('');
+  const [idx, setIdx] = useState(0);
+  const [totalAnswered, setTotal] = useState(0);
+
+  const handleChange = (e: any): void => {
+    e.preventDefault();
+    return setOption(e.target.name);
+  }
+
+  const updateQuestion = (e: any) => {
+    e.preventDefault();
+    const nextIdx = idx + 1;
+    const nextQuestion: any = questions[nextIdx];
+    let updateAnswersList: any;
+    // Try and remove this conditional
+    if (nextQuestion.incorrect_answers) {
+      updateAnswersList = configureAnswers(nextQuestion);
+      setAnswers(updateAnswersList);
+    } else {
+      setAnswers(nextQuestion);
+    }
+    // if totalAnswered questions equals 5 show the summary page
+    if (totalAnswered === 5) {
+      // set summary page to be visible
+    }
+    setIdx(nextIdx);
+    setCurrentQuestion(questions[nextIdx]);
+  }
+  // function for resetting the state of the quiz
+  // const resetQuiz = () => {
+  //   // reset the state
+  //   // set the visibility of the summary component to false
+  // }
 
   useEffect(() => {
-  // TODO: move this to utils file and make a
+    // TODO: move this to utils file and make a
     fetch('http://localhost:4000/api/questions')
       .then(res => res.json())
       .then(q => {
         const data: any = q.results;
-        const firstQuestion: any = data[4];
+        const firstQuestion: any = data[0];
         console.log(unescapeStr(firstQuestion.question));
-        // TODO make this into a reducer to fix multiple setState re-renders
+        // TODO make this into a reducer to fix multiple re-renders
         if (firstQuestion.incorrect_answers) {
           setAnswers(configureAnswers(firstQuestion));
         }
@@ -63,12 +95,8 @@ export const App = () => {
         setQuestions(data);
       })
       .catch(error => console.error('unable to retrieve data at this time please try again', error))
-  }, [])
+  }, []);
 
-  const handleChange = (e: any): void => {
-    e.preventDefault();
-    return setOption(e.target.name);
-  }
 
 
   return (
@@ -83,7 +111,11 @@ export const App = () => {
             alignItems: "center",
           }}
           >
-            <QuestionForm currentQuestion={currentQuestion} answers={answers} />
+            <QuestionForm
+              currentQuestion={currentQuestion}
+              answers={answers}
+              updateQuestion={updateQuestion}
+            />
           {/* <h3>{unescapeStr(currentQuestion.question)}</h3> */}
           {/* <TrueFalse selectedOption={selectedOption} handleChange={handleChange} /> */}
           {/* <ShortAnswer /> */}
