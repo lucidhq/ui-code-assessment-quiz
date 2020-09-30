@@ -12,6 +12,7 @@ interface Question {
   incorrect_answers: string[]
 }
 
+// review types that have "any"
 interface IState {
   questions: Question[],
   currentQuestion: Question | any,
@@ -24,9 +25,6 @@ interface IState {
   finalScorePercentage: number,
   isSummaryVisible: boolean,
 }
-
-type selected = string | null;
-
 
 const initialState: IState = {
   questions: [],

@@ -27,3 +27,27 @@ export const configureAnswers = (question) => {
 
   return shuffle(unescapedAnswers);
 }
+
+
+export const calculatePercentage = (state) => {
+  // if state is does not exist then exit
+  if (!state) {
+    return;
+  }
+  const { correct_answer } = state.currentQuestion;
+
+  // try and eliminate this conditional sequence
+  let answer;
+  // check for trueOption and falseOption
+  if (state.currentAnswer === 'falseOption') {
+    answer = 'False';
+  } else if (state.currentAnswer === 'trueOption') {
+    answer = 'True'
+  } else {
+    answer = state.currentAnswer;
+  }
+  // check if answer is correct
+
+  // the calculate the percentage based off of current questions answered and correct answers
+
+}

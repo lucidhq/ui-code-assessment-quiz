@@ -5,12 +5,6 @@ import MultipleChoice from './MultipleChoice'
 import ShortAnswer from './ShortAnswer'
 import { unescapeStr } from '../../utils/questionUtils'
 
-// const QUESTION_TYPES: any = {
-//   boolean: <TrueFalse />,
-//   multiple: <MultipleChoice />,
-//   text: <ShortAnswer />
-// }
-
 // TODO: move answers array to a context for global consumption
 // TODO: move QUESTION_TYPES enum out of component scope after context is created
 const QuestionForm = ({ currentQuestion, currentAnswer, handleChange, answers, updateQuestion }: any) => {
