@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState, useEffect, useReducer } from 'react'
-import { unescapeStr, configureAnswers } from '../utils/questionUtils'
+import { unescapeStr, configureAnswers, evaluateAnswers } from '../utils/questionUtils'
 import QuestionForm from './components/QuestionForm'
 
 interface Question {
@@ -93,10 +93,13 @@ export const App = () => {
     const nextIdx = state.idx + 1;
     const nextQuestion: any = state.questions[nextIdx];
     const questionsAnswered = state.questionsAnswered + 1;
+    const evaluationPayload = evaluateAnswers(state);
+
     const payload: any = {
       idx: nextIdx,
       currentQuestion: nextQuestion,
       questionsAnswered,
+      ...evaluationPayload
     }
     // Try and remove this conditional
     if (nextQuestion.incorrect_answers) {
@@ -106,6 +109,8 @@ export const App = () => {
     if (questionsAnswered === 5 || questionsAnswered === 50) {
       payload.isSummaryVisibile = true;
     }
+
+
 
     return dispatch({ type: "NEXT_QUESTION", payload });
   }

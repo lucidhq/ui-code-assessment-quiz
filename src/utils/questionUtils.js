@@ -43,6 +43,7 @@ export const evaluateAnswers = (state) => {
     return;
   }
   const { correct_answer } = state.currentQuestion;
+  const totalAnswered = state.questionsAnswered + 1;
   // rename this
   const payload = {
     correctAnswers: state.correctAnswers,
@@ -67,7 +68,7 @@ export const evaluateAnswers = (state) => {
     payload.incorrectAnswers = state.incorrectAnswers + 1;
   }
   // the calculate the percentage based off of current questions answered and correct answers
-  const updatedPercentage = calculatePercentage(payload.correctAnswers, state.questionsAnswered);
+  const updatedPercentage = calculatePercentage(payload.correctAnswers, totalAnswered);
   // add totalPercentage to payload and the return the payload
   payload.finalScorePercentage = updatedPercentage;
   return payload
