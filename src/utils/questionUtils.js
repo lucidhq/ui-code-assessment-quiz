@@ -29,13 +29,26 @@ export const configureAnswers = (question) => {
 }
 
 
-export const calculatePercentage = (state) => {
+export const calculatePercentage = (num1, total) => {
+  if (num1 === 0) {
+    return 0;
+  }
+
+  return Math.round((num1 / total) * 100);
+}
+
+export const evaluateAnswers = (state) => {
   // if state is does not exist then exit
   if (!state) {
     return;
   }
   const { correct_answer } = state.currentQuestion;
-
+  // rename this
+  const payload = {
+    correctAnswers: state.correctAnswers,
+    incorrectAnswers: state.incorrectAnswers,
+    finalScorePercentage: state.finalScorePercentage,
+  }
   // try and eliminate this conditional sequence
   let answer;
   // check for trueOption and falseOption
@@ -47,7 +60,16 @@ export const calculatePercentage = (state) => {
     answer = state.currentAnswer;
   }
   // check if answer is correct
-
+  // edit this to be cleaner before submission
+  if (answer === correct_answer) {
+    payload.correctAnswers = state.correctAnswers + 1;
+  } else {
+    payload.incorrectAnswers = state.incorrectAnswers + 1;
+  }
   // the calculate the percentage based off of current questions answered and correct answers
-
+  const updatedPercentage = calculatePercentage(payload.correctAnswers, state.questionsAnswered);
+  // add totalPercentage to payload and the return the payload
+  payload.finalScorePercentage = updatedPercentage;
+  return payload
 }
+
