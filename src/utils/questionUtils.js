@@ -28,8 +28,8 @@ export const configureAnswers = (question) => {
   return shuffle(unescapedAnswers);
 }
 
-
 export const calculatePercentage = (num1, total) => {
+  // exit condition
   if (num1 === 0) {
     return 0;
   }
@@ -42,35 +42,24 @@ export const evaluateAnswers = (state) => {
   if (!state) {
     return;
   }
+
   const { correct_answer } = state.currentQuestion;
   const totalAnswered = state.questionsAnswered + 1;
-  // rename this
   const payload = {
     correctAnswers: state.correctAnswers,
     incorrectAnswers: state.incorrectAnswers,
     finalScorePercentage: state.finalScorePercentage,
   }
-  // try and eliminate this conditional sequence
-  let answer;
-  // check for trueOption and falseOption
-  if (state.currentAnswer === 'falseOption') {
-    answer = 'False';
-  } else if (state.currentAnswer === 'trueOption') {
-    answer = 'True'
+  // added lowercase transformation for text input inconsistencies
+  if (state.currentAnswer.toLowerCase() === correct_answer.toLowerCase()) {
+    payload.correctAnswers += 1;
   } else {
-    answer = state.currentAnswer;
+    payload.incorrectAnswers += 1;
   }
-  // check if answer is correct
-  // edit this to be cleaner before submission
-  if (answer === correct_answer) {
-    payload.correctAnswers = state.correctAnswers + 1;
-  } else {
-    payload.incorrectAnswers = state.incorrectAnswers + 1;
-  }
-  // the calculate the percentage based off of current questions answered and correct answers
-  const updatedPercentage = calculatePercentage(payload.correctAnswers, totalAnswered);
-  // add totalPercentage to payload and the return the payload
-  payload.finalScorePercentage = updatedPercentage;
-  return payload
-}
 
+  const updatedPercentage = calculatePercentage(payload.correctAnswers, totalAnswered);
+
+  payload.finalScorePercentage = updatedPercentage;
+
+  return payload;
+}

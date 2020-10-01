@@ -1,12 +1,10 @@
-import React, { useState } from 'react'
+import React, { useContext } from 'react'
 import { Input } from 'semantic-ui-react'
+import QuestionContext from "../contexts/QuestionContext";
 
-const ShortAnswer = ({ currentAnswer, handleChange }: any) => {
-  // TODO refactor this functionality into one hook or one method to pass into the form
-  // const [value, setValue] = useState("");
-  // const handleChange = (e: any, { value }: any): void => {
-  //   setValue(value);
-  // };
+// { currentAnswer, handleChange }: any
+const ShortAnswer = () => {
+  const { currentAnswer, handleChange }: any = useContext(QuestionContext);
 
   return (
     <>

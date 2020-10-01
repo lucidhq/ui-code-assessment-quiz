@@ -1,14 +1,12 @@
-import React, { useState, Fragment } from 'react'
-import PropTypes from 'prop-types';
+import React, { useContext, Fragment } from 'react'
 import { FormField, Radio } from 'semantic-ui-react'
+import QuestionContext from '../contexts/QuestionContext'
 
-const MultipleChoice = ({ currentAnswer, handleChange, answers }: any) => {
-  // const [value, setValue] = useState("");
-  // const handleChange = (e: any, { value }: any): void => {
-  //   e.preventDefault();
-  //   return setValue(value);
-  // };
 
+const MultipleChoice = () => {
+  const { currentAnswer, handleChange, state }: any = useContext(QuestionContext);
+  const { answers } = state;
+  
   return (
     <>
       {answers.length > 0
@@ -29,11 +27,5 @@ const MultipleChoice = ({ currentAnswer, handleChange, answers }: any) => {
     </>
   );
 };
-
-MultipleChoice.propTypes = {
-  answers: PropTypes.array,
-  handleChange: PropTypes.func,
-  currentAnswer: PropTypes.string,
-}
 
 export default MultipleChoice

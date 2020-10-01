@@ -1,8 +1,18 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Button, Container, Grid, GridColumn, GridRow } from 'semantic-ui-react'
+import QuestionContext from '../contexts/QuestionContext'
 
 
 const SummaryPage = () => {
+  const { state, dispatch }: any = useContext(QuestionContext);
+  const {
+    correctAnswers,
+    incorrectAnswers,
+    questionsAnswered,
+    finalScorePercentage,
+  } = state;
+  const restartQuiz = () => dispatch(({ type: 'RESTART_QUIZ' }));
+
   return (
     <>
       <Container>
@@ -11,18 +21,18 @@ const SummaryPage = () => {
             <GridColumn>
               <h2>Summary</h2>
               <p>
-                Correct: <strong> 0 </strong>
+                Correct: <strong> {correctAnswers} </strong>
               </p>
               <p>
-                Incorrect: <strong> 3 </strong>
+                Incorrect: <strong> {incorrectAnswers} </strong>
               </p>
               <p>
-                Total Answered: <strong> 3 </strong>
+                Total Answered: <strong> {questionsAnswered} </strong>
               </p>
               <p>
-                Final Score: <strong> 0% </strong>
+                Final Score: <strong> {finalScorePercentage}% </strong>
               </p>
-              <Button type="text" primary> Restart Quiz </Button>
+              <Button type="text" primary onClick={restartQuiz}> Restart Quiz </Button>
             </GridColumn>
           </GridRow>
         </Grid>

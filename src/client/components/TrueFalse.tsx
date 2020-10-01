@@ -1,21 +1,12 @@
-import React, { useState } from 'react';
-import PropTypes, { InferProps } from 'prop-types'
+import React, {  useContext } from 'react';
+// import PropTypes from 'prop-types'
 import { FormField, Radio } from 'semantic-ui-react'
+import QuestionContext from '../contexts/QuestionContext'
 
-type selected = string | null;
+// { currentAnswer, handleChange } : any
 
-// interface TFProps {
-//   selectedOption: string,
-//   handleChange: any,
-// }
-
-const TrueFalse = ({ currentAnswer, handleChange } : any) => {
-  // const [value, setValue] = useState<selected>('');
-  // const handleChange = (e: any, { value }: any): void => {
-  //   e.preventDefault();
-  //   return setValue(value);
-  // }
-
+const TrueFalse = () => {
+  const { currentAnswer, handleChange }: any = useContext(QuestionContext)
 
   return (
     <>
@@ -26,8 +17,8 @@ const TrueFalse = ({ currentAnswer, handleChange } : any) => {
         <Radio
           label="True"
           name="radioGroup"
-          value="trueOption"
-          checked={currentAnswer === "trueOption"}
+          value="True"
+          checked={currentAnswer === "True"}
           onChange={handleChange}
         />
       </FormField>
@@ -35,8 +26,8 @@ const TrueFalse = ({ currentAnswer, handleChange } : any) => {
         <Radio
           label="False"
           name="radioGroup"
-          value="falseOption"
-          checked={currentAnswer === "falseOption"}
+          value="False"
+          checked={currentAnswer === "False"}
           onChange={handleChange}
         />
       </FormField>
@@ -44,10 +35,10 @@ const TrueFalse = ({ currentAnswer, handleChange } : any) => {
   );
 }
 
-TrueFalse.propTypes = {
-  currentAnswer: PropTypes.string,
-  handleChange: PropTypes.func,
-}
+// TrueFalse.propTypes = {
+//   currentAnswer: PropTypes.string,
+//   handleChange: PropTypes.func,
+// }
 
 
 export default TrueFalse
