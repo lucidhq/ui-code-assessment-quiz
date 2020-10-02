@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { Button, Container, Grid, GridColumn, GridRow } from 'semantic-ui-react'
-import { configureAnswers } from '../../utils/questionUtils';
+import { configureAnswers } from '../../utils/questionUtils'
 import QuestionContext from '../contexts/QuestionContext'
 
 
@@ -16,10 +16,9 @@ const SummaryPage = () => {
   } = state;
 
   const restartQuiz = () => {
-    // handle if the
     const nextIdx = idx + 1;
     let nextQuestion = questions[nextIdx];
-    // basic
+
     if (nextQuestion === undefined || idx >= questions.length) {
       nextQuestion = questions[0];
     }
