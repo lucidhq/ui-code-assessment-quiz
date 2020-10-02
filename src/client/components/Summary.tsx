@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
 import { Button, Container, Grid, GridColumn, GridRow } from 'semantic-ui-react'
-import { configureAnswers } from '../../utils/questionUtils'
 import QuestionContext from '../contexts/QuestionContext'
 
 
