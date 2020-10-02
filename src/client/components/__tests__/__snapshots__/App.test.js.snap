@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App Component test suite it should render 1`] = `
+<div>
+  <div
+    class="ui inverted top fixed menu"
+  >
+    <a
+      class="header item"
+    >
+      QUIZR
+    </a>
+  </div>
+  <div
+    class="ui container"
+    style="margin-top: 4em;"
+  >
+    <div
+      style="display: flex; flex-direction: column; align-items: center;"
+    >
+      Loading...
+    </div>
+  </div>
+</div>
+`;

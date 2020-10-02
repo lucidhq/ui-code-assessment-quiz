@@ -7,9 +7,12 @@
     "start:server": "node ./src/server/server.js",
     "start:client": "react-scripts start",
     "start": "concurrently npm:start:client npm:start:server",
-    "build": "react-scripts build"
+    "build": "react-scripts build",
+    "test": "react-scripts test"
   },
   "dependencies": {
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.0.4",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "react": "^16.11.0",

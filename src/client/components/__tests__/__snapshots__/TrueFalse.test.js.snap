@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TrueFalse Answer Option it should render 1`] = `
+<div>
+  <div
+    class="field"
+  >
+    <div
+      class="ui radio checkbox"
+    >
+      <input
+        class="hidden"
+        name="radioGroup"
+        readonly=""
+        tabindex="0"
+        type="radio"
+        value="True"
+      />
+      <label>
+        True
+      </label>
+    </div>
+  </div>
+  <div
+    class="field"
+  >
+    <div
+      class="ui radio checkbox"
+    >
+      <input
+        class="hidden"
+        name="radioGroup"
+        readonly=""
+        tabindex="0"
+        type="radio"
+        value="False"
+      />
+      <label>
+        False
+      </label>
+    </div>
+  </div>
+</div>
+`;
