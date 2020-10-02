@@ -1,18 +1,13 @@
 import React, {  useContext } from 'react';
-// import PropTypes from 'prop-types'
 import { FormField, Radio } from 'semantic-ui-react'
 import QuestionContext from '../contexts/QuestionContext'
 
-// { currentAnswer, handleChange } : any
 
 const TrueFalse = () => {
   const { currentAnswer, handleChange }: any = useContext(QuestionContext)
 
   return (
     <>
-      <FormField>
-        Selected value: <b>{currentAnswer}</b>
-      </FormField>
       <FormField>
         <Radio
           label="True"
@@ -34,11 +29,5 @@ const TrueFalse = () => {
     </>
   );
 }
-
-// TrueFalse.propTypes = {
-//   currentAnswer: PropTypes.string,
-//   handleChange: PropTypes.func,
-// }
-
 
 export default TrueFalse
