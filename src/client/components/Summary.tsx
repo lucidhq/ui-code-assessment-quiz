@@ -7,8 +7,6 @@ import QuestionContext from '../contexts/QuestionContext'
 const SummaryPage = () => {
   const { state, dispatch }: any = useContext(QuestionContext);
   const {
-    questions,
-    idx,
     correctAnswers,
     incorrectAnswers,
     questionsAnswered,
@@ -16,16 +14,7 @@ const SummaryPage = () => {
   } = state;
 
   const restartQuiz = () => {
-    const nextIdx = idx + 1;
-    let nextQuestion = questions[nextIdx];
-
-    if (nextQuestion === undefined || idx >= questions.length) {
-      nextQuestion = questions[0];
-    }
-
     const payload: any = {
-      currentQuestion: nextQuestion,
-      idx: nextIdx,
       currentAnswer: "",
       correctAnswers: 0,
       incorrectAnswers: 0,
@@ -33,10 +22,6 @@ const SummaryPage = () => {
       finalScorePercentage: 0,
       isSummaryVisible: false,
     };
-
-    if (nextQuestion.incorrect_answers) {
-      payload.answers = configureAnswers(nextQuestion);
-    }
 
     return dispatch(({ type: 'RESTART_QUIZ', payload }));
   }

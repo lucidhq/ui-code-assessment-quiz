@@ -92,7 +92,7 @@ export const App = () => {
     fetch("http://localhost:4000/api/questions")
       .then((res) => res.json())
       .then(({ results }: any) => {
-        const questions = shuffle(results);
+        const questions = shuffle(results.slice(0,10));
         // TODO: change this back and add shuffle method to randomize question order
         const currentQuestion = questions[0];
         const payload: any = {
