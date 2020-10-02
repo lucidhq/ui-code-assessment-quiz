@@ -1,4 +1,4 @@
-import React, {  useContext } from 'react';
+import React, {  useContext } from 'react'
 import { FormField, Radio } from 'semantic-ui-react'
 import QuestionContext from '../contexts/QuestionContext'
 
