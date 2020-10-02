@@ -44,39 +44,6 @@ const initialState: IState = {
   isWarningMessageVisible: false,
 };
 
-const reducer = (state: any, action: any) => {
-  // TODO: add type,payload destructuring here
-
-  switch (action.type) {
-    case "SET_DATA": {
-      return {
-        ...state,
-        ...action.payload,
-      };
-    }
-    case "ONCHANGE": {
-      return {
-        ...state,
-        ...action.payload,
-      };
-    }
-    case "NEXT_QUESTION": {
-      return {
-        ...state,
-        ...action.payload,
-        currentAnswer: "",
-      };
-    }
-    case "RESTART_QUIZ": {
-      return {
-        ...state,
-        ...action.payload
-      };
-    }
-    default:
-      return state;
-  }
-};
 
 export const App = () => {
   const [state, dispatch] = useReducer(mainReducer, initialState);
@@ -93,7 +60,6 @@ export const App = () => {
 
   const updateQuestion = (e: any) => {
     e.preventDefault();
-
     let nextIdx = state.idx + 1;
     let nextQuestion: any = state.questions[nextIdx];
 
@@ -104,17 +70,15 @@ export const App = () => {
 
     const questionsAnswered = state.questionsAnswered + 1;
     const evaluationPayload = evaluateAnswers(state);
-
+    const answers = configureAnswers(nextQuestion);
     const payload: any = {
       idx: nextIdx,
       currentQuestion: nextQuestion,
+      answers,
       questionsAnswered,
       ...evaluationPayload,
     };
-    // Try and remove this conditional
-    payload.answers = configureAnswers(nextQuestion);
 
-    // if totalAnswered questions equals 5, or 50 if going through the entire list, show the summary page
     if (questionsAnswered === 5 || questionsAnswered === 50) {
       payload.isSummaryVisible = true;
     }

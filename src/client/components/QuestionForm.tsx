@@ -13,6 +13,7 @@ const QuestionForm = ({ updateQuestion, state }: any) => {
   const { type } = currentQuestion;
   const question = unescapeStr(currentQuestion.question);
   const isDisabled = currentAnswer.length < 1;
+
   const QUESTION_TYPES: any = {
     boolean: <TrueFalse />,
     multiple: <MultipleChoice />,
@@ -39,11 +40,8 @@ const QuestionForm = ({ updateQuestion, state }: any) => {
 }
 
 QuestionForm.propTypes = {
-  isSummaryVisible: PropTypes.bool,
-  answers: PropTypes.array,
-  currentQuestion: PropTypes.object,
-  updateQuestion: PropTypes.func,
-  state: PropTypes.object
+  updateQuestion: PropTypes.func.isRequired,
+  state: PropTypes.object.isRequired,
 }
 
 export default QuestionForm
