@@ -33,7 +33,7 @@ interface IState {
 const initialState: IState = {
   questions: [],
   currentQuestion: {},
-  idx: 45,
+  idx: 0,
   answers: [],
   currentAnswer: "",
   correctAnswers: 0,
@@ -92,9 +92,9 @@ export const App = () => {
     fetch("http://localhost:4000/api/questions")
       .then((res) => res.json())
       .then(({ results }: any) => {
-        const questions = results;
+        const questions = shuffle(results);
         // TODO: change this back and add shuffle method to randomize question order
-        const currentQuestion = questions[45];
+        const currentQuestion = questions[0];
         const payload: any = {
           answers: configureAnswers(currentQuestion),
           questions,
