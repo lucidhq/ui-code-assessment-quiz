@@ -4,6 +4,7 @@
 export const unescapeStr = (str) => {
   let parser = new DOMParser();
   let doc = parser.parseFromString(str, 'text/html');
+  
   return doc.body.textContent;
 }
 
@@ -21,6 +22,11 @@ export const shuffle = (arr) => {
 
 // take in the original question and return a new array of answers to map over in component
 export const configureAnswers = (question) => {
+  // exit case for text questions
+  if (question.type === 'text') {
+    return;
+  }
+
   const { correct_answer, incorrect_answers } = question;
   const answers = [correct_answer, ...incorrect_answers];
   const unescapedAnswers = answers.map((a) => unescapeStr(a));

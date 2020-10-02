@@ -1,8 +1,10 @@
 import * as React from "react";
 import { useEffect, useReducer } from "react";
-import { configureAnswers, evaluateAnswers } from "../utils/questionUtils";
-import QuestionForm from "./components/QuestionForm";
-import QuestionContext from "./contexts/QuestionContext";
+import { Container } from 'semantic-ui-react'
+import { configureAnswers, evaluateAnswers, shuffle } from "../../utils/questionUtils";
+import QuestionForm from "./QuestionForm";
+import QuestionContext from "../contexts/QuestionContext";
+import mainReducer from '../reducers/index'
 
 interface Question {
   category: string;
@@ -25,12 +27,13 @@ interface IState {
   questionsAnswered: number;
   finalScorePercentage: number;
   isSummaryVisible: boolean;
+  isWarningMessageVisible: boolean;
 }
 
 const initialState: IState = {
   questions: [],
   currentQuestion: {},
-  idx: 0,
+  idx: 45,
   answers: [],
   currentAnswer: "",
   correctAnswers: 0,
@@ -38,6 +41,7 @@ const initialState: IState = {
   questionsAnswered: 0,
   finalScorePercentage: 0,
   isSummaryVisible: false,
+  isWarningMessageVisible: false,
 };
 
 const reducer = (state: any, action: any) => {
@@ -64,14 +68,9 @@ const reducer = (state: any, action: any) => {
       };
     }
     case "RESTART_QUIZ": {
-      // TODO: reset the state here. Could potentially pass a payload object...
       return {
         ...state,
-        correctAnswers: 0,
-        incorrectAnswers: 0,
-        questionsAnswered: 0,
-        finalScorePercentage: 0,
-        isSummaryVisible: false,
+        ...action.payload
       };
     }
     default:
@@ -80,8 +79,8 @@ const reducer = (state: any, action: any) => {
 };
 
 export const App = () => {
-  const [state, dispatch] = useReducer(reducer, initialState);
-  const { currentAnswer } = state
+  const [state, dispatch] = useReducer(mainReducer, initialState);
+  const { currentAnswer } = state;
 
   const handleChange = (e: any, { value }: any) => {
     e.preventDefault();
@@ -94,10 +93,15 @@ export const App = () => {
 
   const updateQuestion = (e: any) => {
     e.preventDefault();
-    // TODO: Add error handling here
-    // if currentValue.length < 1 then alert the user or show error component
-    const nextIdx = state.idx + 1;
-    const nextQuestion: any = state.questions[nextIdx];
+
+    let nextIdx = state.idx + 1;
+    let nextQuestion: any = state.questions[nextIdx];
+
+    if (nextQuestion === undefined || nextIdx >= state.questions.length) {
+      nextIdx = 0;
+      nextQuestion = state.questions[0];
+    }
+
     const questionsAnswered = state.questionsAnswered + 1;
     const evaluationPayload = evaluateAnswers(state);
 
@@ -108,9 +112,8 @@ export const App = () => {
       ...evaluationPayload,
     };
     // Try and remove this conditional
-    if (nextQuestion.incorrect_answers) {
-      payload.answers = configureAnswers(nextQuestion);
-    }
+    payload.answers = configureAnswers(nextQuestion);
+
     // if totalAnswered questions equals 5, or 50 if going through the entire list, show the summary page
     if (questionsAnswered === 5 || questionsAnswered === 50) {
       payload.isSummaryVisible = true;
@@ -126,15 +129,13 @@ export const App = () => {
       .then((res) => res.json())
       .then(({ results }: any) => {
         const questions = results;
-        const currentQuestion = questions[0];
+        // TODO: change this back and add shuffle method to randomize question order
+        const currentQuestion = questions[45];
         const payload: any = {
+          answers: configureAnswers(currentQuestion),
           questions,
           currentQuestion,
         };
-        // If question is not a text question then shuffle answers
-        if (currentQuestion.incorrect_answers) {
-          payload.answers = configureAnswers(currentQuestion);
-        }
 
         return dispatch({ type: "SET_DATA", payload });
       })
@@ -144,27 +145,25 @@ export const App = () => {
   return (
     <>
       <QuestionContext.Provider value={{ state, currentAnswer, handleChange, dispatch }}>
-        {state.questions &&
-        state.currentQuestion &&
-        state.questions.length < 1 ? (
-          <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
+        <Container>
+          {state.questions && state.questions.length < 1 ? (
+            <div style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
             }}
-          >
-            Loading...
-          </div>
-        ) : (
-          <div>
-            <QuestionForm
-              isSummaryVisible={state.isSummaryVisible}
-              currentQuestion={state.currentQuestion}
-              updateQuestion={updateQuestion}
-            />
-          </div>
-        )}
+            >
+              Loading...
+            </div>
+          ) : (
+            <div>
+              <QuestionForm
+                state={state}
+                updateQuestion={updateQuestion}
+              />
+            </div>
+          )}
+        </Container>
       </QuestionContext.Provider>
     </>
   );
