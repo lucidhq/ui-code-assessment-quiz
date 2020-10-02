@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useEffect, useReducer } from "react";
-import { Container } from 'semantic-ui-react'
+import { Container, Menu, MenuItem, MenuHeader } from 'semantic-ui-react'
 import { configureAnswers, evaluateAnswers, shuffle } from "../../utils/questionUtils";
 import QuestionForm from "./QuestionForm";
 import QuestionContext from "../contexts/QuestionContext";
@@ -78,8 +78,8 @@ export const App = () => {
       questionsAnswered,
       ...evaluationPayload,
     };
-
-    if (questionsAnswered === 5 || questionsAnswered === 50) {
+    // NOTE: you can change the quiz length here if needed.
+    if (questionsAnswered === 5) {
       payload.isSummaryVisible = true;
     }
 
@@ -92,8 +92,8 @@ export const App = () => {
     fetch("http://localhost:4000/api/questions")
       .then((res) => res.json())
       .then(({ results }: any) => {
+        // TODO: test out different amounts of
         const questions = shuffle(results.slice(0,10));
-        // TODO: change this back and add shuffle method to randomize question order
         const currentQuestion = questions[0];
         const payload: any = {
           answers: configureAnswers(currentQuestion),
@@ -108,23 +108,28 @@ export const App = () => {
 
   return (
     <>
-      <QuestionContext.Provider value={{ state, currentAnswer, handleChange, dispatch }}>
-        <Container>
+      <QuestionContext.Provider
+        value={{ state, currentAnswer, handleChange, dispatch }}
+      >
+        <Menu fixed='top' inverted>
+          <MenuItem as='a' header>
+            QUIZR
+          </MenuItem>
+        </Menu>
+        <Container  style={{ marginTop: '4em' }}>
           {state.questions && state.questions.length < 1 ? (
-            <div style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
             >
               Loading...
             </div>
           ) : (
             <div>
-              <QuestionForm
-                state={state}
-                updateQuestion={updateQuestion}
-              />
+              <QuestionForm state={state} updateQuestion={updateQuestion} />
             </div>
           )}
         </Container>
