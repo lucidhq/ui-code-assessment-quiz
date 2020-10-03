@@ -1,0 +1,86 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Multiple Choice it should render 1`] = `
+<div>
+  <div
+    class="field"
+    data-testid="multiple-choice-answer"
+  >
+    <div
+      class="ui radio checkbox"
+    >
+      <input
+        class="hidden"
+        name="radioGroup"
+        readonly=""
+        tabindex="0"
+        type="radio"
+        value="4"
+      />
+      <label>
+        4
+      </label>
+    </div>
+  </div>
+  <div
+    class="field"
+    data-testid="multiple-choice-answer"
+  >
+    <div
+      class="ui radio checkbox"
+    >
+      <input
+        class="hidden"
+        name="radioGroup"
+        readonly=""
+        tabindex="0"
+        type="radio"
+        value="3"
+      />
+      <label>
+        3
+      </label>
+    </div>
+  </div>
+  <div
+    class="field"
+    data-testid="multiple-choice-answer"
+  >
+    <div
+      class="ui radio checkbox"
+    >
+      <input
+        class="hidden"
+        name="radioGroup"
+        readonly=""
+        tabindex="0"
+        type="radio"
+        value="2"
+      />
+      <label>
+        2
+      </label>
+    </div>
+  </div>
+  <div
+    class="field"
+    data-testid="multiple-choice-answer"
+  >
+    <div
+      class="ui radio checkbox"
+    >
+      <input
+        class="hidden"
+        name="radioGroup"
+        readonly=""
+        tabindex="0"
+        type="radio"
+        value="5"
+      />
+      <label>
+        5
+      </label>
+    </div>
+  </div>
+</div>
+`;

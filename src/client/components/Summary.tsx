@@ -27,24 +27,31 @@ const SummaryPage = () => {
 
   return (
     <>
-      <Container>
+      <Container data-testid="summary">
         <Grid columns={1}>
           <GridRow>
             <GridColumn>
               <h2>Summary</h2>
-              <p>
+              <p data-testid="correct-answers">
                 Correct: <strong> {correctAnswers} </strong>
               </p>
-              <p>
+              <p data-testid="incorrect-answers">
                 Incorrect: <strong> {incorrectAnswers} </strong>
               </p>
-              <p>
+              <p data-testid="total-answered">
                 Total Answered: <strong> {questionsAnswered} </strong>
               </p>
-              <p>
+              <p data-testid="final-score-percentage">
                 Final Score: <strong> {finalScorePercentage}% </strong>
               </p>
-              <Button type="text" primary onClick={restartQuiz}> Restart Quiz </Button>
+              <Button
+                data-testid="restart-btn"
+                type="text"
+                primary
+                onClick={restartQuiz}
+              >
+                Restart Quiz
+              </Button>
             </GridColumn>
           </GridRow>
         </Grid>

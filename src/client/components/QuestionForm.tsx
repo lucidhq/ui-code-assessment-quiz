@@ -26,12 +26,19 @@ const QuestionForm = ({ updateQuestion, state }: any) => {
       {isSummaryVisible
         ? <SummaryPage />
         : <Container textAlign="left">
-            <Form onSubmit={updateQuestion}>
-              <h3>{question}</h3>
-              <div style={{ marginBottom: '10px' }}>
-              {QUESTION_TYPES[type]}
+            <Form data-testid="question-form" onSubmit={updateQuestion}>
+              <h3 data-testid="question-text">{question}</h3>
+              <div data-testid={type} className="question-type" style={{ marginBottom: '10px' }}>
+                {QUESTION_TYPES[type]}
               </div>
-              <Button type="submit" primary disabled={isDisabled}>Next</Button>
+              <Button
+                data-testid="next-btn"
+                type="submit"
+                primary
+                disabled={isDisabled}
+              >
+                Next
+              </Button>
             </Form>
           </Container>
       }

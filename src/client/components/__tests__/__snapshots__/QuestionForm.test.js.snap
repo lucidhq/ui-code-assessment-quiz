@@ -1,0 +1,115 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`QuestionForm it should render 1`] = `
+<div>
+  <div
+    class="ui left aligned container"
+  >
+    <form
+      class="ui form"
+      data-testid="question-form"
+    >
+      <h3
+        data-testid="question-text"
+      >
+        If a "360 no-scope" is one full rotation before shooting, how many rotations would a "1080 no-scope" be?
+      </h3>
+      <div
+        class="question-type"
+        data-testid="multiple"
+        style="margin-bottom: 10px;"
+      >
+        <div
+          class="field"
+          data-testid="multiple-choice-answer"
+        >
+          <div
+            class="ui radio checkbox"
+          >
+            <input
+              class="hidden"
+              name="radioGroup"
+              readonly=""
+              tabindex="0"
+              type="radio"
+              value="4"
+            />
+            <label>
+              4
+            </label>
+          </div>
+        </div>
+        <div
+          class="field"
+          data-testid="multiple-choice-answer"
+        >
+          <div
+            class="ui radio checkbox"
+          >
+            <input
+              class="hidden"
+              name="radioGroup"
+              readonly=""
+              tabindex="0"
+              type="radio"
+              value="3"
+            />
+            <label>
+              3
+            </label>
+          </div>
+        </div>
+        <div
+          class="field"
+          data-testid="multiple-choice-answer"
+        >
+          <div
+            class="ui radio checkbox"
+          >
+            <input
+              class="hidden"
+              name="radioGroup"
+              readonly=""
+              tabindex="0"
+              type="radio"
+              value="2"
+            />
+            <label>
+              2
+            </label>
+          </div>
+        </div>
+        <div
+          class="field"
+          data-testid="multiple-choice-answer"
+        >
+          <div
+            class="ui radio checkbox"
+          >
+            <input
+              class="hidden"
+              name="radioGroup"
+              readonly=""
+              tabindex="0"
+              type="radio"
+              value="5"
+            />
+            <label>
+              5
+            </label>
+          </div>
+        </div>
+      </div>
+      <button
+        class="ui primary disabled button"
+        data-testid="next-btn"
+        disabled=""
+        tabindex="-1"
+        type="submit"
+      >
+        Next
+      </button>
+    </form>
+  </div>
+</div>
+`;

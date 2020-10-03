@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Summary it should render 1`] = `
+<div>
+  <div
+    class="ui container"
+    data-testid="summary"
+  >
+    <div
+      class="ui one column grid"
+    >
+      <div
+        class="row"
+      >
+        <div
+          class="column"
+        >
+          <h2>
+            Summary
+          </h2>
+          <p>
+            Correct: 
+            <strong>
+               
+              0
+               
+            </strong>
+          </p>
+          <p>
+            Incorrect: 
+            <strong>
+               
+              0
+               
+            </strong>
+          </p>
+          <p>
+            Total Answered: 
+            <strong>
+               
+              0
+               
+            </strong>
+          </p>
+          <p>
+            Final Score: 
+            <strong>
+               
+              0
+              % 
+            </strong>
+          </p>
+          <button
+            class="ui primary button"
+            data-testid="restart-btn"
+            type="text"
+          >
+            Restart Quiz
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
