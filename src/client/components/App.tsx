@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useEffect, useReducer } from "react";
-import { Container, Menu, MenuItem, MenuHeader } from 'semantic-ui-react'
+import { Container, Menu, MenuItem } from 'semantic-ui-react'
 import { configureAnswers, evaluateAnswers, shuffle } from "../../utils/questionUtils";
 import QuestionForm from "./QuestionForm";
 import QuestionContext from "../contexts/QuestionContext";
@@ -116,7 +116,7 @@ export const App = () => {
             QUIZR
           </MenuItem>
         </Menu>
-        <Container  style={{ marginTop: '4em' }}>
+        <Container style={{ marginTop: '4em' }}>
           {state.questions && state.questions.length < 1 ? (
             <div
               style={{
