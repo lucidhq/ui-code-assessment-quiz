@@ -4,7 +4,6 @@ import MultipleChoice from '../MultipleChoice';
 import QuestionContext from '../../contexts/QuestionContext'
 
 const renderWithContext = (value) => {
-
   return render(
     <QuestionContext.Provider value={value}>
       <MultipleChoice />

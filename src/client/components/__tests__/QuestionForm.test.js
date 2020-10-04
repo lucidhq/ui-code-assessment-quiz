@@ -2,7 +2,7 @@ import React from "react";
 import { render } from "@testing-library/react";
 import QuestionForm from "../QuestionForm";
 import QuestionContext from '../../contexts/QuestionContext'
-import { questionData } from '../../../data/questionData'
+import { questionData, shortAnswerData } from '../../../data/questionData'
 
 const renderWithContext = (value, props) => {
   return render(
@@ -53,7 +53,7 @@ describe('QuestionForm', () => {
   });
 
   test('it should render a True/False question', () => {
-    props.state.currentQuestion = questionData[2];
+    props.state.currentQuestion = questionData[1];
 
     const { getByTestId } = renderWithContext(contextValue, props);
     const trueFalseQuestion = getByTestId('boolean');
@@ -62,7 +62,7 @@ describe('QuestionForm', () => {
   });
 
   test('it should render a Short Answer question', () => {
-    props.state.currentQuestion = questionData[1];
+    props.state.currentQuestion = shortAnswerData[0];
 
     const { getByTestId } = renderWithContext(contextValue, props);
     const shortAnswerQuestion = getByTestId('text');
@@ -72,7 +72,7 @@ describe('QuestionForm', () => {
 
   test('it should render the Summary page', () => {
     props.state.isSummaryVisible = true;
-    
+
     const { getByTestId } = renderWithContext(contextValue, props);
     const summaryPage = getByTestId('summary');
 

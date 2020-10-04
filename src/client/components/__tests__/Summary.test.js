@@ -34,14 +34,6 @@ describe("Summary", () => {
     expect(container).toMatchSnapshot();
   });
 
-  test('it should dispatch an action to restart the quiz', async () => {
-    const { getByTestId } = renderWithContext(contextValue);
-    const restartBtn = getByTestId('restart-btn');
-
-    fireEvent.click(restartBtn)
-
-    expect(contextValue.dispatch).toHaveBeenCalled();
-  });
 
   test('it should contain a summary of the previous quiz', () => {
     contextValue.state = {
@@ -50,16 +42,26 @@ describe("Summary", () => {
       questionsAnswered: 5,
       finalScorePercentage: 40,
     }
+    const { getByTestId } = renderWithContext(contextValue);
+    const correctAnswers = getByTestId('correct-answers').textContent.trim();
+    const incorrectAnswers = getByTestId('incorrect-answers').textContent.trim();
+    const questionsAnswered = getByTestId('total-answered').textContent.trim();
+    const fsPercentage = getByTestId('final-score-percentage').textContent.trim()
 
-    const { container, getByTestId } = renderWithContext(contextValue);
-    const correctAnswers = getByTestId('correct-answers');
-    const incorrectAnswers = getByTestId('incorrect-answers');
-    const questionsAnswered = getByTestId('questions-answered');
-    const fsPercentage = getByTestId('final-score-percentage');
 
-
-    expect()
+    expect(correctAnswers).toBe('Correct: 2')
+    expect(incorrectAnswers).toBe('Wrong: 3')
+    expect(questionsAnswered).toBe('Total Answered: 5')
+    expect(fsPercentage).toBe('Final Score: 40%')
   });
 
+  test('it should dispatch an action to restart the quiz', () => {
+    const { getByTestId } = renderWithContext(contextValue);
+    const restartBtn = getByTestId('restart-btn');
+
+    fireEvent.click(restartBtn)
+
+    expect(contextValue.dispatch).toHaveBeenCalled();
+  });
 
 });

@@ -8,6 +8,7 @@ exports[`Multiple Choice it should render 1`] = `
   >
     <div
       class="ui radio checkbox"
+      data-testid="radio-btn"
     >
       <input
         class="hidden"
@@ -28,6 +29,7 @@ exports[`Multiple Choice it should render 1`] = `
   >
     <div
       class="ui radio checkbox"
+      data-testid="radio-btn"
     >
       <input
         class="hidden"
@@ -48,6 +50,7 @@ exports[`Multiple Choice it should render 1`] = `
   >
     <div
       class="ui radio checkbox"
+      data-testid="radio-btn"
     >
       <input
         class="hidden"
@@ -68,6 +71,7 @@ exports[`Multiple Choice it should render 1`] = `
   >
     <div
       class="ui radio checkbox"
+      data-testid="radio-btn"
     >
       <input
         class="hidden"

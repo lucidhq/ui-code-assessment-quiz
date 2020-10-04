@@ -8,6 +8,7 @@ const ShortAnswer = () => {
   return (
     <>
       <Input
+        data-testid="short-answer"
         type="text"
         name="shortAnswer"
         value={currentAnswer}

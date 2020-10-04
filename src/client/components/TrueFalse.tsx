@@ -10,6 +10,7 @@ const TrueFalse = () => {
     <>
       <FormField>
         <Radio
+          data-testid="radio-btn"
           label="True"
           name="radioGroup"
           value="True"

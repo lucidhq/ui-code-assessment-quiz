@@ -33,16 +33,16 @@ const SummaryPage = () => {
             <GridColumn>
               <h2>Summary</h2>
               <p data-testid="correct-answers">
-                Correct: <strong> {correctAnswers} </strong>
+                Correct:<strong> {correctAnswers} </strong>
               </p>
               <p data-testid="incorrect-answers">
-                Incorrect: <strong> {incorrectAnswers} </strong>
+                Wrong:<strong> {incorrectAnswers} </strong>
               </p>
               <p data-testid="total-answered">
-                Total Answered: <strong> {questionsAnswered} </strong>
+                Total Answered:<strong> {questionsAnswered} </strong>
               </p>
               <p data-testid="final-score-percentage">
-                Final Score: <strong> {finalScorePercentage}% </strong>
+                Final Score:<strong> {finalScorePercentage}% </strong>
               </p>
               <Button
                 data-testid="restart-btn"

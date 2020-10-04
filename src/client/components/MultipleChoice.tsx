@@ -13,11 +13,12 @@ const MultipleChoice = () => {
         ? answers.map((answer: any) => (
             <FormField data-testid="multiple-choice-answer" key={answer}>
               <Radio
+                data-testid="radio-btn"
                 label={answer}
                 name="radioGroup"
                 value={answer}
                 checked={currentAnswer === answer}
-                onClick={handleChange}
+                onChange={handleChange}
               />
             </FormField>
           ))

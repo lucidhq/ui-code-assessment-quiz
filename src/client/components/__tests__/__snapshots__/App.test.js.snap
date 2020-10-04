@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Main App Component it should render 1`] = `
+exports[`Main App Component it should render with a loading state 1`] = `
 <div>
   <div
     class="ui inverted top fixed menu"

@@ -18,32 +18,40 @@ exports[`Summary it should render 1`] = `
           <h2>
             Summary
           </h2>
-          <p>
-            Correct: 
+          <p
+            data-testid="correct-answers"
+          >
+            Correct:
             <strong>
                
               0
                
             </strong>
           </p>
-          <p>
-            Incorrect: 
+          <p
+            data-testid="incorrect-answers"
+          >
+            Wrong:
             <strong>
                
               0
                
             </strong>
           </p>
-          <p>
-            Total Answered: 
+          <p
+            data-testid="total-answered"
+          >
+            Total Answered:
             <strong>
                
               0
                
             </strong>
           </p>
-          <p>
-            Final Score: 
+          <p
+            data-testid="final-score-percentage"
+          >
+            Final Score:
             <strong>
                
               0
