@@ -1,6 +1,5 @@
 import React from "react";
-import { render, act, waitFor, screen, fireEvent } from "@testing-library/react";
-// import { act } from 'react-dom/test-utils'
+import { render, act, waitFor, screen } from "@testing-library/react";
 import { App } from "../App";
 import { questionData } from '../../../data/questionData'
 import QuestionContext from '../../contexts/QuestionContext'
@@ -21,7 +20,7 @@ const renderWithContext = (value) => {
   );
 }
 
-let contextValue
+let contextValue;
 
 beforeEach(() => {
   contextValue = {

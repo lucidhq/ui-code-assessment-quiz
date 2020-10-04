@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 export const questionData = [
   {
     category: "Entertainment: Video Games",

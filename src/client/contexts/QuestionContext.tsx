@@ -1,5 +1,4 @@
-import { createContext } from "react";
-
+import { createContext } from "react"
 
 // maybe play around with creating an HOC for the entire app
 const QuestionContext = createContext({});

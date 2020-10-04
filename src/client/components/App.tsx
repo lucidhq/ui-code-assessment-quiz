@@ -88,12 +88,10 @@ export const App = () => {
 
 
   useEffect(() => {
-    // TODO: move this to utils file and make a
     fetch("http://localhost:4000/api/questions")
       .then((res) => res.json())
       .then(({ results }: any) => {
-        // TODO: test out different amounts of
-        const questions = shuffle(results.slice(0,10));
+        const questions = shuffle(results);
         const currentQuestion = questions[0];
         const payload: any = {
           answers: configureAnswers(currentQuestion),
@@ -108,9 +106,7 @@ export const App = () => {
 
   return (
     <>
-      <QuestionContext.Provider
-        value={{ state, currentAnswer, handleChange, dispatch }}
-      >
+      <QuestionContext.Provider value={{ state, currentAnswer, handleChange, dispatch }}>
         <Menu fixed='top' inverted>
           <MenuItem as='a' header>
             QUIZR
@@ -118,13 +114,7 @@ export const App = () => {
         </Menu>
         <Container style={{ marginTop: '4em' }}>
           {state.questions && state.questions.length < 1 ? (
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-            >
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "center",}}>
               Loading...
             </div>
           ) : (
