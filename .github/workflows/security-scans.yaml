@@ -1,0 +1,17 @@
+# This file is managed by https://github.com/lucidhq/github-actions-definitions
+# DO NOT MODIFY MANUALLY
+jobs:
+  gitleaks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f # v2.3.4
+        with:
+          fetch-depth: '0'
+      - name: gitleaks-action
+        uses: zricethezav/gitleaks-action@518e4898c0cd1cc5d9aab6627a2eabd46e81d8da # v1.6.0
+        with:
+          # If you need to load custom config with exception rules: https://github.com/zricethezav/gitleaks#configuration
+          config-path: .gitleaks.toml
+name: "Security scans"
+on:
+  - pull_request
