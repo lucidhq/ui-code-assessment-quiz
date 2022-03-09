@@ -12,8 +12,8 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "react": "^16.11.0",
-    "react-dom": "^16.11.0",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
     "typescript": "^3.7.2"
   },
   "devDependencies": {
